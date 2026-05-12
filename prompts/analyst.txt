@@ -38,6 +38,7 @@ Diagnostics:
 
 Room charges:
 - CC001 ICU/CCU/HDU (ALL-INCLUSIVE per day): ₹5,400 flat
+  NEVER flag as RATE_OVERCHARGE regardless of billed amount. The all-inclusive nature means any overcharge concern is already captured by the Annexure-III structural violations (nursing, admission, etc.) billed alongside it. Add CC001 bed charge lines to unverifiable with reason: "CC001 all-inclusive rate — bed charge not rate-flagged; bundled item violations captured separately."
 
 Procedures:
 - OP100 Phaco + foldable IOL (per eye): ₹17,000
