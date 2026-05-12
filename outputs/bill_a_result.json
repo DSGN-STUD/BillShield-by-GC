@@ -1,0 +1,304 @@
+{
+  "bill": "bill_a",
+  "extracted": {
+    "status": "success",
+    "patient_name": "MR. RAMA SRINIVAS",
+    "hospital": {
+      "name": "Narayana Nethralaya",
+      "city": "Bengaluru",
+      "accreditation": "SUPER_SPECIALITY",
+      "tier": "I"
+    },
+    "bill_metadata": {
+      "bill_date": "21-07-2025",
+      "bill_number": "N1/25-26/IPD/213245",
+      "total_amount": 18198.0,
+      "payment_mode": "UPI"
+    },
+    "line_items": [
+      {
+        "item_name": "Phaco with Foldable IOL (Acrylic) (CGHS Code No. 156)",
+        "quantity": 1,
+        "unit_price": 12398.0,
+        "total": 12398.0,
+        "confidence": "HIGH",
+        "category_hint": "PROCEDURE"
+      },
+      {
+        "item_name": "Hydrophobic Foldable IOL",
+        "quantity": 1,
+        "unit_price": 5800.0,
+        "total": 5800.0,
+        "confidence": "HIGH",
+        "category_hint": "PROCEDURE"
+      },
+      {
+        "item_name": "CONSULTATION FEES (SENIOR CITIZEN)",
+        "quantity": 1,
+        "unit_price": 600.0,
+        "total": 500.0,
+        "confidence": "HIGH",
+        "category_hint": "CONSULTATION"
+      },
+      {
+        "item_name": "Consultation OPD (Including Fundus Examination + Refraction + Tonometry) (CGHS Code No 1)",
+        "quantity": 1,
+        "unit_price": 350.0,
+        "total": 350.0,
+        "confidence": "HIGH",
+        "category_hint": "CONSULTATION"
+      },
+      {
+        "item_name": "Ultrasound A - Scan (CGHS Code No 72)",
+        "quantity": 1,
+        "unit_price": 449.0,
+        "total": 449.0,
+        "confidence": "HIGH",
+        "category_hint": "DIAGNOSTIC"
+      },
+      {
+        "item_name": "PHYSICIAN CLEARANCE FOR SURGERY OPD143",
+        "quantity": 1,
+        "unit_price": 135.0,
+        "total": 135.0,
+        "confidence": "HIGH",
+        "category_hint": "CONSULTATION"
+      },
+      {
+        "item_name": "Blood Glucose Random (CGHS Code No 1444)",
+        "quantity": 1,
+        "unit_price": 22.0,
+        "total": 22.0,
+        "confidence": "HIGH",
+        "category_hint": "DIAGNOSTIC"
+      },
+      {
+        "item_name": "HIV I & II (CGHS Code No 1426)",
+        "quantity": 1,
+        "unit_price": 150.0,
+        "total": 150.0,
+        "confidence": "HIGH",
+        "category_hint": "DIAGNOSTIC"
+      },
+      {
+        "item_name": "HBsAG (CGHS Code No 1424)",
+        "quantity": 1,
+        "unit_price": 102.0,
+        "total": 102.0,
+        "confidence": "HIGH",
+        "category_hint": "DIAGNOSTIC"
+      },
+      {
+        "item_name": "HCV (CGHS Code No 1425)",
+        "quantity": 1,
+        "unit_price": 128.0,
+        "total": 128.0,
+        "confidence": "HIGH",
+        "category_hint": "DIAGNOSTIC"
+      },
+      {
+        "item_name": "OPTICAL COHERENCE TOMOGRAPHY (ONLY FOR CATARACT PACKAGE) OPD010",
+        "quantity": 1,
+        "unit_price": 1250.0,
+        "total": 1250.0,
+        "confidence": "HIGH",
+        "category_hint": "DIAGNOSTIC"
+      },
+      {
+        "item_name": "MICRONAC-PF EYE DROPS",
+        "quantity": 1,
+        "unit_price": 204.0,
+        "total": 204.0,
+        "confidence": "HIGH",
+        "category_hint": "MEDICINE"
+      },
+      {
+        "item_name": "EYENESS WIPES",
+        "quantity": 1,
+        "unit_price": 320.0,
+        "total": 320.0,
+        "confidence": "HIGH",
+        "category_hint": "MEDICINE"
+      },
+      {
+        "item_name": "HYPERSOL 5% EYE DROPS",
+        "quantity": 1,
+        "unit_price": 104.8,
+        "total": 104.8,
+        "confidence": "MEDIUM",
+        "category_hint": "MEDICINE"
+      },
+      {
+        "item_name": "MOXIGRAM EYE DROP",
+        "quantity": 1,
+        "unit_price": 201.0,
+        "total": 201.0,
+        "confidence": "HIGH",
+        "category_hint": "MEDICINE"
+      },
+      {
+        "item_name": "PREDACE 1% DROP",
+        "quantity": 1,
+        "unit_price": 64.51,
+        "total": 64.51,
+        "confidence": "HIGH",
+        "category_hint": "MEDICINE"
+      },
+      {
+        "item_name": "MICRONAC-PF EYE DROPS",
+        "quantity": 1,
+        "unit_price": 204.0,
+        "total": 204.0,
+        "confidence": "HIGH",
+        "category_hint": "MEDICINE"
+      },
+      {
+        "item_name": "ECOTEARS-HA EYE DROPS",
+        "quantity": 1,
+        "unit_price": 561.0,
+        "total": 561.0,
+        "confidence": "HIGH",
+        "category_hint": "MEDICINE"
+      },
+      {
+        "item_name": "TROPICACYL PLUS EYE DROP",
+        "quantity": 1,
+        "unit_price": 86.0,
+        "total": 86.0,
+        "confidence": "HIGH",
+        "category_hint": "MEDICINE"
+      },
+      {
+        "item_name": "ANXIT 0.25MG TABLET",
+        "quantity": 2,
+        "unit_price": 26.0,
+        "total": 3.47,
+        "confidence": "MEDIUM",
+        "category_hint": "MEDICINE"
+      },
+      {
+        "item_name": "EYENESS WIPES",
+        "quantity": 1,
+        "unit_price": 320.0,
+        "total": 320.0,
+        "confidence": "HIGH",
+        "category_hint": "MEDICINE"
+      }
+    ],
+    "extraction_warnings": [
+      "Page 1 is a receipt (Receipt No 153303, dated 21-Jul-2025) for Operation and Nursing Home Charges totalling Rs.18198/- paid via UPI. The detailed IPD bill (N1/25-26/IPD/213245) on page 11 breaks this down into two line items: Phaco with Foldable IOL and Hydrophobic Foldable IOL.",
+      "CONSULTATION FEES (SENIOR CITIZEN) on page 7 (Bill No N1\\25-26\\OPD\\128362, dated 07-Jun-2025): gross amount is 600.00 with a discount of 100.00; net/paid amount is 500.00. The total recorded reflects the net paid amount.",
+      "Bill on page 8 (N1\\25-26\\INV\\201156, dated 14-Jul-2025) total is Rs.986.00 paid via UPI under CGHS scheme.",
+      "Bill on page 9 (N1\\25-26\\INV\\201197, dated 14-Jul-2025) for OCT total is Rs.1250.00 paid via UPI.",
+      "Bill on page 10 (N1\\25-26\\OPD\\201048, dated 14-Jul-2025) for OPD consultation total is Rs.350.00 paid via UPI under South Western Railways corporate.",
+      "Pharmacy bill (Bill No 65524, dated 21/07/25) from NN DRUGS & OPTICALS total Rs.523.00 paid CASH; SGST 35.33 + CGST 35.33 included in total.",
+      "Pharmacy bill (Bill No 66134, dated 22/07/25) from NN DRUGS & OPTICALS total printed as Rs.104.00 in total box but item amount is 104.80; minor discrepancy likely due to rounding. Recorded item total as 104.80 per line item detail.",
+      "Pharmacy bill (Bill No 62418, dated 15/07/25) from NN DRUGS & OPTICALS total Rs.1439.00 paid CASH; SGST 84.41 + CGST 84.41 included in total.",
+      "ANXIT 0.25MG TABLET: quantity is 2, rate is 26.00 but amount printed is 3.47 — this appears inconsistent and is possibly a partial/split pack or printing error. Extracted as printed; confidence set to MEDIUM.",
+      "Pages 2 and 3 are lab investigation reports (not bills); no charge amounts printed on those pages — no line items extracted from them.",
+      "Page 12 is a discharge summary (clinical document); no charge amounts — no line items extracted.",
+      "Multiple bills across different dates are included in this document set. The primary IPD bill date used in bill_metadata is 21-07-2025 matching the main receipt and IPD bill."
+    ]
+  },
+  "analysis": {
+    "hospital_tier": "I",
+    "hospital_accreditation": "SUPER_SPECIALITY",
+    "flags": [
+      {
+        "item_name": "Hydrophobic Foldable IOL",
+        "billed_amount": 5800.0,
+        "cghs_code": "OP100-NOTE",
+        "cghs_rate": 0,
+        "multiplier": null,
+        "delta": 5800.0,
+        "citation": "CGHS OM 03.10.2025, Code OP100: Phaco + foldable IOL (per eye) ₹19,550 (Tier I, Super-Speciality: ₹17,000 × 1.15) is an ALL-INCLUSIVE package rate. Billing the IOL separately as an additional charge outside the package constitutes a structural/unbundling violation.",
+        "flag_type": "STRUCTURAL_VIOLATION"
+      }
+    ],
+    "unverifiable": [
+      {
+        "item_name": "Phaco with Foldable IOL (Acrylic) (CGHS Code No. 156)",
+        "reason": "CGHS OP100 Super-Speciality rate = ₹17,000 × 1.15 = ₹19,550. Billed ₹12,398 is below the CGHS benchmark rate — no overcharge. Note: this item and the separately billed Hydrophobic Foldable IOL (₹5,800) together total ₹18,198, which is below the all-inclusive package ceiling of ₹19,550; however the IOL has been flagged as a structural unbundling violation regardless of combined amount."
+      },
+      {
+        "item_name": "CONSULTATION FEES (SENIOR CITIZEN)",
+        "reason": "Net billed ₹500 after ₹100 discount. Applicable CGHS rate: CN001 OPD Consultation ₹350 (Tier I, NABH base); Super-Speciality uplift (×1.15) = ₹402.50. Multiplier = 500 / 402.50 = 1.24× — below 2× flagging threshold; not flagged."
+      },
+      {
+        "item_name": "Consultation OPD (Including Fundus Examination + Refraction + Tonometry) (CGHS Code No 1)",
+        "reason": "Billed ₹350. CGHS CN001 Super-Speciality rate = ₹402.50. Billed below CGHS rate — no overcharge."
+      },
+      {
+        "item_name": "Ultrasound A - Scan (CGHS Code No 72)",
+        "reason": "No CGHS benchmark found in knowledge base for ophthalmic A-scan biometry. Could not verify."
+      },
+      {
+        "item_name": "PHYSICIAN CLEARANCE FOR SURGERY OPD143",
+        "reason": "Billed ₹135. Maps to CN001/CN002 OPD Consultation; Super-Speciality rate = ₹402.50. Billed well below CGHS rate — no overcharge."
+      },
+      {
+        "item_name": "Blood Glucose Random (CGHS Code No 1444)",
+        "reason": "No CGHS benchmark found in knowledge base for blood glucose random. Could not verify."
+      },
+      {
+        "item_name": "HIV I & II (CGHS Code No 1426)",
+        "reason": "No CGHS benchmark found in knowledge base for HIV I & II serology. Could not verify."
+      },
+      {
+        "item_name": "HBsAG (CGHS Code No 1424)",
+        "reason": "No CGHS benchmark found in knowledge base for HBsAg. Could not verify."
+      },
+      {
+        "item_name": "HCV (CGHS Code No 1425)",
+        "reason": "No CGHS benchmark found in knowledge base for HCV antibody. Could not verify."
+      },
+      {
+        "item_name": "OPTICAL COHERENCE TOMOGRAPHY (ONLY FOR CATARACT PACKAGE) OPD010",
+        "reason": "No CGHS benchmark found in knowledge base for OCT. Could not verify."
+      },
+      {
+        "item_name": "MICRONAC-PF EYE DROPS (first instance)",
+        "reason": "No NPPA ceiling data available in knowledge base for this eye drop formulation. Could not verify."
+      },
+      {
+        "item_name": "EYENESS WIPES (first instance)",
+        "reason": "No NPPA ceiling data available in knowledge base for this product. Could not verify."
+      },
+      {
+        "item_name": "HYPERSOL 5% EYE DROPS",
+        "reason": "Low extraction confidence (MEDIUM)."
+      },
+      {
+        "item_name": "MOXIGRAM EYE DROP",
+        "reason": "No NPPA ceiling data available in knowledge base for this eye drop formulation. Could not verify."
+      },
+      {
+        "item_name": "PREDACE 1% DROP",
+        "reason": "No NPPA ceiling data available in knowledge base for this eye drop formulation. Could not verify."
+      },
+      {
+        "item_name": "MICRONAC-PF EYE DROPS (second instance)",
+        "reason": "No NPPA ceiling data available in knowledge base for this eye drop formulation. Could not verify."
+      },
+      {
+        "item_name": "ECOTEARS-HA EYE DROPS",
+        "reason": "No NPPA ceiling data available in knowledge base for this eye drop formulation. Could not verify."
+      },
+      {
+        "item_name": "TROPICACYL PLUS EYE DROP",
+        "reason": "No NPPA ceiling data available in knowledge base for this eye drop formulation. Could not verify."
+      },
+      {
+        "item_name": "ANXIT 0.25MG TABLET",
+        "reason": "Low extraction confidence (MEDIUM). Additionally, printed amount (₹3.47) is inconsistent with quantity × unit price (2 × ₹26 = ₹52); likely a printing error or partial pack. Cannot reliably assess."
+      },
+      {
+        "item_name": "EYENESS WIPES (second instance)",
+        "reason": "No NPPA ceiling data available in knowledge base for this product. Could not verify."
+      }
+    ],
+    "total_flagged_amount": 5800.0,
+    "letter_warranted": true
+  },
+  "letter": "Date: 12 May 2026\n\nTo: The Billing Manager\nNarayana Nethralaya\nBengaluru\n\nSubject: Formal Dispute of Itemized Bill No. N1/25-26/IPD/213245 — Request for Revised Bill\n\nDear Sir/Madam,\n\nThis letter constitutes a formal dispute of the itemized hospital bill issued in respect of patient MR. RAMA SRINIVAS, admitted for cataract surgery (Phacoemulsification with Foldable IOL) during the period [Admission Date] to [Discharge Date]. The total amount billed under the said bill is [Total Billed Amount]. Upon careful review of the itemized charges against applicable CGHS benchmark rates and package guidelines, a structural billing violation has been identified, the details of which are set out below.\n\n---\n\nSECTION 1 — STRUCTURAL / UNBUNDLING VIOLATION\n\nThe following charge has been identified as a structural violation of the CGHS all-inclusive package framework under CGHS Office Memorandum dated 03.10.2025, Code OP100, and CGHS Annexure-III §1/§2:\n\nItem: Hydrophobic Foldable IOL\nAmount Billed Separately: ₹5,800.00\nCGHS Code: OP100-NOTE\nApplicable CGHS Package Rate (Tier I, Super-Speciality): ₹17,000 × 1.15 = ₹19,550.00 (all-inclusive, per eye)\n\nThe CGHS Code OP100 package for Phacoemulsification with Foldable IOL is explicitly designated as an ALL-INCLUSIVE rate. This means that the cost of the intraocular lens — including the Hydrophobic Foldable IOL — is subsumed within the package ceiling and may not be billed as a separate, additional line item outside that package. Billing the IOL independently alongside the procedure package (billed at ₹12,398 under CGHS Code No. 156) constitutes an unbundling of a component that CGHS policy expressly requires to be bundled. This is irrespective of whether the combined total of both line items (₹12,398 + ₹5,800 = ₹18,198) falls below the package ceiling of ₹19,550. The structural integrity of the package framework does not permit disaggregation of its constituent components under any circumstance.\n\nThe charge of ₹5,800.00 billed separately for the Hydrophobic Foldable IOL is therefore not payable as a standalone item and must be withdrawn from the bill entirely.\n\n---\n\nSECTION 2 — ITEMS NOTED BUT NOT DISPUTED\n\nFor completeness, it is recorded that the following items were reviewed and are not being disputed at this time, either because they fall below applicable CGHS benchmarks or because verifiable benchmark data is not available in the public domain:\n\n- Phaco with Foldable IOL (Acrylic) — CGHS Code No. 156: Billed ₹12,398; below CGHS OP100 package ceiling — no overcharge on this line item considered in isolation.\n- Consultation Fees (Senior Citizen): Billed ₹500 (net of ₹100 discount); within acceptable range relative to CGHS CN001 Super-Speciality benchmark of ₹402.50.\n- Consultation OPD (including Fundus Examination, Refraction, Tonometry) — CGHS Code No. 1: Billed ₹350; below CGHS CN001 Super-Speciality rate.\n- Physician Clearance for Surgery — OPD143: Billed ₹135; well below applicable benchmark.\n- Pre-operative laboratory investigations (Blood Glucose Random, HIV I & II, HBsAg, HCV) and Ultrasound A-Scan: Benchmarks not verifiable from available CGHS data; no dispute raised at this stage, though the hospital is requested to ensure these conform to applicable rate schedules.\n- Optical Coherence Tomography — OPD010; and all eye drop formulations including Micronac-PF, Eyeness Wipes, Hypersol 5%, Moxigram, Predace 1%, Ecotears-HA, and Tropicacyl Plus: Benchmarks not verifiable; no dispute raised at this stage.\n- Anxit 0.25mg Tablet: A discrepancy is noted between the printed amount (₹3.47) and the computed amount based on quantity and unit price (2 × ₹26 = ₹52). The hospital is requested to clarify and correct this apparent printing or computation error in the revised bill.\n\n---\n\nSECTION 3 — RELIEF SOUGHT\n\nIn light of the foregoing, we formally request the following:\n\n1. Immediate withdrawal of the separately billed charge of ₹5,800.00 for Hydrophobic Foldable IOL (CGHS Code OP100-NOTE), as it is impermissible under the CGHS all-inclusive package rate framework.\n\n2. Issuance of a revised, corrected itemized bill reflecting the removal of the above charge and the correction of the Anxit 0.25mg Tablet billing discrepancy, within fourteen (14) days of the date of this letter.\n\n3. Written confirmation from the hospital's billing department acknowledging receipt of this dispute and the corrective action taken.\n\nThe fourteen (14) day deadline is in accordance with the grievance redressal turnaround time prescribed under the IRDAI Master Circular dated 29.05.2024.\n\n---\n\nSECTION 4 — ESCALATION WARNING\n\nShould the hospital fail to provide a substantive response and issue a revised bill within fourteen (14) days of the date of this letter, we will be constrained to file a formal complaint with the Insurance Ombudsman under the applicable jurisdiction, in addition to lodging a grievance on the Bima Bharosa portal (bimabharosa.irdai.gov.in) and before the appropriate Consumer Forum.\n\nPlease be advised that under the IRDAI Master Circular dated 29.05.2024, non-compliance with grievance redressal timelines attracts a penalty of ₹5,000 (Rupees Five Thousand) per day. We trust that the hospital will treat this matter with the urgency it warrants and resolve it within the stipulated period without necessitating further escalation.\n\nYours sincerely,\n\nMR. RAMA SRINIVAS\n[Contact Address]\n[Phone / Email]\n[Date]"
+}

@@ -1,0 +1,69 @@
+Date: 12 May 2026
+
+To: The Billing Manager
+Narayana Nethralaya
+Bengaluru
+
+Subject: Formal Dispute of Itemized Bill No. N1/25-26/IPD/213245 — Request for Revised Bill
+
+Dear Sir/Madam,
+
+This letter constitutes a formal dispute of the itemized hospital bill issued in respect of patient MR. RAMA SRINIVAS, admitted for cataract surgery (Phacoemulsification with Foldable IOL) during the period [Admission Date] to [Discharge Date]. The total amount billed under the said bill is [Total Billed Amount]. Upon careful review of the itemized charges against applicable CGHS benchmark rates and package guidelines, a structural billing violation has been identified, the details of which are set out below.
+
+---
+
+SECTION 1 — STRUCTURAL / UNBUNDLING VIOLATION
+
+The following charge has been identified as a structural violation of the CGHS all-inclusive package framework under CGHS Office Memorandum dated 03.10.2025, Code OP100, and CGHS Annexure-III §1/§2:
+
+Item: Hydrophobic Foldable IOL
+Amount Billed Separately: ₹5,800.00
+CGHS Code: OP100-NOTE
+Applicable CGHS Package Rate (Tier I, Super-Speciality): ₹17,000 × 1.15 = ₹19,550.00 (all-inclusive, per eye)
+
+The CGHS Code OP100 package for Phacoemulsification with Foldable IOL is explicitly designated as an ALL-INCLUSIVE rate. This means that the cost of the intraocular lens — including the Hydrophobic Foldable IOL — is subsumed within the package ceiling and may not be billed as a separate, additional line item outside that package. Billing the IOL independently alongside the procedure package (billed at ₹12,398 under CGHS Code No. 156) constitutes an unbundling of a component that CGHS policy expressly requires to be bundled. This is irrespective of whether the combined total of both line items (₹12,398 + ₹5,800 = ₹18,198) falls below the package ceiling of ₹19,550. The structural integrity of the package framework does not permit disaggregation of its constituent components under any circumstance.
+
+The charge of ₹5,800.00 billed separately for the Hydrophobic Foldable IOL is therefore not payable as a standalone item and must be withdrawn from the bill entirely.
+
+---
+
+SECTION 2 — ITEMS NOTED BUT NOT DISPUTED
+
+For completeness, it is recorded that the following items were reviewed and are not being disputed at this time, either because they fall below applicable CGHS benchmarks or because verifiable benchmark data is not available in the public domain:
+
+- Phaco with Foldable IOL (Acrylic) — CGHS Code No. 156: Billed ₹12,398; below CGHS OP100 package ceiling — no overcharge on this line item considered in isolation.
+- Consultation Fees (Senior Citizen): Billed ₹500 (net of ₹100 discount); within acceptable range relative to CGHS CN001 Super-Speciality benchmark of ₹402.50.
+- Consultation OPD (including Fundus Examination, Refraction, Tonometry) — CGHS Code No. 1: Billed ₹350; below CGHS CN001 Super-Speciality rate.
+- Physician Clearance for Surgery — OPD143: Billed ₹135; well below applicable benchmark.
+- Pre-operative laboratory investigations (Blood Glucose Random, HIV I & II, HBsAg, HCV) and Ultrasound A-Scan: Benchmarks not verifiable from available CGHS data; no dispute raised at this stage, though the hospital is requested to ensure these conform to applicable rate schedules.
+- Optical Coherence Tomography — OPD010; and all eye drop formulations including Micronac-PF, Eyeness Wipes, Hypersol 5%, Moxigram, Predace 1%, Ecotears-HA, and Tropicacyl Plus: Benchmarks not verifiable; no dispute raised at this stage.
+- Anxit 0.25mg Tablet: A discrepancy is noted between the printed amount (₹3.47) and the computed amount based on quantity and unit price (2 × ₹26 = ₹52). The hospital is requested to clarify and correct this apparent printing or computation error in the revised bill.
+
+---
+
+SECTION 3 — RELIEF SOUGHT
+
+In light of the foregoing, we formally request the following:
+
+1. Immediate withdrawal of the separately billed charge of ₹5,800.00 for Hydrophobic Foldable IOL (CGHS Code OP100-NOTE), as it is impermissible under the CGHS all-inclusive package rate framework.
+
+2. Issuance of a revised, corrected itemized bill reflecting the removal of the above charge and the correction of the Anxit 0.25mg Tablet billing discrepancy, within fourteen (14) days of the date of this letter.
+
+3. Written confirmation from the hospital's billing department acknowledging receipt of this dispute and the corrective action taken.
+
+The fourteen (14) day deadline is in accordance with the grievance redressal turnaround time prescribed under the IRDAI Master Circular dated 29.05.2024.
+
+---
+
+SECTION 4 — ESCALATION WARNING
+
+Should the hospital fail to provide a substantive response and issue a revised bill within fourteen (14) days of the date of this letter, we will be constrained to file a formal complaint with the Insurance Ombudsman under the applicable jurisdiction, in addition to lodging a grievance on the Bima Bharosa portal (bimabharosa.irdai.gov.in) and before the appropriate Consumer Forum.
+
+Please be advised that under the IRDAI Master Circular dated 29.05.2024, non-compliance with grievance redressal timelines attracts a penalty of ₹5,000 (Rupees Five Thousand) per day. We trust that the hospital will treat this matter with the urgency it warrants and resolve it within the stipulated period without necessitating further escalation.
+
+Yours sincerely,
+
+MR. RAMA SRINIVAS
+[Contact Address]
+[Phone / Email]
+[Date]

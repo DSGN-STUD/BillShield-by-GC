@@ -1,0 +1,97 @@
+Date: 12 May 2026
+
+To: The Billing Manager
+Mazumdar Shaw Medical Centre, Bangalore- BILLING-4F
+Bangalore
+
+Subject: Formal Dispute of Itemized Bill No. IB100226D002262 — Request for Revised Bill
+
+Dear Sir/Madam,
+
+This letter constitutes a formal dispute of the itemized hospital bill issued in respect of patient Mr. Munibur Rahman, admitted to your facility for the period [Admission Date] to [Discharge Date]. The total amount billed aggregates to [Total Billed Amount]. Upon systematic review of each line item against the Central Government Health Scheme (CGHS) Schedule of Rates as notified vide Office Memorandum dated 03.10.2025 (Tier I, NABH-accredited facility), this bill contains verifiable overcharges and impermissible unbundled charges amounting to ₹43,230. We hereby request a revised bill reflecting the applicable CGHS benchmarks.
+
+---
+
+SECTION 1 — RATE OVERCHARGES
+
+The following procedures have been billed at rates that materially exceed the applicable CGHS ceiling for a Tier I, NABH-accredited hospital. Each item is cited with its CGHS code, the permissible rate, the amount actually billed, and the resultant excess:
+
+1. ECG
+   CGHS Code: CI001 | Permissible Rate: ₹175 | Billed: ₹1,250 | Excess: ₹1,075 | Multiplier: 7.14×
+   Reference: CGHS OM 03.10.2025, Tier I, NABH, Code CI001.
+
+2. ECHO COLOR DOPPLER (2D Echocardiography)
+   CGHS Code: RI001 | Permissible Rate: ₹1,475 | Billed: ₹4,540 | Excess: ₹3,065 | Multiplier: 3.08×
+   Reference: CGHS OM 03.10.2025, Tier I, NABH, Code RI001.
+
+3. PTT — ACTIVATED THROMBOPLASTIN TIME (APTT)
+   CGHS Code: LB025 | Permissible Rate: ₹290 | Billed: ₹1,500 | Excess: ₹1,210 | Multiplier: 5.17×
+   Reference: CGHS OM 03.10.2025, Tier I, NABH, Code LB025.
+
+4. URINE ROUTINE AND MICROSCOPY
+   CGHS Code: LB001 | Permissible Rate: ₹100 | Billed: ₹890 | Excess: ₹790 | Multiplier: 8.90×
+   Reference: CGHS OM 03.10.2025, Tier I, NABH, Code LB001.
+
+5. MRI NEURO LIMITED ISCHEMIA STUDY (MRI Brain without contrast)
+   CGHS Code: RI089 | Permissible Rate: ₹2,750 | Billed: ₹16,980 | Excess: ₹14,230 | Multiplier: 6.17×
+   Reference: CGHS OM 03.10.2025, Tier I, NABH, Code RI089.
+
+6. USG ABDOMEN AND PELVIS (USG Whole Abdomen and Pelvis)
+   CGHS Code: RI020 | Permissible Rate: ₹800 | Billed: ₹4,060 | Excess: ₹3,260 | Multiplier: 5.08×
+   Reference: CGHS OM 03.10.2025, Tier I, NABH, Code RI020.
+
+7. BED CHARGES — CRITICAL CARE AREA (ICU/CCU/HDU all-inclusive per day)
+   CGHS Code: CC001 | Permissible Rate: ₹5,400 | Billed: ₹7,900 | Excess: ₹2,500 | Multiplier: 1.46×
+   Reference: CGHS OM 03.10.2025, Tier I, NABH, Code CC001.
+
+Total excess attributable to rate overcharges: ₹26,130.
+
+We request that each of the above line items be revised to the applicable CGHS ceiling rate and a credit note issued for the excess amounts collected or claimed.
+
+---
+
+SECTION 2 — STRUCTURAL VIOLATIONS: IMPERMISSIBLE UNBUNDLED CHARGES
+
+Under CGHS OM 03.10.2025, Annexure-III §1 and §2, room and ward charges are explicitly defined as all-inclusive and comprehensive. The following charges are expressly subsumed within room/ward charges and may not be separately itemized or billed under any circumstances:
+
+- MEDICAL RECORD CHARGES: ₹750
+- ADMISSION CHARGES: ₹2,000
+- BIOMEDICAL WASTE MANAGEMENT SERVICE: ₹200
+- DOCUMENT PROCESSING CHARGES: ₹400
+- CONSULTATION — DIETITIAN: ₹500
+- NURSING CHARGE (three instances): ₹6,500 + ₹4,500 + ₹4,500 = ₹15,500
+
+Total impermissibly unbundled charges: ₹19,350.
+
+By separately billing these items, the hospital has effectively double-charged the patient for services that are already compensated within the room/ward rate. We require that all of the above line items be deleted in their entirety from the final bill and any settled or pending insurance claim.
+
+---
+
+SECTION 3 — SPECIFIC REQUESTS
+
+In light of the foregoing, we formally request the following within fourteen (14) days of receipt of this letter:
+
+(a) A revised, itemized bill reflecting CGHS-compliant rates for all procedures cited in Section 1 above;
+
+(b) Complete removal from the bill of all charges enumerated in Section 2, in conformity with CGHS OM 03.10.2025, Annexure-III §1/§2;
+
+(c) A written confirmation of the revised total payable amount, inclusive of a credit note or refund for any amounts already paid or settled by the insurer in excess of the CGHS-permissible figures;
+
+(d) Should you dispute any item in this letter, a written response citing the specific CGHS provision, tariff agreement, or regulatory authority that authorizes the rate or charge in question.
+
+The fourteen-day deadline for response is mandated under the IRDAI Master Circular dated 29.05.2024 on Grievance Redressal Turnaround Time.
+
+---
+
+SECTION 4 — ESCALATION NOTICE
+
+Should we not receive a substantive written response and a revised bill within fourteen (14) days of the date of this letter, we will be constrained to file a formal complaint with the Insurance Ombudsman having jurisdiction over this matter, and additionally approach the Bima Bharosa portal (bimabharosa.irdai.gov.in) maintained by the Insurance Regulatory and Development Authority of India (IRDAI), as well as the appropriate Consumer Forum.
+
+We draw your attention to the fact that under the IRDAI Master Circular dated 29.05.2024, non-compliance with grievance redressal timelines attracts a monetary penalty of ₹5,000 per day. We trust that this matter will be resolved promptly and without the need for further escalation.
+
+Yours sincerely,
+
+Mr. Munibur Rahman
+[Contact Address]
+[Phone / Email]
+[Date]

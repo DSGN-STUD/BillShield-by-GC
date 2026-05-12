@@ -1,0 +1,724 @@
+{
+  "status": "success",
+  "patient_name": "Mr. Munibur Rahman",
+  "hospital": {
+    "name": "Mazumdar Shaw Medical Centre, Bangalore- BILLING-4F",
+    "city": "Bangalore",
+    "accreditation": "NABH",
+    "tier": "I"
+  },
+  "bill_metadata": {
+    "bill_date": "16-04-2026",
+    "bill_number": "IB100226D002262",
+    "total_amount": 126404.22,
+    "payment_mode": "CASHLESS"
+  },
+  "line_items": [
+    {
+      "item_name": "INJECTION IV EMERGENCY",
+      "quantity": 1,
+      "unit_price": 200.00,
+      "total": 200.00,
+      "confidence": "HIGH",
+      "category_hint": "MISC"
+    },
+    {
+      "item_name": "MEDICAL RECORD CHARGES",
+      "quantity": 1,
+      "unit_price": 750.00,
+      "total": 750.00,
+      "confidence": "HIGH",
+      "category_hint": "MISC"
+    },
+    {
+      "item_name": "ADMISSION",
+      "quantity": 1,
+      "unit_price": 2000.00,
+      "total": 2000.00,
+      "confidence": "HIGH",
+      "category_hint": "MISC"
+    },
+    {
+      "item_name": "BIOMEDICAL WASTE MANAGEMENT SERVICE",
+      "quantity": 1,
+      "unit_price": 200.00,
+      "total": 200.00,
+      "confidence": "HIGH",
+      "category_hint": "MISC"
+    },
+    {
+      "item_name": "INITIAL ASSESSMENT CHARGES",
+      "quantity": 1,
+      "unit_price": 700.00,
+      "total": 700.00,
+      "confidence": "HIGH",
+      "category_hint": "MISC"
+    },
+    {
+      "item_name": "OBSERVATION (UP TO 2 HOURS)",
+      "quantity": 4,
+      "unit_price": 600.00,
+      "total": 2400.00,
+      "confidence": "HIGH",
+      "category_hint": "MISC"
+    },
+    {
+      "item_name": "DOCUMENT PROCESSING CHARGES",
+      "quantity": 1,
+      "unit_price": 400.00,
+      "total": 400.00,
+      "confidence": "HIGH",
+      "category_hint": "MISC"
+    },
+    {
+      "item_name": "BED CHARGES - CRITICAL CARE AREA",
+      "quantity": 1,
+      "unit_price": 7900.00,
+      "total": 7900.00,
+      "confidence": "HIGH",
+      "category_hint": "ROOM_CHARGE"
+    },
+    {
+      "item_name": "BED CHARGES - WARD (999311)",
+      "quantity": 1,
+      "unit_price": 3500.00,
+      "total": 3500.00,
+      "confidence": "HIGH",
+      "category_hint": "ROOM_CHARGE"
+    },
+    {
+      "item_name": "BED CHARGES - WARD (999311)",
+      "quantity": 1,
+      "unit_price": 3500.00,
+      "total": 3500.00,
+      "confidence": "HIGH",
+      "category_hint": "ROOM_CHARGE"
+    },
+    {
+      "item_name": "CONSULTATION - IP |Dr. Usha Humbi",
+      "quantity": 1,
+      "unit_price": 1870.00,
+      "total": 1870.00,
+      "confidence": "HIGH",
+      "category_hint": "CONSULTATION"
+    },
+    {
+      "item_name": "CROSS CONSULTATION - IP |Dr. Smita Caren Mathias",
+      "quantity": 1,
+      "unit_price": 1410.00,
+      "total": 1410.00,
+      "confidence": "HIGH",
+      "category_hint": "CONSULTATION"
+    },
+    {
+      "item_name": "CROSS CONSULTATION - IP |Dr. Sathya Narayana D",
+      "quantity": 1,
+      "unit_price": 1710.00,
+      "total": 1710.00,
+      "confidence": "HIGH",
+      "category_hint": "CONSULTATION"
+    },
+    {
+      "item_name": "CONSULTATION - IP |Dr. Usha Humbi",
+      "quantity": 1,
+      "unit_price": 1710.00,
+      "total": 1710.00,
+      "confidence": "HIGH",
+      "category_hint": "CONSULTATION"
+    },
+    {
+      "item_name": "CROSS CONSULTATION - IP |Dr. Kranti Shreesh Khadilkar",
+      "quantity": 1,
+      "unit_price": 1710.00,
+      "total": 1710.00,
+      "confidence": "HIGH",
+      "category_hint": "CONSULTATION"
+    },
+    {
+      "item_name": "CROSS CONSULTATION - IP |N Dhanaraj",
+      "quantity": 1,
+      "unit_price": 1710.00,
+      "total": 1710.00,
+      "confidence": "HIGH",
+      "category_hint": "CONSULTATION"
+    },
+    {
+      "item_name": "CROSS CONSULTATION - IP |Dr. Smita Caren Mathias",
+      "quantity": 1,
+      "unit_price": 1410.00,
+      "total": 1410.00,
+      "confidence": "HIGH",
+      "category_hint": "CONSULTATION"
+    },
+    {
+      "item_name": "CONSULTATION - IP |Dr. Usha Humbi",
+      "quantity": 1,
+      "unit_price": 1710.00,
+      "total": 1710.00,
+      "confidence": "HIGH",
+      "category_hint": "CONSULTATION"
+    },
+    {
+      "item_name": "CROSS CONSULTATION - IP |Dr. Suraj Narasimhan A",
+      "quantity": 1,
+      "unit_price": 1610.00,
+      "total": 1610.00,
+      "confidence": "HIGH",
+      "category_hint": "CONSULTATION"
+    },
+    {
+      "item_name": "CONSULTATION - IP |Dr. V. Viju Wilben, Dr. Saurav Mahanta, Dr. Reshma G K, Dr Harish N, Dr. Shrithika Patil, Dr. Sharath Kumar J K",
+      "quantity": 1,
+      "unit_price": 2470.00,
+      "total": 2470.00,
+      "confidence": "HIGH",
+      "category_hint": "CONSULTATION"
+    },
+    {
+      "item_name": "CROSS CONSULTATION - IP |Dr. Ganesh Srinivasa Prasad P",
+      "quantity": 1,
+      "unit_price": 1710.00,
+      "total": 1710.00,
+      "confidence": "HIGH",
+      "category_hint": "CONSULTATION"
+    },
+    {
+      "item_name": "CROSS CONSULTATION - IP |Dr. Smita Caren Mathias",
+      "quantity": 1,
+      "unit_price": 1410.00,
+      "total": 1410.00,
+      "confidence": "HIGH",
+      "category_hint": "CONSULTATION"
+    },
+    {
+      "item_name": "ECHO COLOR DOPPLER",
+      "quantity": 1,
+      "unit_price": 4540.00,
+      "total": 4540.00,
+      "confidence": "HIGH",
+      "category_hint": "DIAGNOSTIC"
+    },
+    {
+      "item_name": "ECG",
+      "quantity": 1,
+      "unit_price": 1250.00,
+      "total": 1250.00,
+      "confidence": "HIGH",
+      "category_hint": "DIAGNOSTIC"
+    },
+    {
+      "item_name": "HOLTER MONITORING",
+      "quantity": 1,
+      "unit_price": 4830.00,
+      "total": 4830.00,
+      "confidence": "HIGH",
+      "category_hint": "DIAGNOSTIC"
+    },
+    {
+      "item_name": "CONSULTATION- DIETITIAN",
+      "quantity": 1,
+      "unit_price": 500.00,
+      "total": 500.00,
+      "confidence": "HIGH",
+      "category_hint": "MISC"
+    },
+    {
+      "item_name": "NURSING CHARGE",
+      "quantity": 1,
+      "unit_price": 6500.00,
+      "total": 6500.00,
+      "confidence": "HIGH",
+      "category_hint": "ROOM_CHARGE"
+    },
+    {
+      "item_name": "NURSING CHARGE",
+      "quantity": 1,
+      "unit_price": 4500.00,
+      "total": 4500.00,
+      "confidence": "HIGH",
+      "category_hint": "ROOM_CHARGE"
+    },
+    {
+      "item_name": "NURSING CHARGE",
+      "quantity": 1,
+      "unit_price": 4500.00,
+      "total": 4500.00,
+      "confidence": "HIGH",
+      "category_hint": "ROOM_CHARGE"
+    },
+    {
+      "item_name": "COMPLETE BLOOD COUNT (CBC)",
+      "quantity": 1,
+      "unit_price": 1310.00,
+      "total": 1310.00,
+      "confidence": "HIGH",
+      "category_hint": "DIAGNOSTIC"
+    },
+    {
+      "item_name": "PTT (ACTIVATED THROMBOPLASTIN TIME)",
+      "quantity": 1,
+      "unit_price": 1500.00,
+      "total": 1500.00,
+      "confidence": "HIGH",
+      "category_hint": "DIAGNOSTIC"
+    },
+    {
+      "item_name": "VBG with Lactate",
+      "quantity": 1,
+      "unit_price": 2010.00,
+      "total": 2010.00,
+      "confidence": "HIGH",
+      "category_hint": "DIAGNOSTIC"
+    },
+    {
+      "item_name": "LIVER FUNCTION TEST(LFT)",
+      "quantity": 1,
+      "unit_price": 2980.00,
+      "total": 2980.00,
+      "confidence": "HIGH",
+      "category_hint": "DIAGNOSTIC"
+    },
+    {
+      "item_name": "RENAL PACKAGE - 2 (RFT RANDOM)",
+      "quantity": 1,
+      "unit_price": 3660.00,
+      "total": 3660.00,
+      "confidence": "HIGH",
+      "category_hint": "DIAGNOSTIC"
+    },
+    {
+      "item_name": "PT - INR (PROTHROMBIN TIME)",
+      "quantity": 1,
+      "unit_price": 1500.00,
+      "total": 1500.00,
+      "confidence": "HIGH",
+      "category_hint": "DIAGNOSTIC"
+    },
+    {
+      "item_name": "URINE ROUTINE & MICROSCOPY",
+      "quantity": 1,
+      "unit_price": 890.00,
+      "total": 890.00,
+      "confidence": "HIGH",
+      "category_hint": "DIAGNOSTIC"
+    },
+    {
+      "item_name": "HOMOCYSTEINE",
+      "quantity": 1,
+      "unit_price": 4460.00,
+      "total": 4460.00,
+      "confidence": "HIGH",
+      "category_hint": "DIAGNOSTIC"
+    },
+    {
+      "item_name": "TSH (THYROID STIMULATING HORMONE)",
+      "quantity": 1,
+      "unit_price": 1570.00,
+      "total": 1570.00,
+      "confidence": "HIGH",
+      "category_hint": "DIAGNOSTIC"
+    },
+    {
+      "item_name": "HBA1C",
+      "quantity": 1,
+      "unit_price": 2640.00,
+      "total": 2640.00,
+      "confidence": "HIGH",
+      "category_hint": "DIAGNOSTIC"
+    },
+    {
+      "item_name": "VBG with Lactate",
+      "quantity": 1,
+      "unit_price": 2010.00,
+      "total": 2010.00,
+      "confidence": "HIGH",
+      "category_hint": "DIAGNOSTIC"
+    },
+    {
+      "item_name": "BLOOD SUGAR STRIP TEST",
+      "quantity": 1,
+      "unit_price": 100.00,
+      "total": 100.00,
+      "confidence": "HIGH",
+      "category_hint": "DIAGNOSTIC"
+    },
+    {
+      "item_name": "RENAL PACKAGE - 2 (RFT RANDOM)",
+      "quantity": 1,
+      "unit_price": 3230.00,
+      "total": 3230.00,
+      "confidence": "HIGH",
+      "category_hint": "DIAGNOSTIC"
+    },
+    {
+      "item_name": "VITAMIN B-12",
+      "quantity": 1,
+      "unit_price": 3600.00,
+      "total": 3600.00,
+      "confidence": "HIGH",
+      "category_hint": "DIAGNOSTIC"
+    },
+    {
+      "item_name": "BLOOD SUGAR STRIP TEST",
+      "quantity": 1,
+      "unit_price": 100.00,
+      "total": 100.00,
+      "confidence": "HIGH",
+      "category_hint": "DIAGNOSTIC"
+    },
+    {
+      "item_name": "PHYSIO PACKAGE FOR WARD PATIENTS",
+      "quantity": 1,
+      "unit_price": 450.00,
+      "total": 450.00,
+      "confidence": "HIGH",
+      "category_hint": "PROCEDURE"
+    },
+    {
+      "item_name": "IV CANNULA INSERTION (CAVA FIX INSERTION)",
+      "quantity": 1,
+      "unit_price": 680.00,
+      "total": 680.00,
+      "confidence": "HIGH",
+      "category_hint": "PROCEDURE"
+    },
+    {
+      "item_name": "Respiratory Support Charges",
+      "quantity": 1,
+      "unit_price": 540.00,
+      "total": 540.00,
+      "confidence": "HIGH",
+      "category_hint": "PROCEDURE"
+    },
+    {
+      "item_name": "MRI NEURO LIMITED ISCHEMIA STUDY",
+      "quantity": 1,
+      "unit_price": 16980.00,
+      "total": 16980.00,
+      "confidence": "HIGH",
+      "category_hint": "DIAGNOSTIC"
+    },
+    {
+      "item_name": "USG ABDOMEN & PELVIS",
+      "quantity": 1,
+      "unit_price": 4060.00,
+      "total": 4060.00,
+      "confidence": "HIGH",
+      "category_hint": "DIAGNOSTIC"
+    },
+    {
+      "item_name": "ASPIRIN-TABLET-150MG-ECOSPRIN- |04011824 / 2027-12-31 (30049062)",
+      "quantity": 14,
+      "unit_price": 0.76,
+      "total": 10.58,
+      "confidence": "HIGH",
+      "category_hint": "MEDICINE"
+    },
+    {
+      "item_name": "BISOPROLOL FUMARATE-TABLET-5MG-BISOCAR- |27372402 / 2027-09-30 (30049079)",
+      "quantity": 10,
+      "unit_price": 3.92,
+      "total": 39.19,
+      "confidence": "HIGH",
+      "category_hint": "MEDICINE"
+    },
+    {
+      "item_name": "MEMANTINE HCL-TABLET-5MG-ADMENTA- |SIG2492A / 2028-04-30 (30049082)",
+      "quantity": 10,
+      "unit_price": 13.12,
+      "total": 131.25,
+      "confidence": "HIGH",
+      "category_hint": "MEDICINE"
+    },
+    {
+      "item_name": "RIVASTIGMINE-CAPSULE-1.5MG-RIVAMER- |SIG2473A / 2027-11-30 (30049099)",
+      "quantity": 10,
+      "unit_price": 19.78,
+      "total": 197.81,
+      "confidence": "HIGH",
+      "category_hint": "MEDICINE"
+    },
+    {
+      "item_name": "SODIUM CHLORIDE(NS)-INFUSION (COLLAPSIBLE BAG)-0.9% 100ML-NORMAL SALINE FREEFLEX BAG- |82WB604101 / 2028-01-31 (30049099)",
+      "quantity": 2,
+      "unit_price": 44.91,
+      "total": 89.82,
+      "confidence": "HIGH",
+      "category_hint": "MEDICINE"
+    },
+    {
+      "item_name": "SODIUM CHLORIDE(NS)-INFUSION (COLLAPSIBLE BAG)-0.9% 500ML-NORMAL SALINE FREEFLEX BAG- |82WB704613 / 2029-01-31 (30049099)",
+      "quantity": 1,
+      "unit_price": 93.92,
+      "total": 93.92,
+      "confidence": "HIGH",
+      "category_hint": "MEDICINE"
+    },
+    {
+      "item_name": "MODAFINIL-TABLET-100MG-MODALERT- |GTH0233A / 2027-12-31 (30049099)",
+      "quantity": 10,
+      "unit_price": 23.06,
+      "total": 230.63,
+      "confidence": "HIGH",
+      "category_hint": "MEDICINE"
+    },
+    {
+      "item_name": "SODIUM CHLORIDE(NS)-INFUSION (COLLAPSIBLE BAG)-0.9% 100ML-NORMAL SALINE FREEFLEX BAG- |82WB604101 / 2028-01-31 (30049099)",
+      "quantity": 1,
+      "unit_price": 44.91,
+      "total": 44.91,
+      "confidence": "HIGH",
+      "category_hint": "MEDICINE"
+    },
+    {
+      "item_name": "MECOBALAMIN+FOLIC ACID+VIT B6-TABLET-1500MCG+5MG+20MG-HOMIN- |MT25-726 / 2028-10-31 (30045090)",
+      "quantity": 15,
+      "unit_price": 10.31,
+      "total": 154.60,
+      "confidence": "HIGH",
+      "category_hint": "MEDICINE"
+    },
+    {
+      "item_name": "MULTIVITAMINS-INJECTION-3ML-OPTINEURON- |A25451VP / 2027-04-30 (30045039)",
+      "quantity": 1,
+      "unit_price": 14.30,
+      "total": 14.30,
+      "confidence": "HIGH",
+      "category_hint": "MEDICINE"
+    },
+    {
+      "item_name": "MULTIVITAMINS-INJECTION-3ML-OPTINEURON- |A25500VP / 2027-05-31 (30045039)",
+      "quantity": 1,
+      "unit_price": 14.30,
+      "total": 14.30,
+      "confidence": "HIGH",
+      "category_hint": "MEDICINE"
+    },
+    {
+      "item_name": "SODIUM CHLORIDE(NS)-INFUSION (COLLAPSIBLE BAG)-0.9% 500ML-NORMAL SALINE FREEFLEX BAG- |82WB704613 / 2029-01-31 (30049099)",
+      "quantity": 1,
+      "unit_price": 93.92,
+      "total": 93.92,
+      "confidence": "HIGH",
+      "category_hint": "MEDICINE"
+    },
+    {
+      "item_name": "RIVASTIGMINE-CAPSULE-1.5MG-RIVAMER- |SIG2473A / 2027-11-30 (30049099)",
+      "quantity": 10,
+      "unit_price": 19.78,
+      "total": 197.81,
+      "confidence": "HIGH",
+      "category_hint": "MEDICINE"
+    },
+    {
+      "item_name": "SODIUM CHLORIDE(NS)-INFUSION (COLLAPSIBLE BAG)-0.9% 100ML-NORMAL SALINE FREEFLEX BAG- |82WB604101 / 2028-01-31 (30049099)",
+      "quantity": 3,
+      "unit_price": 44.91,
+      "total": 134.73,
+      "confidence": "HIGH",
+      "category_hint": "MEDICINE"
+    },
+    {
+      "item_name": "SODIUM CHLORIDE(NS)-INFUSION (COLLAPSIBLE BAG)-0.9% 500ML-NORMAL SALINE FREEFLEX BAG- |82WB704613 / 2029-01-31 (30049099)",
+      "quantity": 1,
+      "unit_price": 93.92,
+      "total": 93.92,
+      "confidence": "HIGH",
+      "category_hint": "MEDICINE"
+    },
+    {
+      "item_name": "ATORVASTATIN-TABLET-40MG-ATOREC- |E16AZ25005 / 2027-11-30 (30049074)",
+      "quantity": 10,
+      "unit_price": 20.26,
+      "total": 202.64,
+      "confidence": "HIGH",
+      "category_hint": "MEDICINE"
+    },
+    {
+      "item_name": "CLOPIDOGREL-TABLET-75MG-DEPLATT- |CY32M018 / 2027-09-30 (30049099)",
+      "quantity": 15,
+      "unit_price": 6.86,
+      "total": 102.95,
+      "confidence": "HIGH",
+      "category_hint": "MEDICINE"
+    },
+    {
+      "item_name": "PANTOPRAZOLE-INJECTION-40MG-ZOVANTA- |AKP25AOA / 2027-11-30 (30049039)",
+      "quantity": 1,
+      "unit_price": 53.88,
+      "total": 53.88,
+      "confidence": "HIGH",
+      "category_hint": "MEDICINE"
+    },
+    {
+      "item_name": "ATORVASTATIN-TABLET-40MG-ATOREC- |E16AZ25005 / 2027-11-30 (30049074)",
+      "quantity": 10,
+      "unit_price": 20.26,
+      "total": 202.64,
+      "confidence": "HIGH",
+      "category_hint": "MEDICINE"
+    },
+    {
+      "item_name": "PANTOPRAZOLE-INJECTION-40MG-ZOVANTA- |AKP25AOA / 2027-11-30 (30049039)",
+      "quantity": 1,
+      "unit_price": 53.88,
+      "total": 53.88,
+      "confidence": "HIGH",
+      "category_hint": "MEDICINE"
+    },
+    {
+      "item_name": "SODIUM CHLORIDE-INJECTION-10ML-NORMAL SALINE- |6WS10I5106 / 2029-10-31 (30049099)",
+      "quantity": 4,
+      "unit_price": 15.00,
+      "total": 60.00,
+      "confidence": "HIGH",
+      "category_hint": "MEDICINE"
+    },
+    {
+      "item_name": "SODIUM CHLORIDE-INJECTION-10ML-NORMAL SALINE- |6WS10I5106 / 2029-10-31 (30049099)",
+      "quantity": 1,
+      "unit_price": 15.00,
+      "total": 15.00,
+      "confidence": "HIGH",
+      "category_hint": "MEDICINE"
+    },
+    {
+      "item_name": "CARBIDOPA+LEVODOPA-TABLET-25MG+100MG-SYNDOPA PLUS- |GKG1996A / 2029-10-31 (30049099)",
+      "quantity": 15,
+      "unit_price": 2.75,
+      "total": 41.18,
+      "confidence": "HIGH",
+      "category_hint": "MEDICINE"
+    },
+    {
+      "item_name": "AMLODIPINE-TABLET-2.5MG-AMLOPRES- |5SN2126 / 2027-03-31 (30049072)",
+      "quantity": 15,
+      "unit_price": 1.91,
+      "total": 28.65,
+      "confidence": "HIGH",
+      "category_hint": "MEDICINE"
+    },
+    {
+      "item_name": "AMLODIPINE-TABLET-5MG-AMLOKIND- |G55Y052 / 2028-08-31 (30049072)",
+      "quantity": 15,
+      "unit_price": 1.58,
+      "total": 23.67,
+      "confidence": "HIGH",
+      "category_hint": "MEDICINE"
+    },
+    {
+      "item_name": "AMLODIPINE-TABLET-2.5MG-AMLOPRES- |5SN2126 / 2027-03-31 (30049072)",
+      "quantity": 15,
+      "unit_price": 1.91,
+      "total": 28.65,
+      "confidence": "HIGH",
+      "category_hint": "MEDICINE"
+    },
+    {
+      "item_name": "CARBIDOPA+LEVODOPA-TABLET-25MG+100MG-SYNDOPA PLUS- |GKG1996A / 2029-10-31 (30049099)",
+      "quantity": 15,
+      "unit_price": 2.75,
+      "total": 41.18,
+      "confidence": "HIGH",
+      "category_hint": "MEDICINE"
+    },
+    {
+      "item_name": "INSULIN SYRINGE-.-40IU(1 ML)-.- |611013AG / 2031-02-28 (90183100)",
+      "quantity": 2,
+      "unit_price": 11.25,
+      "total": 22.50,
+      "confidence": "HIGH",
+      "category_hint": "MEDICINE"
+    },
+    {
+      "item_name": "HUMAN INSULIN-INJECTION-40IU/ML(10ML)-INSUGEN R (ERIS LIFE) |V25IRF5018 / 2028-11-30 (30043110)",
+      "quantity": 1,
+      "unit_price": 181.09,
+      "total": 181.09,
+      "confidence": "HIGH",
+      "category_hint": "MEDICINE"
+    },
+    {
+      "item_name": "PANTOPRAZOLE-INJECTION-40MG-ZOVANTA- |AKP25AOA / 2027-11-30 (30049039)",
+      "quantity": 2,
+      "unit_price": 53.88,
+      "total": 107.76,
+      "confidence": "HIGH",
+      "category_hint": "MEDICINE"
+    },
+    {
+      "item_name": "ISOPHANE INSULIN-INJECTION-40IU/ML(10ML)-INSUGEN N (ERIS LIFE) |V25INF5002 / 2028-11-30 (30043110)",
+      "quantity": 1,
+      "unit_price": 181.09,
+      "total": 181.09,
+      "confidence": "HIGH",
+      "category_hint": "MEDICINE"
+    },
+    {
+      "item_name": "BED UNDER PADS-.-90CM X 60CM-UND002 BAPUJI |010426 / 2029-03-31 (96190040)",
+      "quantity": 2,
+      "unit_price": 164.06,
+      "total": 328.12,
+      "confidence": "HIGH",
+      "category_hint": "MISC"
+    },
+    {
+      "item_name": "DRESSING SWAB GAUZE-STERILE (4S)-7.5CM X 7.5CM-SGSP009 BAPUJI |220326 / 2029-02-28 (30059090)",
+      "quantity": 5,
+      "unit_price": 42.19,
+      "total": 210.95,
+      "confidence": "HIGH",
+      "category_hint": "MISC"
+    },
+    {
+      "item_name": "HAND CARE GLOVES-STERILE-.-PROTECTO SUPER ROMSONS- |G26B110012 / 2031-01-31 (90183990)",
+      "quantity": 1,
+      "unit_price": 15.54,
+      "total": 15.54,
+      "confidence": "HIGH",
+      "category_hint": "MISC"
+    },
+    {
+      "item_name": "TRANSPARENT ADHESIVE DRESSING-4006 W/O PAD WITH SPLIT-7CM X 9CM-IV 3000- |202512 / 2028-03-01 (30051090)",
+      "quantity": 1,
+      "unit_price": 149.50,
+      "total": 149.50,
+      "confidence": "HIGH",
+      "category_hint": "MISC"
+    },
+    {
+      "item_name": "SYRINGE-PLAIN W/O NEEDLE-5ML-SAFEWAY LIFELONG- |032605BK / 2030-02-28 (90183100)",
+      "quantity": 5,
+      "unit_price": 17.10,
+      "total": 85.50,
+      "confidence": "HIGH",
+      "category_hint": "MISC"
+    },
+    {
+      "item_name": "IV SET-VENTED LUER LOCK-.-LATEX FREE AMARYLLIS- |AH029C26 / 2029-02-28 (90183990)",
+      "quantity": 1,
+      "unit_price": 210.94,
+      "total": 210.94,
+      "confidence": "HIGH",
+      "category_hint": "MISC"
+    },
+    {
+      "item_name": "WET WIPES-.-32CM X 32CM-LYON BDB001 BAPUJI |150326 / 2028-03-31 (56012110)",
+      "quantity": 2,
+      "unit_price": 600.00,
+      "total": 1200.00,
+      "confidence": "HIGH",
+      "category_hint": "MISC"
+    },
+    {
+      "item_name": "OUNCE GLASS-.-200ML-MEDOVATION- |2025214 / 2031-09-30 (39269099)",
+      "quantity": 1,
+      "unit_price": 12.00,
+      "total": 12.00,
+      "confidence": "HIGH",
+      "category_hint": "MISC"
+    },
+    {
+      "item_name": "URINAL POT-MALE-.-.- |060226 / 2029-01-31 (90189099)",
+      "quantity": 1,
+      "unit_price": 85.00

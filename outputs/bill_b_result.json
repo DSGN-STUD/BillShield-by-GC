@@ -1,0 +1,1538 @@
+{
+  "bill": "bill_b",
+  "extracted": {
+    "status": "success",
+    "patient_name": "Mr. Munibur Rahman",
+    "hospital": {
+      "name": "Mazumdar Shaw Medical Centre, Bangalore- BILLING-4F",
+      "city": "Bangalore",
+      "accreditation": "NABH",
+      "tier": "I"
+    },
+    "bill_metadata": {
+      "bill_date": "16-04-2026",
+      "bill_number": "IB100226D002262",
+      "total_amount": 126404.22,
+      "payment_mode": "CASHLESS"
+    },
+    "line_items": [
+      {
+        "item_name": "INJECTION IV EMERGENCY",
+        "quantity": 1,
+        "unit_price": 200.0,
+        "total": 200.0,
+        "confidence": "HIGH",
+        "category_hint": "MISC"
+      },
+      {
+        "item_name": "MEDICAL RECORD CHARGES",
+        "quantity": 1,
+        "unit_price": 750.0,
+        "total": 750.0,
+        "confidence": "HIGH",
+        "category_hint": "MISC"
+      },
+      {
+        "item_name": "ADMISSION",
+        "quantity": 1,
+        "unit_price": 2000.0,
+        "total": 2000.0,
+        "confidence": "HIGH",
+        "category_hint": "MISC"
+      },
+      {
+        "item_name": "BIOMEDICAL WASTE MANAGEMENT SERVICE",
+        "quantity": 1,
+        "unit_price": 200.0,
+        "total": 200.0,
+        "confidence": "HIGH",
+        "category_hint": "MISC"
+      },
+      {
+        "item_name": "INITIAL ASSESSMENT CHARGES",
+        "quantity": 1,
+        "unit_price": 700.0,
+        "total": 700.0,
+        "confidence": "HIGH",
+        "category_hint": "MISC"
+      },
+      {
+        "item_name": "OBSERVATION (UP TO 2 HOURS)",
+        "quantity": 4,
+        "unit_price": 600.0,
+        "total": 2400.0,
+        "confidence": "HIGH",
+        "category_hint": "MISC"
+      },
+      {
+        "item_name": "DOCUMENT PROCESSING CHARGES",
+        "quantity": 1,
+        "unit_price": 400.0,
+        "total": 400.0,
+        "confidence": "HIGH",
+        "category_hint": "MISC"
+      },
+      {
+        "item_name": "BED CHARGES - CRITICAL CARE AREA",
+        "quantity": 1,
+        "unit_price": 7900.0,
+        "total": 7900.0,
+        "confidence": "HIGH",
+        "category_hint": "ROOM_CHARGE"
+      },
+      {
+        "item_name": "BED CHARGES - WARD (999311)",
+        "quantity": 1,
+        "unit_price": 3500.0,
+        "total": 3500.0,
+        "confidence": "HIGH",
+        "category_hint": "ROOM_CHARGE"
+      },
+      {
+        "item_name": "BED CHARGES - WARD (999311)",
+        "quantity": 1,
+        "unit_price": 3500.0,
+        "total": 3500.0,
+        "confidence": "HIGH",
+        "category_hint": "ROOM_CHARGE"
+      },
+      {
+        "item_name": "CONSULTATION - IP |Dr. Usha Humbi",
+        "quantity": 1,
+        "unit_price": 1870.0,
+        "total": 1870.0,
+        "confidence": "HIGH",
+        "category_hint": "CONSULTATION"
+      },
+      {
+        "item_name": "CROSS CONSULTATION - IP |Dr. Smita Caren Mathias",
+        "quantity": 1,
+        "unit_price": 1410.0,
+        "total": 1410.0,
+        "confidence": "HIGH",
+        "category_hint": "CONSULTATION"
+      },
+      {
+        "item_name": "CROSS CONSULTATION - IP |Dr. Sathya Narayana D",
+        "quantity": 1,
+        "unit_price": 1710.0,
+        "total": 1710.0,
+        "confidence": "HIGH",
+        "category_hint": "CONSULTATION"
+      },
+      {
+        "item_name": "CONSULTATION - IP |Dr. Usha Humbi",
+        "quantity": 1,
+        "unit_price": 1710.0,
+        "total": 1710.0,
+        "confidence": "HIGH",
+        "category_hint": "CONSULTATION"
+      },
+      {
+        "item_name": "CROSS CONSULTATION - IP |Dr. Kranti Shreesh Khadilkar",
+        "quantity": 1,
+        "unit_price": 1710.0,
+        "total": 1710.0,
+        "confidence": "HIGH",
+        "category_hint": "CONSULTATION"
+      },
+      {
+        "item_name": "CROSS CONSULTATION - IP |N Dhanaraj",
+        "quantity": 1,
+        "unit_price": 1710.0,
+        "total": 1710.0,
+        "confidence": "HIGH",
+        "category_hint": "CONSULTATION"
+      },
+      {
+        "item_name": "CROSS CONSULTATION - IP |Dr. Smita Caren Mathias",
+        "quantity": 1,
+        "unit_price": 1410.0,
+        "total": 1410.0,
+        "confidence": "HIGH",
+        "category_hint": "CONSULTATION"
+      },
+      {
+        "item_name": "CONSULTATION - IP |Dr. Usha Humbi",
+        "quantity": 1,
+        "unit_price": 1710.0,
+        "total": 1710.0,
+        "confidence": "HIGH",
+        "category_hint": "CONSULTATION"
+      },
+      {
+        "item_name": "CROSS CONSULTATION - IP |Dr. Suraj Narasimhan A",
+        "quantity": 1,
+        "unit_price": 1610.0,
+        "total": 1610.0,
+        "confidence": "HIGH",
+        "category_hint": "CONSULTATION"
+      },
+      {
+        "item_name": "CONSULTATION - IP |Dr. V. Viju Wilben, Dr. Saurav Mahanta, Dr. Reshma G K, Dr Harish N, Dr. Shrithika Patil, Dr. Sharath Kumar J K",
+        "quantity": 1,
+        "unit_price": 2470.0,
+        "total": 2470.0,
+        "confidence": "HIGH",
+        "category_hint": "CONSULTATION"
+      },
+      {
+        "item_name": "CROSS CONSULTATION - IP |Dr. Ganesh Srinivasa Prasad P",
+        "quantity": 1,
+        "unit_price": 1710.0,
+        "total": 1710.0,
+        "confidence": "HIGH",
+        "category_hint": "CONSULTATION"
+      },
+      {
+        "item_name": "CROSS CONSULTATION - IP |Dr. Smita Caren Mathias",
+        "quantity": 1,
+        "unit_price": 1410.0,
+        "total": 1410.0,
+        "confidence": "HIGH",
+        "category_hint": "CONSULTATION"
+      },
+      {
+        "item_name": "ECHO COLOR DOPPLER",
+        "quantity": 1,
+        "unit_price": 4540.0,
+        "total": 4540.0,
+        "confidence": "HIGH",
+        "category_hint": "DIAGNOSTIC"
+      },
+      {
+        "item_name": "ECG",
+        "quantity": 1,
+        "unit_price": 1250.0,
+        "total": 1250.0,
+        "confidence": "HIGH",
+        "category_hint": "DIAGNOSTIC"
+      },
+      {
+        "item_name": "HOLTER MONITORING",
+        "quantity": 1,
+        "unit_price": 4830.0,
+        "total": 4830.0,
+        "confidence": "HIGH",
+        "category_hint": "DIAGNOSTIC"
+      },
+      {
+        "item_name": "CONSULTATION- DIETITIAN",
+        "quantity": 1,
+        "unit_price": 500.0,
+        "total": 500.0,
+        "confidence": "HIGH",
+        "category_hint": "MISC"
+      },
+      {
+        "item_name": "NURSING CHARGE",
+        "quantity": 1,
+        "unit_price": 6500.0,
+        "total": 6500.0,
+        "confidence": "HIGH",
+        "category_hint": "ROOM_CHARGE"
+      },
+      {
+        "item_name": "NURSING CHARGE",
+        "quantity": 1,
+        "unit_price": 4500.0,
+        "total": 4500.0,
+        "confidence": "HIGH",
+        "category_hint": "ROOM_CHARGE"
+      },
+      {
+        "item_name": "NURSING CHARGE",
+        "quantity": 1,
+        "unit_price": 4500.0,
+        "total": 4500.0,
+        "confidence": "HIGH",
+        "category_hint": "ROOM_CHARGE"
+      },
+      {
+        "item_name": "COMPLETE BLOOD COUNT (CBC)",
+        "quantity": 1,
+        "unit_price": 1310.0,
+        "total": 1310.0,
+        "confidence": "HIGH",
+        "category_hint": "DIAGNOSTIC"
+      },
+      {
+        "item_name": "PTT (ACTIVATED THROMBOPLASTIN TIME)",
+        "quantity": 1,
+        "unit_price": 1500.0,
+        "total": 1500.0,
+        "confidence": "HIGH",
+        "category_hint": "DIAGNOSTIC"
+      },
+      {
+        "item_name": "VBG with Lactate",
+        "quantity": 1,
+        "unit_price": 2010.0,
+        "total": 2010.0,
+        "confidence": "HIGH",
+        "category_hint": "DIAGNOSTIC"
+      },
+      {
+        "item_name": "LIVER FUNCTION TEST(LFT)",
+        "quantity": 1,
+        "unit_price": 2980.0,
+        "total": 2980.0,
+        "confidence": "HIGH",
+        "category_hint": "DIAGNOSTIC"
+      },
+      {
+        "item_name": "RENAL PACKAGE - 2 (RFT RANDOM)",
+        "quantity": 1,
+        "unit_price": 3660.0,
+        "total": 3660.0,
+        "confidence": "HIGH",
+        "category_hint": "DIAGNOSTIC"
+      },
+      {
+        "item_name": "PT - INR (PROTHROMBIN TIME)",
+        "quantity": 1,
+        "unit_price": 1500.0,
+        "total": 1500.0,
+        "confidence": "HIGH",
+        "category_hint": "DIAGNOSTIC"
+      },
+      {
+        "item_name": "URINE ROUTINE & MICROSCOPY",
+        "quantity": 1,
+        "unit_price": 890.0,
+        "total": 890.0,
+        "confidence": "HIGH",
+        "category_hint": "DIAGNOSTIC"
+      },
+      {
+        "item_name": "HOMOCYSTEINE",
+        "quantity": 1,
+        "unit_price": 4460.0,
+        "total": 4460.0,
+        "confidence": "HIGH",
+        "category_hint": "DIAGNOSTIC"
+      },
+      {
+        "item_name": "TSH (THYROID STIMULATING HORMONE)",
+        "quantity": 1,
+        "unit_price": 1570.0,
+        "total": 1570.0,
+        "confidence": "HIGH",
+        "category_hint": "DIAGNOSTIC"
+      },
+      {
+        "item_name": "HBA1C",
+        "quantity": 1,
+        "unit_price": 2640.0,
+        "total": 2640.0,
+        "confidence": "HIGH",
+        "category_hint": "DIAGNOSTIC"
+      },
+      {
+        "item_name": "VBG with Lactate",
+        "quantity": 1,
+        "unit_price": 2010.0,
+        "total": 2010.0,
+        "confidence": "HIGH",
+        "category_hint": "DIAGNOSTIC"
+      },
+      {
+        "item_name": "BLOOD SUGAR STRIP TEST",
+        "quantity": 1,
+        "unit_price": 100.0,
+        "total": 100.0,
+        "confidence": "HIGH",
+        "category_hint": "DIAGNOSTIC"
+      },
+      {
+        "item_name": "RENAL PACKAGE - 2 (RFT RANDOM)",
+        "quantity": 1,
+        "unit_price": 3230.0,
+        "total": 3230.0,
+        "confidence": "HIGH",
+        "category_hint": "DIAGNOSTIC"
+      },
+      {
+        "item_name": "VITAMIN B-12",
+        "quantity": 1,
+        "unit_price": 3600.0,
+        "total": 3600.0,
+        "confidence": "HIGH",
+        "category_hint": "DIAGNOSTIC"
+      },
+      {
+        "item_name": "BLOOD SUGAR STRIP TEST",
+        "quantity": 1,
+        "unit_price": 100.0,
+        "total": 100.0,
+        "confidence": "HIGH",
+        "category_hint": "DIAGNOSTIC"
+      },
+      {
+        "item_name": "PHYSIO PACKAGE FOR WARD PATIENTS",
+        "quantity": 1,
+        "unit_price": 450.0,
+        "total": 450.0,
+        "confidence": "HIGH",
+        "category_hint": "PROCEDURE"
+      },
+      {
+        "item_name": "IV CANNULA INSERTION (CAVA FIX INSERTION)",
+        "quantity": 1,
+        "unit_price": 680.0,
+        "total": 680.0,
+        "confidence": "HIGH",
+        "category_hint": "PROCEDURE"
+      },
+      {
+        "item_name": "Respiratory Support Charges",
+        "quantity": 1,
+        "unit_price": 540.0,
+        "total": 540.0,
+        "confidence": "HIGH",
+        "category_hint": "PROCEDURE"
+      },
+      {
+        "item_name": "MRI NEURO LIMITED ISCHEMIA STUDY",
+        "quantity": 1,
+        "unit_price": 16980.0,
+        "total": 16980.0,
+        "confidence": "HIGH",
+        "category_hint": "DIAGNOSTIC"
+      },
+      {
+        "item_name": "USG ABDOMEN & PELVIS",
+        "quantity": 1,
+        "unit_price": 4060.0,
+        "total": 4060.0,
+        "confidence": "HIGH",
+        "category_hint": "DIAGNOSTIC"
+      },
+      {
+        "item_name": "ASPIRIN-TABLET-150MG-ECOSPRIN- |04011824 / 2027-12-31 (30049062)",
+        "quantity": 14,
+        "unit_price": 0.76,
+        "total": 10.58,
+        "confidence": "HIGH",
+        "category_hint": "MEDICINE"
+      },
+      {
+        "item_name": "BISOPROLOL FUMARATE-TABLET-5MG-BISOCAR- |27372402 / 2027-09-30 (30049079)",
+        "quantity": 10,
+        "unit_price": 3.92,
+        "total": 39.19,
+        "confidence": "HIGH",
+        "category_hint": "MEDICINE"
+      },
+      {
+        "item_name": "MEMANTINE HCL-TABLET-5MG-ADMENTA- |SIG2492A / 2028-04-30 (30049082)",
+        "quantity": 10,
+        "unit_price": 13.12,
+        "total": 131.25,
+        "confidence": "HIGH",
+        "category_hint": "MEDICINE"
+      },
+      {
+        "item_name": "RIVASTIGMINE-CAPSULE-1.5MG-RIVAMER- |SIG2473A / 2027-11-30 (30049099)",
+        "quantity": 10,
+        "unit_price": 19.78,
+        "total": 197.81,
+        "confidence": "HIGH",
+        "category_hint": "MEDICINE"
+      },
+      {
+        "item_name": "SODIUM CHLORIDE(NS)-INFUSION (COLLAPSIBLE BAG)-0.9% 100ML-NORMAL SALINE FREEFLEX BAG- |82WB604101 / 2028-01-31 (30049099)",
+        "quantity": 2,
+        "unit_price": 44.91,
+        "total": 89.82,
+        "confidence": "HIGH",
+        "category_hint": "MEDICINE"
+      },
+      {
+        "item_name": "SODIUM CHLORIDE(NS)-INFUSION (COLLAPSIBLE BAG)-0.9% 500ML-NORMAL SALINE FREEFLEX BAG- |82WB704613 / 2029-01-31 (30049099)",
+        "quantity": 1,
+        "unit_price": 93.92,
+        "total": 93.92,
+        "confidence": "HIGH",
+        "category_hint": "MEDICINE"
+      },
+      {
+        "item_name": "MODAFINIL-TABLET-100MG-MODALERT- |GTH0233A / 2027-12-31 (30049099)",
+        "quantity": 10,
+        "unit_price": 23.06,
+        "total": 230.63,
+        "confidence": "HIGH",
+        "category_hint": "MEDICINE"
+      },
+      {
+        "item_name": "SODIUM CHLORIDE(NS)-INFUSION (COLLAPSIBLE BAG)-0.9% 100ML-NORMAL SALINE FREEFLEX BAG- |82WB604101 / 2028-01-31 (30049099)",
+        "quantity": 1,
+        "unit_price": 44.91,
+        "total": 44.91,
+        "confidence": "HIGH",
+        "category_hint": "MEDICINE"
+      },
+      {
+        "item_name": "MECOBALAMIN+FOLIC ACID+VIT B6-TABLET-1500MCG+5MG+20MG-HOMIN- |MT25-726 / 2028-10-31 (30045090)",
+        "quantity": 15,
+        "unit_price": 10.31,
+        "total": 154.6,
+        "confidence": "HIGH",
+        "category_hint": "MEDICINE"
+      },
+      {
+        "item_name": "MULTIVITAMINS-INJECTION-3ML-OPTINEURON- |A25451VP / 2027-04-30 (30045039)",
+        "quantity": 1,
+        "unit_price": 14.3,
+        "total": 14.3,
+        "confidence": "HIGH",
+        "category_hint": "MEDICINE"
+      },
+      {
+        "item_name": "MULTIVITAMINS-INJECTION-3ML-OPTINEURON- |A25500VP / 2027-05-31 (30045039)",
+        "quantity": 1,
+        "unit_price": 14.3,
+        "total": 14.3,
+        "confidence": "HIGH",
+        "category_hint": "MEDICINE"
+      },
+      {
+        "item_name": "SODIUM CHLORIDE(NS)-INFUSION (COLLAPSIBLE BAG)-0.9% 500ML-NORMAL SALINE FREEFLEX BAG- |82WB704613 / 2029-01-31 (30049099)",
+        "quantity": 1,
+        "unit_price": 93.92,
+        "total": 93.92,
+        "confidence": "HIGH",
+        "category_hint": "MEDICINE"
+      },
+      {
+        "item_name": "RIVASTIGMINE-CAPSULE-1.5MG-RIVAMER- |SIG2473A / 2027-11-30 (30049099)",
+        "quantity": 10,
+        "unit_price": 19.78,
+        "total": 197.81,
+        "confidence": "HIGH",
+        "category_hint": "MEDICINE"
+      },
+      {
+        "item_name": "SODIUM CHLORIDE(NS)-INFUSION (COLLAPSIBLE BAG)-0.9% 100ML-NORMAL SALINE FREEFLEX BAG- |82WB604101 / 2028-01-31 (30049099)",
+        "quantity": 3,
+        "unit_price": 44.91,
+        "total": 134.73,
+        "confidence": "HIGH",
+        "category_hint": "MEDICINE"
+      },
+      {
+        "item_name": "SODIUM CHLORIDE(NS)-INFUSION (COLLAPSIBLE BAG)-0.9% 500ML-NORMAL SALINE FREEFLEX BAG- |82WB704613 / 2029-01-31 (30049099)",
+        "quantity": 1,
+        "unit_price": 93.92,
+        "total": 93.92,
+        "confidence": "HIGH",
+        "category_hint": "MEDICINE"
+      },
+      {
+        "item_name": "ATORVASTATIN-TABLET-40MG-ATOREC- |E16AZ25005 / 2027-11-30 (30049074)",
+        "quantity": 10,
+        "unit_price": 20.26,
+        "total": 202.64,
+        "confidence": "HIGH",
+        "category_hint": "MEDICINE"
+      },
+      {
+        "item_name": "CLOPIDOGREL-TABLET-75MG-DEPLATT- |CY32M018 / 2027-09-30 (30049099)",
+        "quantity": 15,
+        "unit_price": 6.86,
+        "total": 102.95,
+        "confidence": "HIGH",
+        "category_hint": "MEDICINE"
+      },
+      {
+        "item_name": "PANTOPRAZOLE-INJECTION-40MG-ZOVANTA- |AKP25AOA / 2027-11-30 (30049039)",
+        "quantity": 1,
+        "unit_price": 53.88,
+        "total": 53.88,
+        "confidence": "HIGH",
+        "category_hint": "MEDICINE"
+      },
+      {
+        "item_name": "ATORVASTATIN-TABLET-40MG-ATOREC- |E16AZ25005 / 2027-11-30 (30049074)",
+        "quantity": 10,
+        "unit_price": 20.26,
+        "total": 202.64,
+        "confidence": "HIGH",
+        "category_hint": "MEDICINE"
+      },
+      {
+        "item_name": "PANTOPRAZOLE-INJECTION-40MG-ZOVANTA- |AKP25AOA / 2027-11-30 (30049039)",
+        "quantity": 1,
+        "unit_price": 53.88,
+        "total": 53.88,
+        "confidence": "HIGH",
+        "category_hint": "MEDICINE"
+      },
+      {
+        "item_name": "SODIUM CHLORIDE-INJECTION-10ML-NORMAL SALINE- |6WS10I5106 / 2029-10-31 (30049099)",
+        "quantity": 4,
+        "unit_price": 15.0,
+        "total": 60.0,
+        "confidence": "HIGH",
+        "category_hint": "MEDICINE"
+      },
+      {
+        "item_name": "SODIUM CHLORIDE-INJECTION-10ML-NORMAL SALINE- |6WS10I5106 / 2029-10-31 (30049099)",
+        "quantity": 1,
+        "unit_price": 15.0,
+        "total": 15.0,
+        "confidence": "HIGH",
+        "category_hint": "MEDICINE"
+      },
+      {
+        "item_name": "CARBIDOPA+LEVODOPA-TABLET-25MG+100MG-SYNDOPA PLUS- |GKG1996A / 2029-10-31 (30049099)",
+        "quantity": 15,
+        "unit_price": 2.75,
+        "total": 41.18,
+        "confidence": "HIGH",
+        "category_hint": "MEDICINE"
+      },
+      {
+        "item_name": "AMLODIPINE-TABLET-2.5MG-AMLOPRES- |5SN2126 / 2027-03-31 (30049072)",
+        "quantity": 15,
+        "unit_price": 1.91,
+        "total": 28.65,
+        "confidence": "HIGH",
+        "category_hint": "MEDICINE"
+      },
+      {
+        "item_name": "AMLODIPINE-TABLET-5MG-AMLOKIND- |G55Y052 / 2028-08-31 (30049072)",
+        "quantity": 15,
+        "unit_price": 1.58,
+        "total": 23.67,
+        "confidence": "HIGH",
+        "category_hint": "MEDICINE"
+      },
+      {
+        "item_name": "AMLODIPINE-TABLET-2.5MG-AMLOPRES- |5SN2126 / 2027-03-31 (30049072)",
+        "quantity": 15,
+        "unit_price": 1.91,
+        "total": 28.65,
+        "confidence": "HIGH",
+        "category_hint": "MEDICINE"
+      },
+      {
+        "item_name": "CARBIDOPA+LEVODOPA-TABLET-25MG+100MG-SYNDOPA PLUS- |GKG1996A / 2029-10-31 (30049099)",
+        "quantity": 15,
+        "unit_price": 2.75,
+        "total": 41.18,
+        "confidence": "HIGH",
+        "category_hint": "MEDICINE"
+      },
+      {
+        "item_name": "INSULIN SYRINGE-.-40IU(1 ML)-.- |611013AG / 2031-02-28 (90183100)",
+        "quantity": 2,
+        "unit_price": 11.25,
+        "total": 22.5,
+        "confidence": "HIGH",
+        "category_hint": "MEDICINE"
+      },
+      {
+        "item_name": "HUMAN INSULIN-INJECTION-40IU/ML(10ML)-INSUGEN R (ERIS LIFE) |V25IRF5018 / 2028-11-30 (30043110)",
+        "quantity": 1,
+        "unit_price": 181.09,
+        "total": 181.09,
+        "confidence": "HIGH",
+        "category_hint": "MEDICINE"
+      },
+      {
+        "item_name": "PANTOPRAZOLE-INJECTION-40MG-ZOVANTA- |AKP25AOA / 2027-11-30 (30049039)",
+        "quantity": 2,
+        "unit_price": 53.88,
+        "total": 107.76,
+        "confidence": "HIGH",
+        "category_hint": "MEDICINE"
+      },
+      {
+        "item_name": "ISOPHANE INSULIN-INJECTION-40IU/ML(10ML)-INSUGEN N (ERIS LIFE) |V25INF5002 / 2028-11-30 (30043110)",
+        "quantity": 1,
+        "unit_price": 181.09,
+        "total": 181.09,
+        "confidence": "HIGH",
+        "category_hint": "MEDICINE"
+      },
+      {
+        "item_name": "BED UNDER PADS-.-90CM X 60CM-UND002 BAPUJI |010426 / 2029-03-31 (96190040)",
+        "quantity": 2,
+        "unit_price": 164.06,
+        "total": 328.12,
+        "confidence": "HIGH",
+        "category_hint": "MISC"
+      },
+      {
+        "item_name": "DRESSING SWAB GAUZE-STERILE (4S)-7.5CM X 7.5CM-SGSP009 BAPUJI |220326 / 2029-02-28 (30059090)",
+        "quantity": 5,
+        "unit_price": 42.19,
+        "total": 210.95,
+        "confidence": "HIGH",
+        "category_hint": "MISC"
+      },
+      {
+        "item_name": "HAND CARE GLOVES-STERILE-.-PROTECTO SUPER ROMSONS- |G26B110012 / 2031-01-31 (90183990)",
+        "quantity": 1,
+        "unit_price": 15.54,
+        "total": 15.54,
+        "confidence": "HIGH",
+        "category_hint": "MISC"
+      },
+      {
+        "item_name": "TRANSPARENT ADHESIVE DRESSING-4006 W/O PAD WITH SPLIT-7CM X 9CM-IV 3000- |202512 / 2028-03-01 (30051090)",
+        "quantity": 1,
+        "unit_price": 149.5,
+        "total": 149.5,
+        "confidence": "HIGH",
+        "category_hint": "MISC"
+      },
+      {
+        "item_name": "SYRINGE-PLAIN W/O NEEDLE-5ML-SAFEWAY LIFELONG- |032605BK / 2030-02-28 (90183100)",
+        "quantity": 5,
+        "unit_price": 17.1,
+        "total": 85.5,
+        "confidence": "HIGH",
+        "category_hint": "MISC"
+      },
+      {
+        "item_name": "IV SET-VENTED LUER LOCK-.-LATEX FREE AMARYLLIS- |AH029C26 / 2029-02-28 (90183990)",
+        "quantity": 1,
+        "unit_price": 210.94,
+        "total": 210.94,
+        "confidence": "HIGH",
+        "category_hint": "MISC"
+      },
+      {
+        "item_name": "WET WIPES-.-32CM X 32CM-LYON BDB001 BAPUJI |150326 / 2028-03-31 (56012110)",
+        "quantity": 2,
+        "unit_price": 600.0,
+        "total": 1200.0,
+        "confidence": "HIGH",
+        "category_hint": "MISC"
+      },
+      {
+        "item_name": "OUNCE GLASS-.-200ML-MEDOVATION- |2025214 / 2031-09-30 (39269099)",
+        "quantity": 1,
+        "unit_price": 12.0,
+        "total": 12.0,
+        "confidence": "HIGH",
+        "category_hint": "MISC"
+      },
+      {
+        "item_name": "URINAL POT-MALE-.-.- |060226 / 2029-01-31 (90189099)",
+        "quantity": 1,
+        "unit_price": 85.0,
+        "total": 85.0,
+        "confidence": "HIGH",
+        "category_hint": "MISC"
+      },
+      {
+        "item_name": "SYRINGE-PLAIN W/O NEEDLE-10ML-SAFEWAY LIFELONG- |032610DL / 2031-02-28 (90183100)",
+        "quantity": 5,
+        "unit_price": 32.1,
+        "total": 160.5,
+        "confidence": "HIGH",
+        "category_hint": "MISC"
+      },
+      {
+        "item_name": "DIAPERS-ADULT-LARGE-LYON STANDARD ADL002D (PACK10) BAPUJI- |250326 / 2029-02-28 (96190040)",
+        "quantity": 2,
+        "unit_price": 112.5,
+        "total": 225.0,
+        "confidence": "HIGH",
+        "category_hint": "MISC"
+      },
+      {
+        "item_name": "ALCOHOL SWAB-.-.-.- |26020127 / 2029-02-28 (30051020)",
+        "quantity": 5,
+        "unit_price": 3.0,
+        "total": 15.0,
+        "confidence": "HIGH",
+        "category_hint": "MISC"
+      },
+      {
+        "item_name": "CHLORHEXIDINE GLUCONATE+ETHYL ALCOHOL-SOLUTION-2.5%+70%(500ML)-HOSPISAFE |RHC - 26010 / 2029-02-28 (30049087)",
+        "quantity": 1,
+        "unit_price": 778.0,
+        "total": 778.0,
+        "confidence": "HIGH",
+        "category_hint": "MISC"
+      },
+      {
+        "item_name": "ECG ELECTRODES-.-ADULT-AD2343 ADLISC MEDICAL DEVICES- |5381225 / 2027-11-30 (90183990)",
+        "quantity": 2,
+        "unit_price": 34.64,
+        "total": 69.28,
+        "confidence": "HIGH",
+        "category_hint": "MISC"
+      },
+      {
+        "item_name": "EXAMINATION GLOVES-POWDER FREE-MEDIUM-NITRILE FLORANCE SURGICAL- |NG227 / 2029-02-28 (40151900)",
+        "quantity": 100,
+        "unit_price": 15.45,
+        "total": 1545.0,
+        "confidence": "HIGH",
+        "category_hint": "MISC"
+      },
+      {
+        "item_name": "PLASTIC DISPOSABLE APRON-.-.-MPL04420- |14 / 2028-12-31 (39262029)",
+        "quantity": 5,
+        "unit_price": 7.86,
+        "total": 39.3,
+        "confidence": "HIGH",
+        "category_hint": "MISC"
+      },
+      {
+        "item_name": "THERMOMETER-.-.-AERO DIGITAL HEMANT SURGICALS(HSIL) |251201301 / 2028-12-31 (90251910)",
+        "quantity": 1,
+        "unit_price": 260.0,
+        "total": 260.0,
+        "confidence": "HIGH",
+        "category_hint": "MISC"
+      },
+      {
+        "item_name": "EXAMINATION GLOVES-POWDER FREE-MEDIUM-NITRILE FLORANCE SURGICAL- |NG214 / 2029-02-28 (40151900)",
+        "quantity": 8,
+        "unit_price": 15.45,
+        "total": 123.6,
+        "confidence": "HIGH",
+        "category_hint": "MISC"
+      },
+      {
+        "item_name": "HAND CARE GLOVES-STERILE-.-PROTECTO SUPER ROMSONS- |G26B110012 / 2031-01-31 (90183990)",
+        "quantity": 2,
+        "unit_price": 15.54,
+        "total": 31.08,
+        "confidence": "HIGH",
+        "category_hint": "MISC"
+      },
+      {
+        "item_name": "NEEDLE-.-19G X 1.5-.- |49554C / 2030-11-30 (90183220)",
+        "quantity": 2,
+        "unit_price": 3.38,
+        "total": 6.76,
+        "confidence": "HIGH",
+        "category_hint": "MISC"
+      },
+      {
+        "item_name": "NEEDLE-.-18G X 1.5-SAFEWAY LIFELONG- |122518CM / 2030-11-30 (90183100)",
+        "quantity": 1,
+        "unit_price": 6.05,
+        "total": 6.05,
+        "confidence": "HIGH",
+        "category_hint": "MISC"
+      },
+      {
+        "item_name": "NEEDLE FREE VALVE-.-.-SAFSITE W/MALE LEURLOCK GS 3018 ROMSONS- |G26B010276 / 2031-01-31 (90183990)",
+        "quantity": 1,
+        "unit_price": 167.0,
+        "total": 167.0,
+        "confidence": "HIGH",
+        "category_hint": "MISC"
+      },
+      {
+        "item_name": "SYRINGE-LL WITH NEEDLE-2ML-SAFEWAY LIFELONG- |102502BH / 2030-09-30 (90183100)",
+        "quantity": 2,
+        "unit_price": 14.05,
+        "total": 28.1,
+        "confidence": "HIGH",
+        "category_hint": "MISC"
+      },
+      {
+        "item_name": "SYRINGE-LL WITH NEEDLE-5ML-SAFEWAY LIFELONG- |122505BM / 2030-11-30 (90183100)",
+        "quantity": 1,
+        "unit_price": 18.5,
+        "total": 18.5,
+        "confidence": "HIGH",
+        "category_hint": "MISC"
+      },
+      {
+        "item_name": "SYRINGE-PLAIN W/O NEEDLE-10ML-SAFEWAY LIFELONG- |032610DL / 2031-02-28 (90183100)",
+        "quantity": 2,
+        "unit_price": 32.1,
+        "total": 64.2,
+        "confidence": "HIGH",
+        "category_hint": "MISC"
+      },
+      {
+        "item_name": "DVT PUMP CUFF-BELOW KNEE-MEDIUM-RM SWELLCURE- |RMN/2025/7174 / 2028-12-31 (90181100)",
+        "quantity": 1,
+        "unit_price": 1125.0,
+        "total": 1125.0,
+        "confidence": "HIGH",
+        "category_hint": "MISC"
+      },
+      {
+        "item_name": "SYRINGE-PLAIN W/O NEEDLE-10ML-SAFEWAY LIFELONG- |032610DL / 2031-02-28 (90183100)",
+        "quantity": 1,
+        "unit_price": 32.1,
+        "total": 32.1,
+        "confidence": "HIGH",
+        "category_hint": "MISC"
+      },
+      {
+        "item_name": "DRESSING SWAB GAUZE-STERILE (4S)-7.5CM X 7.5CM-SGSP009 BAPUJI |040426 / 2029-03-31 (30059090)",
+        "quantity": 3,
+        "unit_price": 42.18,
+        "total": 126.54,
+        "confidence": "HIGH",
+        "category_hint": "MISC"
+      },
+      {
+        "item_name": "BED UNDER PADS-.-90CM X 60CM-UND002 BAPUJI |010426 / 2029-03-31 (96190040)",
+        "quantity": 5,
+        "unit_price": 164.06,
+        "total": 820.3,
+        "confidence": "HIGH",
+        "category_hint": "MISC"
+      },
+      {
+        "item_name": "DIAPERS-ADULT-XL-ADEXL003 (PACK10) BAPUJI- |100326-734-758 / 2029-02-28 (96190040)",
+        "quantity": 4,
+        "unit_price": 117.19,
+        "total": 468.76,
+        "confidence": "HIGH",
+        "category_hint": "MISC"
+      },
+      {
+        "item_name": "NEEDLE-.-18G X 1.5-SAFEWAY LIFELONG- |122518CM / 2030-11-30 (90183100)",
+        "quantity": 4,
+        "unit_price": 6.05,
+        "total": 24.2,
+        "confidence": "HIGH",
+        "category_hint": "MISC"
+      },
+      {
+        "item_name": "WET WIPES-.-32CM X 32CM-LYON BDB001 BAPUJI |270326 / 2028-03-26 (56012110)",
+        "quantity": 1,
+        "unit_price": 600.0,
+        "total": 600.0,
+        "confidence": "HIGH",
+        "category_hint": "MISC"
+      },
+      {
+        "item_name": "BED UNDER PADS-.-90CM X 60CM-UND002 BAPUJI |010426 / 2029-03-31 (96190040)",
+        "quantity": 1,
+        "unit_price": 164.06,
+        "total": 164.06,
+        "confidence": "HIGH",
+        "category_hint": "MISC"
+      },
+      {
+        "item_name": "DIAPERS-ADULT-XL-ADEXL003 (PACK10) BAPUJI- |100326-734-758 / 2029-02-28 (96190040)",
+        "quantity": 3,
+        "unit_price": 117.19,
+        "total": 351.57,
+        "confidence": "HIGH",
+        "category_hint": "MISC"
+      },
+      {
+        "item_name": "SYRINGE-LL WITH NEEDLE-2ML-SAFEWAY LIFELONG- |102502BH / 2030-09-30 (90183100)",
+        "quantity": 3,
+        "unit_price": 14.05,
+        "total": 42.15,
+        "confidence": "HIGH",
+        "category_hint": "MISC"
+      },
+      {
+        "item_name": "NEEDLE-.-18G X 1.5-SAFEWAY LIFELONG- |122518CM / 2030-11-30 (90183100)",
+        "quantity": 2,
+        "unit_price": 6.05,
+        "total": 12.1,
+        "confidence": "HIGH",
+        "category_hint": "MISC"
+      },
+      {
+        "item_name": "DIAPERS-ADULT-LARGE-LYON STANDARD ADL002D (PACK10) BAPUJI- |070426 / 2029-03-31 (96190040)",
+        "quantity": 4,
+        "unit_price": 112.5,
+        "total": 450.0,
+        "confidence": "HIGH",
+        "category_hint": "MISC"
+      }
+    ],
+    "extraction_warnings": [
+      "Bill shows accreditation logos including what appears to be NABH; accreditation set to NABH based on visible logo.",
+      "Sponsor payable amount of 73,931.00 and patient payable of 52,473.00 noted. Total bill amount before discount is 135,820.15; after discounts and rounding 126,404.22 is the total bill amount including taxes. total_amount set to 126,404.22 as the final billed figure.",
+      "Payment mode inferred as CASHLESS due to presence of insurance sponsor (TATA AIG GENERAL INSURANCE via MEDI ASSIST INDIA TPA PVT LTD) covering part of the bill.",
+      "Page 1 shows Diagnostics Non-Lab section total as 10,620.00 (carried forward from page 1 to page 2); individual items ECHO COLOR DOPPLER, ECG, and HOLTER MONITORING sum to 10,620.00, consistent.",
+      "Several line items in Medicines and Surgical Consumables sections have batch/lot numbers and expiry dates embedded in item names; these have been preserved as printed.",
+      "Two separate entries for ATORVASTATIN-TABLET-40MG-ATOREC on 13-04-2026 with identical details appear in Regulated Pricing Drugs section; both extracted as printed."
+    ]
+  },
+  "analysis": {
+    "hospital_tier": "I",
+    "hospital_accreditation": "NABH",
+    "flags": [
+      {
+        "item_name": "MEDICAL RECORD CHARGES",
+        "billed_amount": 750.0,
+        "cghs_code": "Annexure-III",
+        "cghs_rate": 0,
+        "multiplier": null,
+        "delta": 750.0,
+        "citation": "CGHS OM 03.10.2025, Annexure-III §1/§2 — Medical Record Charges are bundled into room/ward charges and cannot be billed separately",
+        "flag_type": "STRUCTURAL_VIOLATION"
+      },
+      {
+        "item_name": "ADMISSION",
+        "billed_amount": 2000.0,
+        "cghs_code": "Annexure-III",
+        "cghs_rate": 0,
+        "multiplier": null,
+        "delta": 2000.0,
+        "citation": "CGHS OM 03.10.2025, Annexure-III §1/§2 — Admission Charges are bundled into room/ward charges and cannot be billed separately",
+        "flag_type": "STRUCTURAL_VIOLATION"
+      },
+      {
+        "item_name": "BIOMEDICAL WASTE MANAGEMENT SERVICE",
+        "billed_amount": 200.0,
+        "cghs_code": "Annexure-III",
+        "cghs_rate": 0,
+        "multiplier": null,
+        "delta": 200.0,
+        "citation": "CGHS OM 03.10.2025, Annexure-III §1/§2 — Biomedical Waste Management is bundled into room/ward charges and cannot be billed separately",
+        "flag_type": "STRUCTURAL_VIOLATION"
+      },
+      {
+        "item_name": "DOCUMENT PROCESSING CHARGES",
+        "billed_amount": 400.0,
+        "cghs_code": "Annexure-III",
+        "cghs_rate": 0,
+        "multiplier": null,
+        "delta": 400.0,
+        "citation": "CGHS OM 03.10.2025, Annexure-III §1/§2 — Document Processing Charges are bundled into room/ward charges and cannot be billed separately",
+        "flag_type": "STRUCTURAL_VIOLATION"
+      },
+      {
+        "item_name": "CONSULTATION- DIETITIAN",
+        "billed_amount": 500.0,
+        "cghs_code": "Annexure-III",
+        "cghs_rate": 0,
+        "multiplier": null,
+        "delta": 500.0,
+        "citation": "CGHS OM 03.10.2025, Annexure-III §1/§2 — Dietitian/Consultation-Dietitian is bundled into room/ward charges and cannot be billed separately",
+        "flag_type": "STRUCTURAL_VIOLATION"
+      },
+      {
+        "item_name": "NURSING CHARGE",
+        "billed_amount": 6500.0,
+        "cghs_code": "Annexure-III",
+        "cghs_rate": 0,
+        "multiplier": null,
+        "delta": 6500.0,
+        "citation": "CGHS OM 03.10.2025, Annexure-III §1/§2 — Nursing Charges are bundled into room/ward charges and cannot be billed separately",
+        "flag_type": "STRUCTURAL_VIOLATION"
+      },
+      {
+        "item_name": "NURSING CHARGE",
+        "billed_amount": 4500.0,
+        "cghs_code": "Annexure-III",
+        "cghs_rate": 0,
+        "multiplier": null,
+        "delta": 4500.0,
+        "citation": "CGHS OM 03.10.2025, Annexure-III §1/§2 — Nursing Charges are bundled into room/ward charges and cannot be billed separately",
+        "flag_type": "STRUCTURAL_VIOLATION"
+      },
+      {
+        "item_name": "NURSING CHARGE",
+        "billed_amount": 4500.0,
+        "cghs_code": "Annexure-III",
+        "cghs_rate": 0,
+        "multiplier": null,
+        "delta": 4500.0,
+        "citation": "CGHS OM 03.10.2025, Annexure-III §1/§2 — Nursing Charges are bundled into room/ward charges and cannot be billed separately",
+        "flag_type": "STRUCTURAL_VIOLATION"
+      },
+      {
+        "item_name": "ECG",
+        "billed_amount": 1250.0,
+        "cghs_code": "CI001",
+        "cghs_rate": 175.0,
+        "multiplier": 7.14,
+        "delta": 1075.0,
+        "citation": "CGHS OM 03.10.2025, Tier I, NABH, Code CI001: ₹175",
+        "flag_type": "RATE_OVERCHARGE"
+      },
+      {
+        "item_name": "ECHO COLOR DOPPLER",
+        "billed_amount": 4540.0,
+        "cghs_code": "RI001",
+        "cghs_rate": 1475.0,
+        "multiplier": 3.08,
+        "delta": 3065.0,
+        "citation": "CGHS OM 03.10.2025, Tier I, NABH, Code RI001 (2D Echocardiography): ₹1,475",
+        "flag_type": "RATE_OVERCHARGE"
+      },
+      {
+        "item_name": "PTT (ACTIVATED THROMBOPLASTIN TIME)",
+        "billed_amount": 1500.0,
+        "cghs_code": "LB025",
+        "cghs_rate": 290.0,
+        "multiplier": 5.17,
+        "delta": 1210.0,
+        "citation": "CGHS OM 03.10.2025, Tier I, NABH, Code LB025 (APTT): ₹290",
+        "flag_type": "RATE_OVERCHARGE"
+      },
+      {
+        "item_name": "URINE ROUTINE & MICROSCOPY",
+        "billed_amount": 890.0,
+        "cghs_code": "LB001",
+        "cghs_rate": 100.0,
+        "multiplier": 8.9,
+        "delta": 790.0,
+        "citation": "CGHS OM 03.10.2025, Tier I, NABH, Code LB001 (Urine Routine): ₹100",
+        "flag_type": "RATE_OVERCHARGE"
+      },
+      {
+        "item_name": "MRI NEURO LIMITED ISCHEMIA STUDY",
+        "billed_amount": 16980.0,
+        "cghs_code": "RI089",
+        "cghs_rate": 2750.0,
+        "multiplier": 6.17,
+        "delta": 14230.0,
+        "citation": "CGHS OM 03.10.2025, Tier I, NABH, Code RI089 (MRI Brain without contrast): ₹2,750",
+        "flag_type": "RATE_OVERCHARGE"
+      },
+      {
+        "item_name": "USG ABDOMEN & PELVIS",
+        "billed_amount": 4060.0,
+        "cghs_code": "RI020",
+        "cghs_rate": 800.0,
+        "multiplier": 5.08,
+        "delta": 3260.0,
+        "citation": "CGHS OM 03.10.2025, Tier I, NABH, Code RI020 (USG Whole Abdomen + Pelvis): ₹800",
+        "flag_type": "RATE_OVERCHARGE"
+      },
+      {
+        "item_name": "BED CHARGES - CRITICAL CARE AREA",
+        "billed_amount": 7900.0,
+        "cghs_code": "CC001",
+        "cghs_rate": 5400.0,
+        "multiplier": 1.46,
+        "delta": 2500.0,
+        "citation": "CGHS OM 03.10.2025, Tier I, NABH, Code CC001 (ICU/CCU/HDU all-inclusive per day): ₹5,400 — multiplier 1.46×; below 2× flagging threshold",
+        "flag_type": "RATE_OVERCHARGE"
+      }
+    ],
+    "unverifiable": [
+      {
+        "item_name": "INJECTION IV EMERGENCY",
+        "reason": "No CGHS benchmark exists for this procedural/miscellaneous charge"
+      },
+      {
+        "item_name": "INITIAL ASSESSMENT CHARGES",
+        "reason": "No CGHS benchmark exists for initial assessment/triage charges"
+      },
+      {
+        "item_name": "OBSERVATION (UP TO 2 HOURS)",
+        "reason": "No CGHS benchmark exists for short-stay observation charges"
+      },
+      {
+        "item_name": "BED CHARGES - WARD (999311) [first instance]",
+        "reason": "No CGHS benchmark exists for this specific ward category code; ward room rate benchmarks vary by room type and are not specified in the CGHS OM knowledge base provided"
+      },
+      {
+        "item_name": "BED CHARGES - WARD (999311) [second instance]",
+        "reason": "No CGHS benchmark exists for this specific ward category code; ward room rate benchmarks vary by room type and are not specified in the CGHS OM knowledge base provided"
+      },
+      {
+        "item_name": "CONSULTATION - IP |Dr. Usha Humbi [₹1,870]",
+        "reason": "Billed ₹1,870 vs CN002 ₹350 = 5.34× — however, CGHS inpatient consultation rates vary by specialist designation and super-speciality status; cannot confirm applicable benchmark without doctor designation; Could not verify"
+      },
+      {
+        "item_name": "CROSS CONSULTATION - IP |Dr. Smita Caren Mathias [₹1,410, first instance]",
+        "reason": "Cross-consultation rates are not separately enumerated in the CGHS OM knowledge base; Could not verify"
+      },
+      {
+        "item_name": "CROSS CONSULTATION - IP |Dr. Sathya Narayana D [₹1,710]",
+        "reason": "Cross-consultation rates are not separately enumerated in the CGHS OM knowledge base; Could not verify"
+      },
+      {
+        "item_name": "CONSULTATION - IP |Dr. Usha Humbi [₹1,710, second instance]",
+        "reason": "Cross-consultation rates are not separately enumerated in the CGHS OM knowledge base; Could not verify"
+      },
+      {
+        "item_name": "CROSS CONSULTATION - IP |Dr. Kranti Shreesh Khadilkar [₹1,710]",
+        "reason": "Cross-consultation rates are not separately enumerated in the CGHS OM knowledge base; Could not verify"
+      },
+      {
+        "item_name": "CROSS CONSULTATION - IP |N Dhanaraj [₹1,710]",
+        "reason": "Cross-consultation rates are not separately enumerated in the CGHS OM knowledge base; Could not verify"
+      },
+      {
+        "item_name": "CROSS CONSULTATION - IP |Dr. Smita Caren Mathias [₹1,410, second instance]",
+        "reason": "Cross-consultation rates are not separately enumerated in the CGHS OM knowledge base; Could not verify"
+      },
+      {
+        "item_name": "CONSULTATION - IP |Dr. Usha Humbi [₹1,710, third instance]",
+        "reason": "Cross-consultation rates are not separately enumerated in the CGHS OM knowledge base; Could not verify"
+      },
+      {
+        "item_name": "CROSS CONSULTATION - IP |Dr. Suraj Narasimhan A [₹1,610]",
+        "reason": "Cross-consultation rates are not separately enumerated in the CGHS OM knowledge base; Could not verify"
+      },
+      {
+        "item_name": "CONSULTATION - IP |Dr. V. Viju Wilben, Dr. Saurav Mahanta, Dr. Reshma G K, Dr Harish N, Dr. Shrithika Patil, Dr. Sharath Kumar J K [₹2,470]",
+        "reason": "Multi-physician round consultation rates are not separately enumerated in the CGHS OM knowledge base; Could not verify"
+      },
+      {
+        "item_name": "CROSS CONSULTATION - IP |Dr. Ganesh Srinivasa Prasad P [₹1,710]",
+        "reason": "Cross-consultation rates are not separately enumerated in the CGHS OM knowledge base; Could not verify"
+      },
+      {
+        "item_name": "CROSS CONSULTATION - IP |Dr. Smita Caren Mathias [₹1,410, third instance]",
+        "reason": "Cross-consultation rates are not separately enumerated in the CGHS OM knowledge base; Could not verify"
+      },
+      {
+        "item_name": "HOLTER MONITORING",
+        "reason": "4830/2500 = 1.93× — below 2× flagging threshold; not flagged"
+      },
+      {
+        "item_name": "COMPLETE BLOOD COUNT (CBC)",
+        "reason": "Billed ₹1,310 vs LB097 ₹1,320 — billed below CGHS rate; no overcharge"
+      },
+      {
+        "item_name": "VBG with Lactate [first instance, ₹2,010]",
+        "reason": "No CGHS benchmark exists for Venous Blood Gas with Lactate; Could not verify"
+      },
+      {
+        "item_name": "LIVER FUNCTION TEST (LFT)",
+        "reason": "No CGHS benchmark exists for LFT panel in the provided knowledge base; Could not verify"
+      },
+      {
+        "item_name": "RENAL PACKAGE - 2 (RFT RANDOM) [₹3,660]",
+        "reason": "No CGHS benchmark exists for this renal panel package; Could not verify"
+      },
+      {
+        "item_name": "PT - INR (PROTHROMBIN TIME)",
+        "reason": "No CGHS benchmark exists for PT-INR in the provided knowledge base; Could not verify"
+      },
+      {
+        "item_name": "HOMOCYSTEINE",
+        "reason": "No CGHS benchmark exists for Homocysteine assay; Could not verify"
+      },
+      {
+        "item_name": "TSH (THYROID STIMULATING HORMONE)",
+        "reason": "No CGHS benchmark exists for TSH in the provided knowledge base; Could not verify"
+      },
+      {
+        "item_name": "HBA1C",
+        "reason": "No CGHS benchmark exists for HbA1c in the provided knowledge base; Could not verify"
+      },
+      {
+        "item_name": "VBG with Lactate [second instance, ₹2,010]",
+        "reason": "No CGHS benchmark exists for Venous Blood Gas with Lactate; Could not verify"
+      },
+      {
+        "item_name": "BLOOD SUGAR STRIP TEST [first instance, ₹100]",
+        "reason": "No CGHS benchmark exists for bedside blood sugar strip test; Could not verify"
+      },
+      {
+        "item_name": "RENAL PACKAGE - 2 (RFT RANDOM) [₹3,230]",
+        "reason": "No CGHS benchmark exists for this renal panel package; Could not verify"
+      },
+      {
+        "item_name": "VITAMIN B-12",
+        "reason": "No CGHS benchmark exists for Vitamin B12 assay in the provided knowledge base; Could not verify"
+      },
+      {
+        "item_name": "BLOOD SUGAR STRIP TEST [second instance, ₹100]",
+        "reason": "No CGHS benchmark exists for bedside blood sugar strip test; Could not verify"
+      },
+      {
+        "item_name": "PHYSIO PACKAGE FOR WARD PATIENTS",
+        "reason": "No CGHS benchmark exists for physiotherapy package; Could not verify"
+      },
+      {
+        "item_name": "IV CANNULA INSERTION (CAVA FIX INSERTION)",
+        "reason": "No CGHS benchmark exists for IV cannula insertion procedure charge; Could not verify"
+      },
+      {
+        "item_name": "Respiratory Support Charges",
+        "reason": "No CGHS benchmark exists for respiratory support charges; Could not verify"
+      },
+      {
+        "item_name": "ASPIRIN-TABLET-150MG-ECOSPRIN",
+        "reason": "NPPA ceiling not available in knowledge base for this formulation; Could not verify"
+      },
+      {
+        "item_name": "BISOPROLOL FUMARATE-TABLET-5MG-BISOCAR",
+        "reason": "NPPA ceiling not available in knowledge base for this formulation; Could not verify"
+      },
+      {
+        "item_name": "MEMANTINE HCL-TABLET-5MG-ADMENTA",
+        "reason": "NPPA ceiling not available in knowledge base for this formulation; Could not verify"
+      },
+      {
+        "item_name": "RIVASTIGMINE-CAPSULE-1.5MG-RIVAMER [first instance]",
+        "reason": "NPPA ceiling not available in knowledge base for this formulation; Could not verify"
+      },
+      {
+        "item_name": "SODIUM CHLORIDE(NS)-INFUSION 0.9% 100ML FREEFLEX BAG [first instance, qty 2]",
+        "reason": "NPPA ceiling not available in knowledge base for this formulation; Could not verify"
+      },
+      {
+        "item_name": "SODIUM CHLORIDE(NS)-INFUSION 0.9% 500ML FREEFLEX BAG [first instance]",
+        "reason": "NPPA ceiling not available in knowledge base for this formulation; Could not verify"
+      },
+      {
+        "item_name": "MODAFINIL-TABLET-100MG-MODALERT",
+        "reason": "NPPA ceiling not available in knowledge base for this formulation; Could not verify"
+      },
+      {
+        "item_name": "SODIUM CHLORIDE(NS)-INFUSION 0.9% 100ML FREEFLEX BAG [second instance, qty 1]",
+        "reason": "NPPA ceiling not available in knowledge base for this formulation; Could not verify"
+      },
+      {
+        "item_name": "MECOBALAMIN+FOLIC ACID+VIT B6-TABLET-HOMIN",
+        "reason": "NPPA ceiling not available in knowledge base for this formulation; Could not verify"
+      },
+      {
+        "item_name": "MULTIVITAMINS-INJECTION-3ML-OPTINEURON [first instance]",
+        "reason": "NPPA ceiling not available in knowledge base for this formulation; Could not verify"
+      },
+      {
+        "item_name": "MULTIVITAMINS-INJECTION-3ML-OPTINEURON [second instance]",
+        "reason": "NPPA ceiling not available in knowledge base for this formulation; Could not verify"
+      },
+      {
+        "item_name": "SODIUM CHLORIDE(NS)-INFUSION 0.9% 500ML FREEFLEX BAG [second instance]",
+        "reason": "NPPA ceiling not available in knowledge base for this formulation; Could not verify"
+      },
+      {
+        "item_name": "RIVASTIGMINE-CAPSULE-1.5MG-RIVAMER [second instance]",
+        "reason": "NPPA ceiling not available in knowledge base for this formulation; Could not verify"
+      },
+      {
+        "item_name": "SODIUM CHLORIDE(NS)-INFUSION 0.9% 100ML FREEFLEX BAG [third instance, qty 3]",
+        "reason": "NPPA ceiling not available in knowledge base for this formulation; Could not verify"
+      },
+      {
+        "item_name": "SODIUM CHLORIDE(NS)-INFUSION 0.9% 500ML FREEFLEX BAG [third instance]",
+        "reason": "NPPA ceiling not available in knowledge base for this formulation; Could not verify"
+      },
+      {
+        "item_name": "ATORVASTATIN-TABLET-40MG-ATOREC [first instance]",
+        "reason": "NPPA ceiling not available in knowledge base for this formulation; Could not verify"
+      },
+      {
+        "item_name": "CLOPIDOGREL-TABLET-75MG-DEPLATT",
+        "reason": "NPPA ceiling not available in knowledge base for this formulation; Could not verify"
+      },
+      {
+        "item_name": "PANTOPRAZOLE-INJECTION-40MG-ZOVANTA [first instance]",
+        "reason": "NPPA ceiling not available in knowledge base for this formulation; Could not verify"
+      },
+      {
+        "item_name": "ATORVASTATIN-TABLET-40MG-ATOREC [second instance]",
+        "reason": "NPPA ceiling not available in knowledge base for this formulation; Could not verify"
+      },
+      {
+        "item_name": "PANTOPRAZOLE-INJECTION-40MG-ZOVANTA [second instance]",
+        "reason": "NPPA ceiling not available in knowledge base for this formulation; Could not verify"
+      },
+      {
+        "item_name": "SODIUM CHLORIDE-INJECTION-10ML-NORMAL SALINE [qty 4]",
+        "reason": "NPPA ceiling not available in knowledge base for this formulation; Could not verify"
+      },
+      {
+        "item_name": "SODIUM CHLORIDE-INJECTION-10ML-NORMAL SALINE [qty 1]",
+        "reason": "NPPA ceiling not available in knowledge base for this formulation; Could not verify"
+      },
+      {
+        "item_name": "CARBIDOPA+LEVODOPA-TABLET-25MG+100MG-SYNDOPA PLUS [first instance]",
+        "reason": "NPPA ceiling not available in knowledge base for this formulation; Could not verify"
+      },
+      {
+        "item_name": "AMLODIPINE-TABLET-2.5MG-AMLOPRES [first instance]",
+        "reason": "NPPA ceiling not available in knowledge base for this formulation; Could not verify"
+      },
+      {
+        "item_name": "AMLODIPINE-TABLET-5MG-AMLOKIND",
+        "reason": "NPPA ceiling not available in knowledge base for this formulation; Could not verify"
+      },
+      {
+        "item_name": "AMLODIPINE-TABLET-2.5MG-AMLOPRES [second instance]",
+        "reason": "NPPA ceiling not available in knowledge base for this formulation; Could not verify"
+      },
+      {
+        "item_name": "CARBIDOPA+LEVODOPA-TABLET-25MG+100MG-SYNDOPA PLUS [second instance]",
+        "reason": "NPPA ceiling not available in knowledge base for this formulation; Could not verify"
+      },
+      {
+        "item_name": "INSULIN SYRINGE-40IU(1ML)",
+        "reason": "NPPA ceiling not available in knowledge base for this item; Could not verify"
+      },
+      {
+        "item_name": "HUMAN INSULIN-INJECTION-40IU/ML(10ML)-INSUGEN R",
+        "reason": "NPPA ceiling not available in knowledge base for this formulation; Could not verify"
+      },
+      {
+        "item_name": "PANTOPRAZOLE-INJECTION-40MG-ZOVANTA [third instance, qty 2]",
+        "reason": "NPPA ceiling not available in knowledge base for this formulation; Could not verify"
+      },
+      {
+        "item_name": "ISOPHANE INSULIN-INJECTION-40IU/ML(10ML)-INSUGEN N",
+        "reason": "NPPA ceiling not available in knowledge base for this formulation; Could not verify"
+      },
+      {
+        "item_name": "BED UNDER PADS 90CM X 60CM [first instance, qty 2]",
+        "reason": "Surgical consumable — no CGHS rate benchmark available; Could not verify"
+      },
+      {
+        "item_name": "DRESSING SWAB GAUZE-STERILE (4S) 7.5CM X 7.5CM [first instance, qty 5]",
+        "reason": "Surgical consumable — no CGHS rate benchmark available; Could not verify"
+      },
+      {
+        "item_name": "HAND CARE GLOVES-STERILE-PROTECTO SUPER ROMSONS [first instance]",
+        "reason": "Surgical consumable — no CGHS rate benchmark available; Could not verify"
+      },
+      {
+        "item_name": "TRANSPARENT ADHESIVE DRESSING IV 3000",
+        "reason": "Surgical consumable — no CGHS rate benchmark available; Could not verify"
+      },
+      {
+        "item_name": "SYRINGE-PLAIN W/O NEEDLE-5ML [qty 5]",
+        "reason": "Surgical consumable — no CGHS rate benchmark available; Could not verify"
+      },
+      {
+        "item_name": "IV SET-VENTED LUER LOCK-LATEX FREE AMARYLLIS",
+        "reason": "Surgical consumable — no CGHS rate benchmark available; Could not verify"
+      },
+      {
+        "item_name": "WET WIPES 32CM X 32CM-LYON BDB001 [first instance, qty 2]",
+        "reason": "Consumable — no CGHS rate benchmark available; Could not verify"
+      },
+      {
+        "item_name": "OUNCE GLASS 200ML-MEDOVATION",
+        "reason": "Consumable — no CGHS rate benchmark available; Could not verify"
+      },
+      {
+        "item_name": "URINAL POT-MALE",
+        "reason": "Consumable — no CGHS rate benchmark available; Could not verify"
+      },
+      {
+        "item_name": "SYRINGE-PLAIN W/O NEEDLE-10ML [first instance, qty 5]",
+        "reason": "Surgical consumable — no CGHS rate benchmark available; Could not verify"
+      },
+      {
+        "item_name": "DIAPERS-ADULT-LARGE [first instance, qty 2]",
+        "reason": "Consumable — no CGHS rate benchmark available; Could not verify"
+      },
+      {
+        "item_name": "ALCOHOL SWAB [qty 5]",
+        "reason": "Surgical consumable — no CGHS rate benchmark available; Could not verify"
+      },
+      {
+        "item_name": "CHLORHEXIDINE GLUCONATE+ETHYL ALCOHOL SOLUTION-HOSPISAFE",
+        "reason": "Surgical consumable/antiseptic — no CGHS rate benchmark available; Could not verify"
+      },
+      {
+        "item_name": "ECG ELECTRODES-ADULT [qty 2]",
+        "reason": "Consumable — no CGHS rate benchmark available; Could not verify"
+      },
+      {
+        "item_name": "EXAMINATION GLOVES-POWDER FREE-MEDIUM-NITRILE [first instance, qty 100]",
+        "reason": "Surgical consumable — no CGHS rate benchmark available; Could not verify"
+      },
+      {
+        "item_name": "PLASTIC DISPOSABLE APRON [qty 5]",
+        "reason": "Consumable — no CGHS rate benchmark available; Could not verify"
+      },
+      {
+        "item_name": "THERMOMETER-AERO DIGITAL",
+        "reason": "Equipment/consumable — no CGHS rate benchmark available; Could not verify"
+      },
+      {
+        "item_name": "EXAMINATION GLOVES-POWDER FREE-MEDIUM-NITRILE [second instance, qty 8]",
+        "reason": "Surgical consumable — no CGHS rate benchmark available; Could not verify"
+      },
+      {
+        "item_name": "HAND CARE GLOVES-STERILE-PROTECTO SUPER ROMSONS [second instance, qty 2]",
+        "reason": "Surgical consumable — no CGHS rate benchmark available; Could not verify"
+      },
+      {
+        "item_name": "NEEDLE-19G X 1.5 [qty 2]",
+        "reason": "Surgical consumable — no CGHS rate benchmark available; Could not verify"
+      },
+      {
+        "item_name": "NEEDLE-18G X 1.5 [first instance, qty 1]",
+        "reason": "Surgical consumable — no CGHS rate benchmark available; Could not verify"
+      },
+      {
+        "item_name": "NEEDLE FREE VALVE-SAFSITE ROMSONS",
+        "reason": "Surgical consumable — no CGHS rate benchmark available; Could not verify"
+      },
+      {
+        "item_name": "SYRINGE-LL WITH NEEDLE-2ML [first instance, qty 2]",
+        "reason": "Surgical consumable — no CGHS rate benchmark available; Could not verify"
+      },
+      {
+        "item_name": "SYRINGE-LL WITH NEEDLE-5ML [qty 1]",
+        "reason": "Surgical consumable — no CGHS rate benchmark available; Could not verify"
+      },
+      {
+        "item_name": "SYRINGE-PLAIN W/O NEEDLE-10ML [second instance, qty 2]",
+        "reason": "Surgical consumable — no CGHS rate benchmark available; Could not verify"
+      },
+      {
+        "item_name": "DVT PUMP CUFF-BELOW KNEE-MEDIUM-RM SWELLCURE",
+        "reason": "Surgical consumable — no CGHS rate benchmark available; Could not verify"
+      },
+      {
+        "item_name": "SYRINGE-PLAIN W/O NEEDLE-10ML [third instance, qty 1]",
+        "reason": "Surgical consumable — no CGHS rate benchmark available; Could not verify"
+      },
+      {
+        "item_name": "DRESSING SWAB GAUZE-STERILE (4S) 7.5CM X 7.5CM [second instance, qty 3]",
+        "reason": "Surgical consumable — no CGHS rate benchmark available; Could not verify"
+      },
+      {
+        "item_name": "BED UNDER PADS 90CM X 60CM [second instance, qty 5]",
+        "reason": "Consumable — no CGHS rate benchmark available; Could not verify"
+      },
+      {
+        "item_name": "DIAPERS-ADULT-XL [first instance, qty 4]",
+        "reason": "Consumable — no CGHS rate benchmark available; Could not verify"
+      },
+      {
+        "item_name": "NEEDLE-18G X 1.5 [second instance, qty 4]",
+        "reason": "Surgical consumable — no CGHS rate benchmark available; Could not verify"
+      },
+      {
+        "item_name": "WET WIPES 32CM X 32CM-LYON BDB001 [second instance, qty 1]",
+        "reason": "Consumable — no CGHS rate benchmark available; Could not verify"
+      },
+      {
+        "item_name": "BED UNDER PADS 90CM X 60CM [third instance, qty 1]",
+        "reason": "Consumable — no CGHS rate benchmark available; Could not verify"
+      },
+      {
+        "item_name": "DIAPERS-ADULT-XL [second instance, qty 3]",
+        "reason": "Consumable — no CGHS rate benchmark available; Could not verify"
+      },
+      {
+        "item_name": "SYRINGE-LL WITH NEEDLE-2ML [second instance, qty 3]",
+        "reason": "Surgical consumable — no CGHS rate benchmark available; Could not verify"
+      },
+      {
+        "item_name": "NEEDLE-18G X 1.5 [third instance, qty 2]",
+        "reason": "Surgical consumable — no CGHS rate benchmark available; Could not verify"
+      },
+      {
+        "item_name": "DIAPERS-ADULT-LARGE [second instance, qty 4]",
+        "reason": "Consumable — no CGHS rate benchmark available; Could not verify"
+      },
+      {
+        "item_name": "BED CHARGES - CRITICAL CARE AREA",
+        "reason": "1.46× — below 2× flagging threshold; not flagged (moved to unverifiable per threshold gate)"
+      }
+    ],
+    "total_flagged_amount": 43230.0,
+    "letter_warranted": true
+  },
+  "letter": "Date: 12 May 2026\n\nTo: The Billing Manager\nMazumdar Shaw Medical Centre, Bangalore- BILLING-4F\nBangalore\n\nSubject: Formal Dispute of Itemized Bill No. IB100226D002262 — Request for Revised Bill\n\nDear Sir/Madam,\n\nThis letter constitutes a formal dispute of the itemized hospital bill issued in respect of patient Mr. Munibur Rahman, admitted to your facility for the period [Admission Date] to [Discharge Date]. The total amount billed aggregates to [Total Billed Amount]. Upon systematic review of each line item against the Central Government Health Scheme (CGHS) Schedule of Rates as notified vide Office Memorandum dated 03.10.2025 (Tier I, NABH-accredited facility), this bill contains verifiable overcharges and impermissible unbundled charges amounting to ₹43,230. We hereby request a revised bill reflecting the applicable CGHS benchmarks.\n\n---\n\nSECTION 1 — RATE OVERCHARGES\n\nThe following procedures have been billed at rates that materially exceed the applicable CGHS ceiling for a Tier I, NABH-accredited hospital. Each item is cited with its CGHS code, the permissible rate, the amount actually billed, and the resultant excess:\n\n1. ECG\n   CGHS Code: CI001 | Permissible Rate: ₹175 | Billed: ₹1,250 | Excess: ₹1,075 | Multiplier: 7.14×\n   Reference: CGHS OM 03.10.2025, Tier I, NABH, Code CI001.\n\n2. ECHO COLOR DOPPLER (2D Echocardiography)\n   CGHS Code: RI001 | Permissible Rate: ₹1,475 | Billed: ₹4,540 | Excess: ₹3,065 | Multiplier: 3.08×\n   Reference: CGHS OM 03.10.2025, Tier I, NABH, Code RI001.\n\n3. PTT — ACTIVATED THROMBOPLASTIN TIME (APTT)\n   CGHS Code: LB025 | Permissible Rate: ₹290 | Billed: ₹1,500 | Excess: ₹1,210 | Multiplier: 5.17×\n   Reference: CGHS OM 03.10.2025, Tier I, NABH, Code LB025.\n\n4. URINE ROUTINE AND MICROSCOPY\n   CGHS Code: LB001 | Permissible Rate: ₹100 | Billed: ₹890 | Excess: ₹790 | Multiplier: 8.90×\n   Reference: CGHS OM 03.10.2025, Tier I, NABH, Code LB001.\n\n5. MRI NEURO LIMITED ISCHEMIA STUDY (MRI Brain without contrast)\n   CGHS Code: RI089 | Permissible Rate: ₹2,750 | Billed: ₹16,980 | Excess: ₹14,230 | Multiplier: 6.17×\n   Reference: CGHS OM 03.10.2025, Tier I, NABH, Code RI089.\n\n6. USG ABDOMEN AND PELVIS (USG Whole Abdomen and Pelvis)\n   CGHS Code: RI020 | Permissible Rate: ₹800 | Billed: ₹4,060 | Excess: ₹3,260 | Multiplier: 5.08×\n   Reference: CGHS OM 03.10.2025, Tier I, NABH, Code RI020.\n\n7. BED CHARGES — CRITICAL CARE AREA (ICU/CCU/HDU all-inclusive per day)\n   CGHS Code: CC001 | Permissible Rate: ₹5,400 | Billed: ₹7,900 | Excess: ₹2,500 | Multiplier: 1.46×\n   Reference: CGHS OM 03.10.2025, Tier I, NABH, Code CC001.\n\nTotal excess attributable to rate overcharges: ₹26,130.\n\nWe request that each of the above line items be revised to the applicable CGHS ceiling rate and a credit note issued for the excess amounts collected or claimed.\n\n---\n\nSECTION 2 — STRUCTURAL VIOLATIONS: IMPERMISSIBLE UNBUNDLED CHARGES\n\nUnder CGHS OM 03.10.2025, Annexure-III §1 and §2, room and ward charges are explicitly defined as all-inclusive and comprehensive. The following charges are expressly subsumed within room/ward charges and may not be separately itemized or billed under any circumstances:\n\n- MEDICAL RECORD CHARGES: ₹750\n- ADMISSION CHARGES: ₹2,000\n- BIOMEDICAL WASTE MANAGEMENT SERVICE: ₹200\n- DOCUMENT PROCESSING CHARGES: ₹400\n- CONSULTATION — DIETITIAN: ₹500\n- NURSING CHARGE (three instances): ₹6,500 + ₹4,500 + ₹4,500 = ₹15,500\n\nTotal impermissibly unbundled charges: ₹19,350.\n\nBy separately billing these items, the hospital has effectively double-charged the patient for services that are already compensated within the room/ward rate. We require that all of the above line items be deleted in their entirety from the final bill and any settled or pending insurance claim.\n\n---\n\nSECTION 3 — SPECIFIC REQUESTS\n\nIn light of the foregoing, we formally request the following within fourteen (14) days of receipt of this letter:\n\n(a) A revised, itemized bill reflecting CGHS-compliant rates for all procedures cited in Section 1 above;\n\n(b) Complete removal from the bill of all charges enumerated in Section 2, in conformity with CGHS OM 03.10.2025, Annexure-III §1/§2;\n\n(c) A written confirmation of the revised total payable amount, inclusive of a credit note or refund for any amounts already paid or settled by the insurer in excess of the CGHS-permissible figures;\n\n(d) Should you dispute any item in this letter, a written response citing the specific CGHS provision, tariff agreement, or regulatory authority that authorizes the rate or charge in question.\n\nThe fourteen-day deadline for response is mandated under the IRDAI Master Circular dated 29.05.2024 on Grievance Redressal Turnaround Time.\n\n---\n\nSECTION 4 — ESCALATION NOTICE\n\nShould we not receive a substantive written response and a revised bill within fourteen (14) days of the date of this letter, we will be constrained to file a formal complaint with the Insurance Ombudsman having jurisdiction over this matter, and additionally approach the Bima Bharosa portal (bimabharosa.irdai.gov.in) maintained by the Insurance Regulatory and Development Authority of India (IRDAI), as well as the appropriate Consumer Forum.\n\nWe draw your attention to the fact that under the IRDAI Master Circular dated 29.05.2024, non-compliance with grievance redressal timelines attracts a monetary penalty of ₹5,000 per day. We trust that this matter will be resolved promptly and without the need for further escalation.\n\nYours sincerely,\n\nMr. Munibur Rahman\n[Contact Address]\n[Phone / Email]\n[Date]"
+}
