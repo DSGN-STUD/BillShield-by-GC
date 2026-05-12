@@ -200,14 +200,40 @@ Avoid:
 
 ---
 
-## UI STYLE (for Lovable build)
+## UI STYLE
 
-- Modern, minimal, premium
-- Soft spacing, clean typography
-- Mobile-first but desktop-primary (Meera audits on a laptop)
-- Proof moment: red flag with CGHS citation must be visually prominent
-- Sanity-check screen: split view (original bill left, extracted items right)
-- No clutter, no gradients, no oversized shadows
+BillShield is a credibility-first product. The design must signal trust, not startup energy.
+
+### Aesthetic direction
+- Tone: refined, clinical, authoritative. Like a legal document that's been beautifully typeset.
+- The proof moment (red flag + CGHS citation) is the soul. Everything else serves it.
+- No purple gradients. No rounded everything. No confetti.
+
+### Typography
+- Never use Inter, Roboto, Open Sans, Arial, or system fonts.
+- Display font: something with weight and authority (Playfair Display, DM Serif Display, or Fraunces)
+- Body font: something clean and readable (DM Sans, Libre Franklin, or Work Sans)
+
+### Colors
+- Background: near-white (#FAFAFA or #F5F4F0)
+- Flags: deep red (#C0392B or similar) — not pink, not orange
+- Verified clean items: deep green (#27AE60)
+- Unverifiable: amber (#E67E22)
+- Text: near-black (#1A1A1A)
+- No gradients. Flat, intentional color.
+
+### Layout
+- Desktop-primary, mobile-responsive
+- Generous whitespace — the bill data needs room to breathe
+- Left-aligned text throughout
+- Results screen: flagged items at top, clean items below, summary bar at bottom
+- Sanity-check screen: split view — original bill image left, extracted items right
+
+### What to avoid
+- Generic SaaS blue
+- Excessive card shadows
+- Animated loading spinners on every action
+- Tooltips that explain the obvious
 
 ---
 
