@@ -202,38 +202,44 @@ Avoid:
 
 ## UI STYLE
 
-BillShield is a credibility-first product. The design must signal trust, not startup energy.
+Target user: Indian families aged 30–50. Tone: clean, modern, approachable, trustworthy.
+Not startup-flashy. Not intimidating. Feels like a premium utility — Zerodha meets a legal document.
 
-### Aesthetic direction
-- Tone: refined, clinical, authoritative. Like a legal document that's been beautifully typeset.
-- The proof moment (red flag + CGHS citation) is the soul. Everything else serves it.
-- No purple gradients. No rounded everything. No confetti.
+### Theme
+- Default: off-white background (#F7F6F3), near-black text (#1A1A1A)
+- Optional dark mode: deep charcoal (#1C1C1E) background, off-white text
+- Toggle between light/dark — NOT navy or blue-black
+
+### Status colours (intentional, minimal, consistent)
+- Flagged / overcharge: #DC2626 (clean red)
+- Clean / within benchmark: #16A34A (confident green)
+- Unverifiable: #D97706 (amber)
+- Neutral UI elements: #6B7280 (grey)
+- Never use these colours decoratively — only for status meaning
 
 ### Typography
-- Never use Inter, Roboto, Open Sans, Arial, or system fonts.
-- Display font: something with weight and authority (Playfair Display, DM Serif Display, or Fraunces)
-- Body font: something clean and readable (DM Sans, Libre Franklin, or Work Sans)
-
-### Colors
-- Background: near-white (#FAFAFA or #F5F4F0)
-- Flags: deep red (#C0392B or similar) — not pink, not orange
-- Verified clean items: deep green (#27AE60)
-- Unverifiable: amber (#E67E22)
-- Text: near-black (#1A1A1A)
-- No gradients. Flat, intentional color.
+- Never use Inter, Roboto, Arial, or system fonts
+- Heading font: DM Serif Display or Playfair Display
+- Body font: DM Sans or Work Sans
+- Minimum 15px body, 18px+ for key data
 
 ### Layout
 - Desktop-primary, mobile-responsive
-- Generous whitespace — the bill data needs room to breathe
+- Generous whitespace
 - Left-aligned text throughout
-- Results screen: flagged items at top, clean items below, summary bar at bottom
-- Sanity-check screen: split view — original bill image left, extracted items right
+- Maximum width: 1100px centered
+
+### The proof moment (results screen)
+- Flagged items appear first, in red
+- Each flag shows: item name, billed amount, CGHS benchmark, multiplier, citation
+- Balanced — clear and firm, not alarming
+- Keep the component easy to iterate
 
 ### What to avoid
-- Generic SaaS blue
+- Purple gradients
 - Excessive card shadows
-- Animated loading spinners on every action
-- Tooltips that explain the obvious
+- Generic SaaS blue
+- Anything designed for a 25-year-old fintech startup
 
 ---
 

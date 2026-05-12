@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BillShield — Hospital Bill Auditor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:          #F5F4F0;
+      --surface:     #FFFFFF;
+      --text:        #1A1A1A;
+      --muted:       #6B6B6B;
+      --border:      #D8D4CC;
+      --red:         #C0392B;
+      --red-bg:      #FDF1F0;
+      --green:       #27AE60;
+      --green-bg:    #EFF9F4;
+      --amber:       #E67E22;
+      --amber-bg:    #FDF5EC;
+      --display:     'Fraunces', Georgia, serif;
+      --body:        'DM Sans', 'Helvetica Neue', sans-serif;
+      --radius:      4px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--body);
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    /* ── Nav ─────────────────────────────────────────── */
+    .nav {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      height: 54px;
+      display: flex;
+      align-items: center;
+    }
+    .wordmark {
+      font-family: var(--display);
+      font-size: 1.2rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--text);
+    }
+    .wordmark em { color: var(--red); font-style: normal; }
+
+    /* ── Page containers ─────────────────────────────── */
+    .page        { max-width: 900px;  margin: 0 auto; padding: 3.5rem 2rem; }
+    .page--sm    { max-width: 520px; }
+    .page--lg    { max-width: 1060px; }
+
+    /* ── Typography ──────────────────────────────────── */
+    .display {
+      font-family: var(--display);
+      font-size: 2.75rem;
+      font-weight: 600;
+      letter-spacing: -0.025em;
+      line-height: 1.1;
+    }
+    .heading {
+      font-family: var(--display);
+      font-size: 1.75rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+    .eyebrow {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ── Buttons ─────────────────────────────────────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.6rem 1.4rem;
+      font-family: var(--body);
+      font-size: 0.875rem;
+      font-weight: 500;
+      border-radius: var(--radius);
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: opacity 0.15s;
+      white-space: nowrap;
+    }
+    .btn:disabled         { opacity: 0.38; cursor: not-allowed; }
+    .btn--dark            { background: var(--text); color: #fff; }
+    .btn--dark:not(:disabled):hover { opacity: 0.82; }
+    .btn--red             { background: var(--red); color: #fff; }
+    .btn--red:not(:disabled):hover  { opacity: 0.88; }
+    .btn--outline         { background: transparent; color: var(--text); border: 1px solid var(--border); }
+    .btn--outline:not(:disabled):hover { background: var(--bg); }
+    .btn--ghost {
+      background: transparent; color: var(--muted);
+      padding-left: 0; padding-right: 0;
+      font-size: 0.875rem;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .btn--ghost:hover { color: var(--text); }
+
+    /* ── Upload zone ─────────────────────────────────── */
+    .dropzone {
+      border: 1.5px dashed var(--border);
+      border-radius: 6px;
+      background: var(--surface);
+      padding: 3.5rem 2rem;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .dropzone:hover, .dropzone--over { border-color: var(--text); background: #EDECE8; }
+    .dropzone--ready  { border-style: solid; border-color: var(--green); background: var(--green-bg); }
+    .upload-icon {
+      width: 38px; height: 38px;
+      margin: 0 auto 1rem;
+      color: var(--muted);
+    }
+    .file-check { font-size: 2rem; margin-bottom: 0.5rem; color: var(--green); }
+
+    /* ── Split view ──────────────────────────────────── */
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      align-items: start;
+    }
+    @media (max-width: 680px) { .split { grid-template-columns: 1fr; } }
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .panel-head {
+      padding: 0.6rem 1rem;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .preview-frame { width: 100%; height: 500px; border: none; display: block; }
+    .preview-img   { width: 100%; height: 500px; object-fit: contain; display: block; background: #F0EFEB; }
+    .item-scroll   { height: 500px; overflow-y: auto; }
+    .item-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 0.6rem 1rem;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.875rem;
+    }
+    .item-row:last-child { border-bottom: none; }
+    .item-name   { font-weight: 500; }
+    .item-qty    { font-size: 0.78rem; color: var(--muted); margin-top: 0.1rem; }
+    .item-amount { font-weight: 600; font-variant-numeric: tabular-nums; flex-shrink: 0; }
+
+    /* ── Summary bar ─────────────────────────────────── */
+    .summary {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+    .stat-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.2rem; }
+    .stat-value { font-family: var(--display); font-size: 1.65rem; font-weight: 600; line-height: 1; }
+    .stat-value--red { color: var(--red); }
+    .summary-actions { margin-left: auto; display: flex; gap: 0.75rem; flex-wrap: wrap; }
+
+    /* ── Flag cards ──────────────────────────────────── */
+    .section-head {
+      margin-top: 1.75rem;
+      margin-bottom: 0.65rem;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--red);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 0.9rem 1.1rem;
+      margin-bottom: 0.45rem;
+    }
+    .card--amber { border-left-color: var(--amber); }
+    .card--green { border-left-color: var(--green); }
+    .card-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .card-name     { font-weight: 600; font-size: 0.9rem; }
+    .card-citation { font-size: 0.8rem; color: var(--muted); margin-top: 0.2rem; }
+    .card-amount   { font-weight: 700; font-size: 0.95rem; font-variant-numeric: tabular-nums; flex-shrink: 0; }
+    .card-amount--red { color: var(--red); }
+    .badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 0.1rem 0.4rem;
+      border-radius: 3px;
+      margin-top: 0.25rem;
+    }
+    .badge--red   { background: var(--red-bg);   color: var(--red); }
+    .badge--amber { background: var(--amber-bg); color: var(--amber); }
+    .card-meta {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 0.4rem;
+      font-size: 0.8rem;
+    }
+    .card-delta { color: var(--red); font-weight: 500; }
+
+    /* ── Collapsible ─────────────────────────────────── */
+    .toggle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      user-select: none;
+    }
+    .toggle:hover .eyebrow { color: var(--text); }
+    .chevron {
+      width: 15px; height: 15px;
+      transition: transform 0.2s;
+      color: var(--muted); flex-shrink: 0;
+    }
+    .chevron--open { transform: rotate(180deg); }
+
+    /* ── Letter ──────────────────────────────────────── */
+    .letter-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 2.5rem 3rem;
+      white-space: pre-wrap;
+      font-family: var(--display);
+      font-size: 0.875rem;
+      line-height: 1.85;
+      max-height: 580px;
+      overflow-y: auto;
+    }
+
+    /* ── Error ───────────────────────────────────────── */
+    .error {
+      background: var(--red-bg);
+      border: 1px solid #E8A09A;
+      border-radius: var(--radius);
+      padding: 0.7rem 1rem;
+      font-size: 0.875rem;
+      color: var(--red);
+      margin-top: 0.875rem;
+    }
+
+    /* ── Notice ──────────────────────────────────────── */
+    .notice {
+      background: var(--amber-bg);
+      border: 1px solid #F0B980;
+      border-radius: var(--radius);
+      padding: 0.7rem 1rem;
+      font-size: 0.875rem;
+      color: #8C4A0E;
+      margin-bottom: 1rem;
+    }
+
+    /* ── Print ───────────────────────────────────────── */
+    @media print {
+      .nav, .letter-actions, .summary, .section-head { display: none !important; }
+      .letter-box { border: none; max-height: none; padding: 0; }
+    }
+  </style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const { useState, useRef, useCallback, useEffect } = React;
+const API = 'http://localhost:5000';
+const fmt = n => '₹' + Number(n).toLocaleString('en-IN');
+
+// ── Icons ──────────────────────────────────────────────────────────────────
+
+function IconUpload() {
+  return (
+    <svg className="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+      <polyline points="17 8 12 3 7 8"/>
+      <line x1="12" y1="3" x2="12" y2="15"/>
+    </svg>
+  );
+}
+
+function Chevron({ open }) {
+  return (
+    <svg className={`chevron ${open ? 'chevron--open' : ''}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="6 9 12 15 18 9"/>
+    </svg>
+  );
+}
+
+// ── Nav ────────────────────────────────────────────────────────────────────
+
+function Nav() {
+  return (
+    <nav className="nav">
+      <span className="wordmark">Bill<em>Shield</em></span>
+    </nav>
+  );
+}
+
+// ── Screen 1: Upload ───────────────────────────────────────────────────────
+
+function UploadScreen({ onDone }) {
+  const [file, setFile]       = useState(null);
+  const [over, setOver]       = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError]     = useState(null);
+  const inputRef = useRef(null);
+
+  const VALID_TYPES = ['application/pdf', 'image/jpeg', 'image/png'];
+  const MAX = 10 * 1024 * 1024;
+
+  const pick = f => {
+    if (!f) return;
+    if (!VALID_TYPES.includes(f.type)) { setError('Please upload a PDF, JPG, or PNG file.'); return; }
+    if (f.size > MAX)                  { setError('File exceeds 10 MB. Please compress or crop it.'); return; }
+    setError(null);
+    setFile(f);
+  };
+
+  const onDrop = useCallback(e => {
+    e.preventDefault(); setOver(false);
+    pick(e.dataTransfer.files[0]);
+  }, []);
+
+  const analyse = async () => {
+    setLoading(true); setError(null);
+    try {
+      const form = new FormData();
+      form.append('file', file);
+      const res = await fetch(`${API}/api/extract`, { method: 'POST', body: form });
+      if (!res.ok) { const j = await res.json().catch(() => ({})); throw new Error(j.error || `Server returned ${res.status}`); }
+      onDone(file, await res.json());
+    } catch (e) {
+      setError(e.message.includes('fetch') ? 'Cannot reach server. Is app.py running on port 5000?' : e.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const sizeLabel = f => f.size < 1e6 ? (f.size/1024).toFixed(0)+' KB' : (f.size/1e6).toFixed(1)+' MB';
+
+  return (
+    <div className="page page--sm" style={{paddingTop: '5rem'}}>
+      <h1 className="display" style={{marginBottom: '0.4rem'}}>BillShield</h1>
+      <p style={{color: 'var(--muted)', fontSize: '1rem', marginBottom: '3rem', fontFamily: 'var(--display)', fontStyle: 'italic'}}>
+        Hospital bill auditor for Indian families.
+      </p>
+
+      <div
+        className={`dropzone ${over ? 'dropzone--over' : ''} ${file ? 'dropzone--ready' : ''}`}
+        onClick={() => !loading && inputRef.current.click()}
+        onDrop={onDrop}
+        onDragOver={e => { e.preventDefault(); setOver(true); }}
+        onDragLeave={() => setOver(false)}
+      >
+        <input ref={inputRef} type="file" accept=".pdf,.jpg,.jpeg,.png" style={{display:'none'}} onChange={e => pick(e.target.files[0])} />
+        {file ? (
+          <>
+            <div className="file-check">✓</div>
+            <div style={{fontWeight: 600, marginBottom: '0.3rem'}}>{file.name}</div>
+            <div style={{color: 'var(--muted)', fontSize: '0.875rem'}}>{sizeLabel(file)} · click to change</div>
+          </>
+        ) : (
+          <>
+            <IconUpload />
+            <div style={{fontWeight: 500, marginBottom: '0.3rem'}}>Drop your hospital bill here, or click to browse</div>
+            <div style={{color: 'var(--muted)', fontSize: '0.875rem'}}>PDF, JPG, PNG · Max 10 MB</div>
+          </>
+        )}
+      </div>
+
+      {error && <div className="error">{error}</div>}
+
+      <div style={{marginTop: '1.5rem', display: 'flex', gap: '1rem', alignItems: 'center'}}>
+        <button className="btn btn--dark" style={{minWidth: 160}} disabled={!file || loading} onClick={analyse}>
+          {loading ? 'Extracting…' : 'Analyse Bill →'}
+        </button>
+      </div>
+
+      <p style={{marginTop: '2.75rem', fontSize: '0.9rem', color: 'var(--muted)', fontFamily: 'var(--display)', fontStyle: 'italic'}}>
+        Verified CGHS rates. In under 2 minutes.
+      </p>
+    </div>
+  );
+}
+
+// ── Screen 2: Sanity Check ─────────────────────────────────────────────────
+
+function SanityScreen({ file, extracted, onDone, onBack }) {
+  const [loading, setLoading] = useState(false);
+  const [error, setError]     = useState(null);
+  const fileURL = useRef(URL.createObjectURL(file)).current;
+  const isPDF   = file.type === 'application/pdf';
+  const items   = extracted.line_items || [];
+  const hosp    = extracted.hospital   || {};
+
+  const confirm = async () => {
+    setLoading(true); setError(null);
+    try {
+      const res = await fetch(`${API}/api/analyze`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(extracted),
+      });
+      if (!res.ok) { const j = await res.json().catch(() => ({})); throw new Error(j.error || `Server returned ${res.status}`); }
+      onDone(await res.json());
+    } catch (e) {
+      setError(e.message.includes('fetch') ? 'Cannot reach server. Is app.py running?' : e.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="page page--lg">
+      <div style={{marginBottom: '1.5rem'}}>
+        <h2 className="heading" style={{marginBottom: '0.3rem'}}>Does this look right?</h2>
+        {hosp.name && (
+          <p style={{color: 'var(--muted)', fontSize: '0.875rem'}}>
+            {hosp.name}{hosp.city ? `, ${hosp.city}` : ''} · {items.length} line items extracted
+          </p>
+        )}
+      </div>
+
+      <div className="split">
+        <div className="panel">
+          <div className="panel-head">Original bill</div>
+          {isPDF
+            ? <iframe src={fileURL} className="preview-frame" title="Bill" />
+            : <img src={fileURL} className="preview-img" alt="Bill" />
+          }
+        </div>
+
+        <div className="panel">
+          <div className="panel-head">Extracted line items</div>
+          <div className="item-scroll">
+            {items.map((item, i) => (
+              <div className="item-row" key={i}>
+                <div>
+                  <div className="item-name">{item.item_name}</div>
+                  {item.quantity > 1 && <div className="item-qty">Qty {item.quantity}</div>}
+                </div>
+                <div className="item-amount">{fmt(item.total)}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {error && <div className="error">{error}</div>}
+
+      <div style={{marginTop: '1.5rem', display: 'flex', gap: '1.25rem', alignItems: 'center'}}>
+        <button className="btn btn--dark" disabled={loading} onClick={confirm}>
+          {loading ? 'Analysing…' : 'Looks right — Analyse →'}
+        </button>
+        <button className="btn btn--ghost" onClick={onBack}>Something's wrong — start over</button>
+      </div>
+    </div>
+  );
+}
+
+// ── Screen 3: Results ──────────────────────────────────────────────────────
+
+function ResultsScreen({ extracted, analysis, onLetter }) {
+  const [cleanOpen, setCleanOpen]           = useState(false);
+  const [unverifiableOpen, setUnverOpen]    = useState(false);
+  const [loading, setLoading]               = useState(false);
+  const [error, setError]                   = useState(null);
+
+  const flags       = analysis.flags       || [];
+  const unverifiable= analysis.unverifiable|| [];
+  const allItems    = extracted.line_items || [];
+
+  const rateFlags   = flags.filter(f => f.flag_type === 'RATE_OVERCHARGE');
+  const structFlags = flags.filter(f => f.flag_type === 'STRUCTURAL_VIOLATION');
+
+  // Items neither flagged nor unverifiable
+  const flaggedSet  = new Set(flags.map(f => f.item_name));
+  const unverSet    = new Set(unverifiable.map(u => u.item_name));
+  const cleanItems  = allItems.filter(i => !flaggedSet.has(i.item_name) && !unverSet.has(i.item_name));
+
+  const getletter = async () => {
+    setLoading(true); setError(null);
+    try {
+      const res = await fetch(`${API}/api/letter`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(analysis),
+      });
+      if (!res.ok) throw new Error(`Server returned ${res.status}`);
+      onLetter(await res.text());
+    } catch (e) {
+      setError(e.message.includes('fetch') ? 'Cannot reach server. Is app.py running?' : e.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const saveRecords = () => {
+    const blob = new Blob([JSON.stringify({ extracted, analysis }, null, 2)], { type: 'application/json' });
+    const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(blob), download: 'billshield-records.json' });
+    a.click();
+  };
+
+  return (
+    <div className="page">
+      {/* Summary bar */}
+      <div className="summary">
+        <div>
+          <div className="stat-label">Total flagged</div>
+          <div className="stat-value stat-value--red">{fmt(analysis.total_flagged_amount || 0)}</div>
+        </div>
+        <div>
+          <div className="stat-label">Issues found</div>
+          <div className="stat-value">{flags.length}</div>
+        </div>
+        <div>
+          <div className="stat-label">Rate overcharges</div>
+          <div className="stat-value">{rateFlags.length}</div>
+        </div>
+        <div>
+          <div className="stat-label">Structural violations</div>
+          <div className="stat-value">{structFlags.length}</div>
+        </div>
+        <div className="summary-actions">
+          {analysis.letter_warranted
+            ? <button className="btn btn--red" disabled={loading} onClick={getletter}>{loading ? 'Drafting…' : 'Generate Dispute Letter'}</button>
+            : <button className="btn btn--outline" disabled title="Total below ₹2,500 threshold">Dispute letter not warranted</button>
+          }
+          <button className="btn btn--outline" onClick={saveRecords}>Save for records</button>
+        </div>
+      </div>
+
+      {!analysis.letter_warranted && (
+        <div className="notice">{analysis.letter_threshold_note || 'Total flagged amount is below the ₹2,500 threshold. No dispute letter is warranted at this time.'}</div>
+      )}
+      {error && <div className="error">{error}</div>}
+
+      {/* Rate overcharges */}
+      {rateFlags.length > 0 && (
+        <div className="section-head">
+          <div className="eyebrow">Rate overcharges ({rateFlags.length})</div>
+        </div>
+      )}
+      {rateFlags.map((f, i) => (
+        <div className="card" key={i}>
+          <div className="card-row">
+            <div style={{flex: 1}}>
+              <div className="card-name">{f.item_name}</div>
+              <div className="card-citation">{f.citation}</div>
+            </div>
+            <div style={{textAlign: 'right'}}>
+              <div className="card-amount card-amount--red">{fmt(f.billed_amount)}</div>
+              {f.multiplier && <span className="badge badge--red">{f.multiplier}×</span>}
+            </div>
+          </div>
+          <div className="card-meta">
+            <span style={{color: 'var(--muted)'}}>Benchmark: {fmt(f.cghs_rate)}</span>
+            <span className="card-delta">Overcharge: +{fmt(f.delta)}</span>
+          </div>
+        </div>
+      ))}
+
+      {/* Structural violations */}
+      {structFlags.length > 0 && (
+        <div className="section-head">
+          <div className="eyebrow">Structural violations — cannot be billed separately ({structFlags.length})</div>
+        </div>
+      )}
+      {structFlags.map((f, i) => (
+        <div className="card" key={i}>
+          <div className="card-row">
+            <div style={{flex: 1}}>
+              <div className="card-name">{f.item_name}</div>
+              <div className="card-citation">{f.citation}</div>
+            </div>
+            <div style={{textAlign: 'right'}}>
+              <div className="card-amount card-amount--red">{fmt(f.billed_amount)}</div>
+              <span className="badge badge--red">not billable</span>
+            </div>
+          </div>
+        </div>
+      ))}
+
+      {/* Unverifiable — collapsed by default */}
+      {unverifiable.length > 0 && (
+        <div style={{marginTop: '1.75rem'}}>
+          <div className="toggle" onClick={() => setUnverOpen(o => !o)}>
+            <span className="eyebrow" style={{color: 'var(--amber)'}}>Could not verify — no benchmark found ({unverifiable.length})</span>
+            <Chevron open={unverifiableOpen} />
+          </div>
+          {unverifiableOpen && (
+            <div style={{marginTop: '0.65rem'}}>
+              {unverifiable.map((u, i) => (
+                <div className="card card--amber" key={i}>
+                  <div className="card-name">{u.item_name}</div>
+                  <div className="card-citation" style={{marginTop: '0.2rem'}}>{u.reason}</div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Clean — collapsed by default */}
+      {cleanItems.length > 0 && (
+        <div style={{marginTop: '1.75rem'}}>
+          <div className="toggle" onClick={() => setCleanOpen(o => !o)}>
+            <span className="eyebrow" style={{color: 'var(--green)'}}>Within benchmark ({cleanItems.length})</span>
+            <Chevron open={cleanOpen} />
+          </div>
+          {cleanOpen && (
+            <div style={{marginTop: '0.65rem'}}>
+              {cleanItems.map((item, i) => (
+                <div className="card card--green" key={i}>
+                  <div className="card-row">
+                    <div className="card-name">{item.item_name}</div>
+                    <div className="card-amount" style={{color: 'var(--green)'}}>{fmt(item.total)}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ── Screen 4: Letter ───────────────────────────────────────────────────────
+
+function LetterScreen({ letter, onBack }) {
+  const [copied, setCopied] = useState(false);
+
+  const copy = () => {
+    navigator.clipboard.writeText(letter).then(() => { setCopied(true); setTimeout(() => setCopied(false), 2200); });
+  };
+
+  const download = () => {
+    const a = Object.assign(document.createElement('a'), {
+      href: URL.createObjectURL(new Blob([letter], { type: 'text/plain;charset=utf-8' })),
+      download: 'billshield-dispute-letter.txt',
+    });
+    a.click();
+  };
+
+  const printAsPDF = () => {
+    const w = window.open('', '_blank');
+    w.document.write(`<!DOCTYPE html><html><head><title>Dispute Letter — BillShield</title>
+      <style>
+        body { font-family: Georgia, serif; font-size: 12pt; line-height: 1.9; padding: 3cm 3.5cm; color: #000; max-width: none; }
+        pre  { white-space: pre-wrap; font-family: inherit; }
+      </style></head><body><pre>${letter.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}</pre>
+      <script>window.onload = () => { window.print(); }<\/script></body></html>`);
+    w.document.close();
+  };
+
+  return (
+    <div className="page" style={{maxWidth: 760}}>
+      <div style={{marginBottom: '1.5rem'}}>
+        <h2 className="heading" style={{marginBottom: '0.3rem'}}>Your dispute letter is ready.</h2>
+        <p style={{color: 'var(--muted)', fontSize: '0.875rem'}}>Review before sending. You may edit after downloading.</p>
+      </div>
+
+      <div className="letter-box">{letter}</div>
+
+      <div className="letter-actions" style={{marginTop: '1.25rem', display: 'flex', gap: '0.75rem', flexWrap: 'wrap', alignItems: 'center'}}>
+        <button className="btn btn--dark"    onClick={download}>Download .txt</button>
+        <button className="btn btn--outline" onClick={printAsPDF}>Print / Save as PDF</button>
+        <button className="btn btn--outline" onClick={copy}>{copied ? '✓ Copied' : 'Copy text'}</button>
+        <button className="btn btn--ghost"   onClick={onBack} style={{marginLeft: 'auto'}}>← Back to results</button>
+      </div>
+    </div>
+  );
+}
+
+// ── App ────────────────────────────────────────────────────────────────────
+
+function App() {
+  const [screen,    setScreen]    = useState('upload');
+  const [file,      setFile]      = useState(null);
+  const [extracted, setExtracted] = useState(null);
+  const [analysis,  setAnalysis]  = useState(null);
+  const [letter,    setLetter]    = useState(null);
+
+  const reset = () => { setScreen('upload'); setFile(null); setExtracted(null); setAnalysis(null); setLetter(null); };
+
+  return (
+    <>
+      <Nav />
+      {screen === 'upload'  && <UploadScreen  onDone={(f, d) => { setFile(f); setExtracted(d); setScreen('sanity'); }} />}
+      {screen === 'sanity'  && <SanityScreen  file={file} extracted={extracted} onDone={d => { setAnalysis(d); setScreen('results'); }} onBack={reset} />}
+      {screen === 'results' && <ResultsScreen extracted={extracted} analysis={analysis} onLetter={t => { setLetter(t); setScreen('letter'); }} />}
+      {screen === 'letter'  && <LetterScreen  letter={letter} onBack={() => setScreen('results')} />}
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>
