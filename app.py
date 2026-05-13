@@ -2,13 +2,28 @@ import os
 import tempfile
 from pathlib import Path
 
-from flask import Flask, request, jsonify, make_response
+from flask import Flask, request, jsonify, make_response, send_from_directory
 from flask_cors import CORS
 
 from pipeline import extract_bill, analyze_bill, generate_letter
 
 app = Flask(__name__)
 CORS(app)
+
+FRONTEND_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "frontend")
+
+if not os.environ.get("ANTHROPIC_API_KEY"):
+    print("WARNING: ANTHROPIC_API_KEY is not set. API calls will fail.", flush=True)
+
+
+@app.route("/")
+def index():
+    return send_from_directory(FRONTEND_DIR, "index.html")
+
+
+@app.route("/<path:path>")
+def static_files(path):
+    return send_from_directory(FRONTEND_DIR, path)
 
 
 @app.get("/health")
@@ -33,7 +48,10 @@ def api_extract():
 
     try:
         result = extract_bill(tmp_path)
-    finally:
+    except Exception as e:
+        os.unlink(tmp_path)
+        return jsonify({"error": str(e)}), 500
+    else:
         os.unlink(tmp_path)
 
     return jsonify(result)
@@ -45,21 +63,51 @@ def api_analyze():
     if not extracted:
         return jsonify({"error": "Request body must be JSON (the extracted bill object)."}), 400
 
-    result = analyze_bill(extracted)
+    try:
+        result = analyze_bill(extracted)
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
     return jsonify(result)
 
 
 @app.post("/api/letter")
 def api_letter():
-    analysis = request.get_json(silent=True)
-    if not analysis:
-        return jsonify({"error": "Request body must be JSON (the analysis object)."}), 400
+    body = request.get_json(silent=True)
+    if not body:
+        return jsonify({"error": "Request body must be JSON with 'analysis' and 'extracted' keys."}), 400
 
-    letter = generate_letter(analysis)
+    analysis  = body.get("analysis")
+    extracted = body.get("extracted", {})
+
+    if not analysis:
+        return jsonify({"error": "Missing 'analysis' key in request body."}), 400
+
+    try:
+        letter = generate_letter(analysis)
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+    from datetime import date
+    today = date.today().strftime("%-d %B %Y")
+
+    hospital = extracted.get("hospital") or {}
+    metadata = extracted.get("bill_metadata") or {}
+
+    replacements = {
+        "[DATE]":                today,
+        "[Hospital Name]":       hospital.get("name")  or "[Hospital Name]",
+        "[City]":                hospital.get("city")  or "[City]",
+        "[Bill Number]":         str(metadata.get("bill_number") or "[Bill Number]"),
+        "[Patient Name]":        extracted.get("patient_name")   or "[Patient Name]",
+        "[Total Billed Amount]": str(metadata.get("total_amount") or "[Total Billed Amount]"),
+    }
+    for placeholder, value in replacements.items():
+        letter = letter.replace(placeholder, value)
+
     response = make_response(letter)
     response.headers["Content-Type"] = "text/plain; charset=utf-8"
     return response
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5000)
+    app.run(debug=True, port=8080)
