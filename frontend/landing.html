@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BillShield — Know What You Owe</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap&display=swap" rel="stylesheet">
+  <style>
+    /* ── Tokens ─────────────────────────────────────────────── */
+    :root {
+      --bg:          #F7F6F3;
+      --surface:     #FFFFFF;
+      --surface-alt: #EDECE8;
+      --text:        #111110;
+      --text-2:      #4B4B49;
+      --muted:       #767673;
+      --border:      #E0DED8;
+      --red:         #DC2626;
+      --red-bg:      #FEF2F2;
+      --red-border:  #FCA5A5;
+      --green:       #16A34A;
+      --green-bg:    #F0FDF4;
+      --amber:       #D97706;
+      --display:     'DM Serif Display', Georgia, serif;
+      --body:        'DM Sans', 'Helvetica Neue', sans-serif;
+      --radius:      5px;
+      --max-w:       920px;
+      --nav-h:       52px;
+    }
+
+    html[data-theme="dark"] {
+      --bg:          #18181A;
+      --surface:     #222220;
+      --surface-alt: #1E1E1C;
+      --text:        #F2F1EE;
+      --text-2:      #C0BFB8;
+      --muted:       #8D8D8A;
+      --border:      #333331;
+      --red-bg:      #2D1010;
+      --red-border:  #7F1D1D;
+      --green-bg:    #0F231A;
+    }
+
+    /* ── Reset ──────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--body);
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* ── Nav ────────────────────────────────────────────────── */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: var(--nav-h);
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      padding: 0 2rem;
+      gap: 1rem;
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      font-family: var(--display);
+      font-size: 1.05rem;
+      color: var(--text);
+      text-decoration: none;
+      flex: 1;
+      cursor: default;
+    }
+    .nav-toggle {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 0.3rem 0.8rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+      cursor: pointer;
+      font-family: var(--body);
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .nav-toggle:hover { border-color: var(--text); color: var(--text); }
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      background: var(--text);
+      color: var(--bg);
+      font-family: var(--body);
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 0.45rem 1rem;
+      border-radius: var(--radius);
+      text-decoration: none;
+      transition: opacity 0.15s;
+      white-space: nowrap;
+    }
+    .nav-cta:hover { opacity: 0.82; }
+
+    /* ── Shared layout ──────────────────────────────────────── */
+    .inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    .section-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+
+    /* ── Buttons ────────────────────────────────────────────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: var(--body);
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0.7rem 1.6rem;
+      border-radius: var(--radius);
+      text-decoration: none;
+      transition: opacity 0.15s;
+      cursor: pointer;
+      border: none;
+      white-space: nowrap;
+    }
+    .btn--dark    { background: var(--text); color: var(--bg); }
+    .btn--dark:hover { opacity: 0.82; }
+    .btn--outline { background: transparent; border: 1px solid var(--border); color: var(--text); }
+    .btn--outline:hover { background: var(--surface-alt); }
+
+    /* ── Hero ───────────────────────────────────────────────── */
+    .hero {
+      min-height: calc(100svh - var(--nav-h));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 2rem;
+    }
+    .hero-grid {
+      max-width: var(--max-w);
+      width: 100%;
+      display: grid;
+      grid-template-columns: 25% 50% 25%;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .hero-center { text-align: center; }
+    .hero-title {
+      font-family: var(--display);
+      font-size: clamp(2.6rem, 6.5vw, 4.75rem);
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      line-height: 1.05;
+      margin-bottom: 1.5rem;
+    }
+    .hero-rule {
+      width: 60px;
+      height: 1px;
+      background: var(--border);
+      border: none;
+      margin: 0 auto 1.5rem;
+    }
+    .hero-body {
+      font-size: 0.95rem;
+      color: var(--text-2);
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+    /* ── Flanking phrases ───────────────────────────────────── */
+    .phrase-col {
+      display: flex;
+      flex-direction: column;
+    }
+    .phrase-col--left  { align-items: flex-end; }
+    .phrase-col--right { align-items: flex-start; }
+    .phrase {
+      font-family: var(--display);
+      font-style: italic;
+      font-size: 0.72rem;
+      color: var(--muted);
+      opacity: 0;
+      line-height: 2.2;
+      cursor: default;
+      padding: 0 0.4rem;
+      border-left: 2px solid transparent;
+      border-right: 2px solid transparent;
+      transition: opacity 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+      animation: phraseIn 0.5s ease forwards;
+    }
+    .phrase-col--left  .phrase:hover { opacity: 1 !important; color: var(--text); border-left-color:  var(--red); }
+    .phrase-col--right .phrase:hover { opacity: 1 !important; color: var(--text); border-right-color: var(--red); }
+    @keyframes phraseIn { from { opacity: 0; } to { opacity: 0.25; } }
+
+    .phrase-l1 { animation-delay:   0ms; }
+    .phrase-l2 { animation-delay: 100ms; }
+    .phrase-l3 { animation-delay: 200ms; }
+    .phrase-l4 { animation-delay: 300ms; }
+    .phrase-l5 { animation-delay: 400ms; }
+    .phrase-r1 { animation-delay: 500ms; }
+    .phrase-r2 { animation-delay: 600ms; }
+    .phrase-r3 { animation-delay: 700ms; }
+    .phrase-r4 { animation-delay: 800ms; }
+    .phrase-r5 { animation-delay: 900ms; }
+
+    @media (max-width: 768px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .phrase-col { display: none; }
+    }
+
+    /* ── Problem ────────────────────────────────────────────── */
+    .section-problem {
+      background: var(--surface-alt);
+      padding: 3.6rem 0;
+    }
+    .quote-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin: 2.5rem 0 3rem;
+    }
+    @media (max-width: 768px) { .quote-grid { grid-template-columns: 1fr; } }
+    .quote-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--red);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 1.5rem;
+    }
+    .quote-text {
+      font-family: var(--display);
+      font-style: italic;
+      font-size: 1rem;
+      line-height: 1.65;
+      color: var(--text);
+      margin-bottom: 1.1rem;
+    }
+    .quote-attr {
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+    .problem-close {
+      font-size: 0.975rem;
+      color: var(--text-2);
+      text-align: center;
+      font-style: italic;
+      border-top: 1px solid var(--border);
+      padding-top: 2.5rem;
+    }
+
+    /* ── How it works ───────────────────────────────────────── */
+    .section-how { padding: 3.6rem 0; }
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      margin-top: 3rem;
+    }
+    @media (max-width: 680px) {
+      .steps-grid { grid-template-columns: 1fr; }
+      .step { border-left: none !important; border-top: 1px solid var(--border); padding-top: 2rem !important; }
+      .step:first-child { border-top: none; padding-top: 0 !important; }
+    }
+    .step {
+      padding: 0 2.5rem 0 0;
+    }
+    .step + .step {
+      border-left: 1px solid var(--border);
+      padding-left: 2.5rem;
+      padding-right: 0;
+    }
+    .step-number {
+      font-family: var(--display);
+      font-size: 3rem;
+      color: var(--border);
+      line-height: 1;
+      margin-bottom: 1.25rem;
+    }
+    .step-title {
+      font-family: var(--display);
+      font-size: 1.15rem;
+      margin-bottom: 0.5rem;
+    }
+    .step-desc {
+      font-size: 0.9rem;
+      color: var(--text-2);
+      line-height: 1.65;
+    }
+
+    /* ── Proof ──────────────────────────────────────────────── */
+    .section-proof {
+      background: var(--surface-alt);
+      padding: 3.6rem 0;
+      text-align: center;
+    }
+    .proof-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.75rem 2rem;
+      max-width: 620px;
+      margin: 3rem auto 0;
+      text-align: left;
+    }
+    .proof-headline {
+      font-family: var(--display);
+      font-size: 1.45rem;
+      color: var(--red);
+      padding-bottom: 1.25rem;
+      margin-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .proof-item {
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--red);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 0.875rem 1rem;
+      margin-bottom: 0.5rem;
+    }
+    .proof-item-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 0.3rem;
+    }
+    .proof-item-name {
+      font-weight: 600;
+      font-size: 0.875rem;
+      color: var(--text);
+    }
+    .proof-item-citation {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+    .proof-item-amount {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--red);
+      font-variant-numeric: tabular-nums;
+      flex-shrink: 0;
+    }
+    .proof-badge {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 0.1rem 0.4rem;
+      border-radius: 3px;
+      background: var(--red-bg);
+      color: var(--red);
+      margin-top: 0.2rem;
+    }
+    .proof-meta {
+      display: flex;
+      gap: 1.5rem;
+      font-size: 0.78rem;
+      margin-top: 0.35rem;
+    }
+    .proof-meta-bench { color: var(--muted); }
+    .proof-meta-delta { color: var(--red); font-weight: 500; }
+    .proof-caption {
+      font-size: 0.825rem;
+      color: var(--muted);
+      margin-top: 1.25rem;
+      font-style: italic;
+    }
+    .proof-cta {
+      margin-top: 3rem;
+    }
+
+    /* ── Footer ─────────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.5rem 0;
+    }
+    .footer-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .footer-brand {
+      font-family: var(--display);
+      font-size: 1rem;
+      color: var(--text);
+    }
+    .footer-refs {
+      font-size: 0.775rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .footer-trust {
+      font-size: 0.775rem;
+      color: var(--muted);
+    }
+
+    /* ── Section heading shared ─────────────────────────────── */
+    .section-title {
+      font-family: var(--display);
+      font-size: clamp(1.6rem, 3.5vw, 2.25rem);
+      font-weight: 400;
+      letter-spacing: -0.015em;
+      line-height: 1.15;
+    }
+
+    /* ── Toggle SVG helpers ─────────────────────────────────── */
+    .icon-sun, .icon-moon { display: none; }
+  </style>
+</head>
+<body>
+
+<!-- ── Nav ──────────────────────────────────────────────────── -->
+<nav class="nav" role="navigation" aria-label="Main navigation">
+  <span class="nav-brand" aria-label="BillShield">BillShield</span>
+  <a href="/" class="nav-cta">Check your bill →</a>
+  <button class="nav-toggle" id="theme-toggle" aria-label="Toggle colour scheme">
+    <svg class="icon-moon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    <svg class="icon-sun" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    <span id="toggle-label">Dark</span>
+  </button>
+</nav>
+
+<main>
+
+  <!-- ── Hero ───────────────────────────────────────────────── -->
+  <section class="hero" id="hero" aria-labelledby="hero-title">
+    <div class="hero-grid">
+      <div class="phrase-col phrase-col--left" aria-hidden="true">
+        <span class="phrase phrase-l1">Insurance rejected 3 times...</span>
+        <span class="phrase phrase-l2">No data to argue with.</span>
+        <span class="phrase phrase-l3">I didn't wanna fight.</span>
+        <span class="phrase phrase-l4">To be frank I got screwed.</span>
+        <span class="phrase phrase-l5">I was kept in fear.</span>
+      </div>
+      <div class="hero-center">
+        <h1 class="hero-title" id="hero-title">Your hospital bill<br>may be wrong.</h1>
+        <hr class="hero-rule" aria-hidden="true">
+        <p class="hero-body">BillShield checks every line against verified government rates. No login. Under 2 minutes.</p>
+        <a href="/" class="btn btn--dark">Check your bill</a>
+      </div>
+      <div class="phrase-col phrase-col--right" aria-hidden="true">
+        <span class="phrase phrase-r1">The billing team laughed.</span>
+        <span class="phrase phrase-r2">65k billed in half a day.</span>
+        <span class="phrase phrase-r3">No settlement after a month.</span>
+        <span class="phrase phrase-r4">They hesitated to discharge me.</span>
+        <span class="phrase phrase-r5">Signatures over signatures...</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Problem ────────────────────────────────────────────── -->
+  <section class="section-problem" id="problem" aria-labelledby="problem-title">
+    <div class="inner">
+      <div class="section-label" aria-hidden="true">Why this exists</div>
+      <h2 class="section-title" id="problem-title">The overcharges are real.<br>The helplessness is real.</h2>
+
+      <div class="quote-grid" role="list">
+        <article class="quote-card" role="listitem">
+          <p class="quote-text">"₹1,35,820 billed. Insurance rejected 3 times. I had no data to argue with."</p>
+          <p class="quote-attr">Brain stroke patient<br>Tier I hospital, Delhi</p>
+        </article>
+        <article class="quote-card" role="listitem">
+          <p class="quote-text">"The billing team laughed when I asked why so much. I just paid and left."</p>
+          <p class="quote-attr">Cash patient<br>Mid-tier hospital, Mumbai</p>
+        </article>
+        <article class="quote-card" role="listitem">
+          <p class="quote-text">"It's been over a month. No settlement. They keep asking for different documents."</p>
+          <p class="quote-attr">Cashless patient<br>Settlement pending</p>
+        </article>
+      </div>
+
+      <p class="problem-close">These are real stories. The overcharges are real. The helplessness is real.</p>
+    </div>
+  </section>
+
+  <!-- ── How it works ───────────────────────────────────────── -->
+  <section class="section-how" id="how-it-works" aria-labelledby="how-title">
+    <div class="inner">
+      <div class="section-label" aria-hidden="true">How it works</div>
+      <h2 class="section-title" id="how-title">Three steps.<br>Under two minutes.</h2>
+
+      <div class="steps-grid" role="list">
+        <div class="step" role="listitem">
+          <div class="step-number" aria-hidden="true">01</div>
+          <h3 class="step-title">Upload your bill</h3>
+          <p class="step-desc">PDF or photo. We handle both. Your file is never stored.</p>
+        </div>
+        <div class="step" role="listitem">
+          <div class="step-number" aria-hidden="true">02</div>
+          <h3 class="step-title">We check every line</h3>
+          <p class="step-desc">Against CGHS, NPPA, and IRDAI benchmarks. With citations.</p>
+        </div>
+        <div class="step" role="listitem">
+          <div class="step-number" aria-hidden="true">03</div>
+          <h3 class="step-title">Get a dispute letter</h3>
+          <p class="step-desc">Formal, cited, ready to send. Built on verified government rates.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Proof ──────────────────────────────────────────────── -->
+  <section class="section-proof" id="proof" aria-labelledby="proof-title">
+    <div class="inner">
+      <div class="section-label" aria-hidden="true">Real output</div>
+      <h2 class="section-title" id="proof-title">This is what BillShield<br>found in a real bill.</h2>
+
+      <div class="proof-card" role="region" aria-label="Example BillShield results">
+        <div class="proof-headline">₹54,730 flagged · 15 issues found</div>
+
+        <div class="proof-item">
+          <div class="proof-item-top">
+            <div>
+              <div class="proof-item-name">MRI Brain (without contrast)</div>
+              <div class="proof-item-citation">CGHS RI089 · CGHS OM 03.10.2025</div>
+            </div>
+            <div style="text-align:right; flex-shrink:0;">
+              <div class="proof-item-amount">₹16,980</div>
+              <span class="proof-badge">6.2×</span>
+            </div>
+          </div>
+          <div class="proof-meta">
+            <span class="proof-meta-bench">Benchmark: ₹2,750</span>
+            <span class="proof-meta-delta">Overcharge: +₹14,230</span>
+          </div>
+        </div>
+
+        <div class="proof-item">
+          <div class="proof-item-top">
+            <div>
+              <div class="proof-item-name">Nursing charges</div>
+              <div class="proof-item-citation">CGHS Annexure-III §1/§2 · cannot be billed separately</div>
+            </div>
+            <div style="text-align:right; flex-shrink:0;">
+              <div class="proof-item-amount">₹4,800</div>
+              <span class="proof-badge">not billable</span>
+            </div>
+          </div>
+        </div>
+
+        <p class="proof-caption">Actual output from a real bill. Amounts and rates are verified against CGHS OM 03.10.2025.</p>
+      </div>
+
+      <div class="proof-cta">
+        <a href="/" class="btn btn--dark">Check your bill →</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ── Footer ─────────────────────────────────────────────────── -->
+<footer>
+  <div class="footer-inner">
+    <span class="footer-brand" aria-label="BillShield">BillShield</span>
+    <span class="footer-refs">Built on CGHS OM 03.10.2025 · NPPA 30.01.2026 · IRDAI Master Circular 29.05.2024</span>
+    <span class="footer-trust">No login · Your data never stored</span>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    const html    = document.documentElement;
+    const toggle  = document.getElementById('theme-toggle');
+    const label   = document.getElementById('toggle-label');
+    const iconSun  = toggle.querySelector('.icon-sun');
+    const iconMoon = toggle.querySelector('.icon-moon');
+
+    function applyTheme(dark) {
+      html.setAttribute('data-theme', dark ? 'dark' : 'light');
+      iconSun.style.display  = dark ? 'block' : 'none';
+      iconMoon.style.display = dark ? 'none'  : 'block';
+      label.textContent = dark ? 'Light' : 'Dark';
+    }
+
+    const stored    = localStorage.getItem('bs-theme');
+    const sysDark   = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const initDark  = stored ? stored === 'dark' : sysDark;
+    applyTheme(initDark);
+
+    toggle.addEventListener('click', function () {
+      const nowDark = html.getAttribute('data-theme') !== 'dark';
+      applyTheme(nowDark);
+      localStorage.setItem('bs-theme', nowDark ? 'dark' : 'light');
+    });
+  })();
+</script>
+</body>
+</html>

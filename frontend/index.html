@@ -6,29 +6,48 @@
   <title>BillShield — Hospital Bill Auditor</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
   <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
+    /* ── Tokens ─────────────────────────────────────────────── */
     :root {
-      --bg:          #F5F4F0;
+      --bg:          #F7F6F3;
       --surface:     #FFFFFF;
-      --text:        #1A1A1A;
-      --muted:       #6B6B6B;
-      --border:      #D8D4CC;
-      --red:         #C0392B;
-      --red-bg:      #FDF1F0;
-      --green:       #27AE60;
-      --green-bg:    #EFF9F4;
-      --amber:       #E67E22;
-      --amber-bg:    #FDF5EC;
-      --display:     'Fraunces', Georgia, serif;
+      --surface-alt: #EDECE8;
+      --text:        #111110;
+      --text-2:      #4B4B49;
+      --muted:       #767673;
+      --border:      #E0DED8;
+      --red:         #DC2626;
+      --red-bg:      #FEF2F2;
+      --green:       #16A34A;
+      --green-bg:    #F0FDF4;
+      --amber:       #D97706;
+      --amber-bg:    #FFFBEB;
+      --display:     'DM Serif Display', Georgia, serif;
       --body:        'DM Sans', 'Helvetica Neue', sans-serif;
-      --radius:      4px;
+      --radius:      5px;
+      --max-w:       920px;
+      --nav-h:       52px;
     }
+
+    html[data-theme="dark"] {
+      --bg:          #18181A;
+      --surface:     #222220;
+      --surface-alt: #1E1E1C;
+      --text:        #F2F1EE;
+      --text-2:      #C0BFB8;
+      --muted:       #8D8D8A;
+      --border:      #333331;
+      --red-bg:      #2D1010;
+      --green-bg:    #0F231A;
+      --amber-bg:    #2A1E0A;
+    }
+
+    /* ── Reset ──────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       background: var(--bg);
@@ -40,228 +59,291 @@
       min-height: 100vh;
     }
 
-    /* ── Nav ─────────────────────────────────────────── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* ── Nav ────────────────────────────────────────────────── */
     .nav {
-      background: var(--surface);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: var(--nav-h);
+      background: var(--bg);
       border-bottom: 1px solid var(--border);
-      padding: 0 2rem;
-      height: 54px;
       display: flex;
       align-items: center;
+      padding: 0 2rem;
+      gap: 1rem;
     }
-    .wordmark {
-      font-family: var(--display);
-      font-size: 1.2rem;
-      font-weight: 600;
-      letter-spacing: -0.01em;
-      color: #1A1A1A;
+    .nav-brand {
       display: flex;
       align-items: center;
       gap: 0.45rem;
+      font-family: var(--display);
+      font-size: 1.05rem;
+      color: var(--text);
+      text-decoration: none;
+      flex: 1;
     }
-    .wordmark-icon { flex-shrink: 0; }
+    .nav-about {
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 0.3rem 0;
+      transition: color 0.15s;
+    }
+    .nav-about:hover { color: var(--text); }
+    .nav-toggle {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 0.3rem 0.8rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+      cursor: pointer;
+      font-family: var(--body);
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .nav-toggle:hover { border-color: var(--text); color: var(--text); }
 
-    /* ── Page containers ─────────────────────────────── */
-    .page        { max-width: 900px;  margin: 0 auto; padding: 3.5rem 2rem; }
-    .page--sm    { max-width: 520px; }
-    .page--lg    { max-width: 1060px; }
+    /* ── Page wrapper ───────────────────────────────────────── */
+    .page     { max-width: var(--max-w); margin: 0 auto; padding: 4rem 2rem; }
+    .page--sm { max-width: 540px; }
+    .page--lg { max-width: 1060px; }
 
-    /* ── Typography ──────────────────────────────────── */
+    /* ── Typography ─────────────────────────────────────────── */
     .display {
       font-family: var(--display);
-      font-size: 2.75rem;
-      font-weight: 600;
-      letter-spacing: -0.025em;
-      line-height: 1.1;
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.08;
     }
     .heading {
       font-family: var(--display);
-      font-size: 1.75rem;
-      font-weight: 600;
-      letter-spacing: -0.02em;
+      font-size: 1.85rem;
+      font-weight: 400;
+      letter-spacing: -0.015em;
       line-height: 1.2;
     }
-    .eyebrow {
-      font-size: 0.7rem;
+    .label {
+      font-size: 0.68rem;
       font-weight: 600;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--muted);
     }
 
-    /* ── Buttons ─────────────────────────────────────── */
+    /* ── Buttons ────────────────────────────────────────────── */
     .btn {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 0.4rem;
-      padding: 0.6rem 1.4rem;
+      padding: 0.68rem 1.5rem;
       font-family: var(--body);
-      font-size: 0.875rem;
+      font-size: 0.9rem;
       font-weight: 500;
       border-radius: var(--radius);
       border: none;
       cursor: pointer;
-      text-decoration: none;
-      transition: opacity 0.15s;
       white-space: nowrap;
+      transition: opacity 0.15s, background 0.15s;
+      text-decoration: none;
     }
-    .btn:disabled         { opacity: 1; cursor: not-allowed; }
-    .btn--dark            { background: #1A1A1A; color: #fff; }
-    .btn--dark:disabled   { background: #374151; opacity: 0.55; }
-    .btn--dark:not(:disabled):hover { opacity: 0.82; }
-    .btn--red             { background: var(--red); color: #fff; }
-    .btn--red:not(:disabled):hover  { opacity: 0.88; }
-    .btn--outline         { background: transparent; color: var(--text); border: 1px solid var(--border); }
-    .btn--outline:not(:disabled):hover { background: var(--bg); }
-    .btn--ghost {
-      background: transparent; color: var(--muted);
-      padding-left: 0; padding-right: 0;
-      font-size: 0.875rem;
-      text-decoration: underline;
-      text-underline-offset: 3px;
-    }
-    .btn--ghost:hover { color: var(--text); }
+    .btn:disabled                      { opacity: 0.4; cursor: not-allowed; }
+    .btn--dark                         { background: var(--text); color: var(--bg); }
+    .btn--dark:not(:disabled):hover    { opacity: 0.82; }
+    .btn--outline                      { background: transparent; color: var(--text); border: 1px solid var(--border); }
+    .btn--outline:not(:disabled):hover { background: var(--surface-alt); }
+    .btn--ghost                        { background: transparent; color: var(--muted); padding-left: 0; padding-right: 0; font-size: 0.875rem; }
+    .btn--ghost:hover                  { color: var(--text); }
 
-    /* ── Upload zone ─────────────────────────────────── */
+    /* ── Upload screen ──────────────────────────────────────── */
+    .upload-wrap {
+      min-height: calc(100svh - var(--nav-h));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 2rem;
+    }
+    .upload-inner { max-width: 480px; width: 100%; margin: 0 auto; text-align: center; }
     .dropzone {
-      border: 1.5px dashed #D1D5DB;
-      border-radius: 6px;
+      border: 1.5px dashed var(--border);
+      border-radius: 8px;
       background: var(--surface);
-      padding: 3.5rem 2rem;
-      min-height: 220px;
+      padding: 3rem 2rem;
+      min-height: 196px;
       display: flex;
       flex-direction: column;
+      align-items: center;
       justify-content: center;
       text-align: center;
       cursor: pointer;
-      transition: border-color 0.15s, border-style 0.15s, background 0.15s;
+      transition: border-color 0.15s, background 0.15s, border-style 0.15s;
+      margin-top: 2.5rem;
     }
-    .dropzone:hover, .dropzone--over { border-style: solid; border-color: #1A1A1A; background: #EDECE8; }
-    .dropzone--ready  { border-style: solid; border-color: var(--green); background: var(--green-bg); }
-    .upload-icon {
-      width: 38px; height: 38px;
-      margin: 0 auto 1rem;
-      color: var(--muted);
-    }
-    .file-check { font-size: 2rem; margin-bottom: 0.5rem; color: var(--green); }
+    .dropzone:hover, .dropzone--over { border-style: solid; border-color: var(--text); background: var(--surface-alt); }
+    .dropzone--ready { border-style: solid; border-color: var(--green); background: var(--green-bg); }
+    .dz-icon    { width: 34px; height: 34px; color: var(--muted); margin-bottom: 0.875rem; }
+    .dz-label   { font-weight: 500; margin-bottom: 0.3rem; }
+    .dz-hint    { font-size: 0.875rem; color: var(--muted); }
+    .dz-check   { font-size: 1.6rem; color: var(--green); margin-bottom: 0.4rem; }
+    .dz-name    { font-weight: 600; margin-bottom: 0.2rem; }
+    .dz-size    { font-size: 0.875rem; color: var(--muted); }
+    .dz-change  { display: inline-block; margin-top: 0.5rem; font-size: 0.8rem; color: var(--muted); text-decoration: underline; text-underline-offset: 2px; cursor: pointer; }
+    .trust-row  { display: flex; gap: 1.75rem; margin-top: 2rem; flex-wrap: wrap; justify-content: center; }
+    .trust-item { display: flex; align-items: center; gap: 0.4rem; font-size: 0.8rem; color: var(--muted); }
+    .trust-dot  { width: 5px; height: 5px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
 
-    /* ── Split view ──────────────────────────────────── */
-    .split {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.25rem;
-      align-items: start;
-    }
-    @media (max-width: 680px) { .split { grid-template-columns: 1fr; } }
-    .panel {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      overflow: hidden;
-    }
-    .panel-head {
-      padding: 0.6rem 1rem;
-      border-bottom: 1px solid var(--border);
-      font-size: 0.72rem;
+    /* ── Processing screen ──────────────────────────────────── */
+    .proc-wrap  { max-width: 500px; margin: 0 auto; padding: 6rem 2rem; }
+    .proc-title { font-family: var(--display); font-size: 1.5rem; color: var(--text); margin-bottom: 3rem; font-weight: 400; }
+    .proc-stage { margin-bottom: 2.25rem; }
+    .proc-stage-head {
+      font-size: 0.68rem;
       font-weight: 600;
-      letter-spacing: 0.07em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--muted);
+      margin-bottom: 0.75rem;
     }
-    .preview-frame { width: 100%; height: 500px; border: none; display: block; }
-    .preview-img   { width: 100%; height: 500px; object-fit: contain; display: block; background: #F0EFEB; }
-    .item-scroll   { height: 500px; overflow-y: auto; }
-    .item-row {
+    .proc-stage-head--active { color: var(--text-2); }
+    .proc-steps  { display: flex; flex-direction: column; gap: 0.5rem; }
+    .proc-step   { display: flex; align-items: center; gap: 0.6rem; font-size: 0.875rem; color: var(--text-2); animation: stepIn 0.3s ease both; }
+    .proc-step--pending { color: var(--muted); }
+    .proc-check  { color: var(--green); font-size: 0.8rem; flex-shrink: 0; width: 14px; }
+    .proc-spinner {
+      width: 12px; height: 12px;
+      border: 1.5px solid var(--border);
+      border-top-color: var(--text);
+      border-radius: 50%;
+      animation: spin 0.75s linear infinite;
+      flex-shrink: 0;
+    }
+    .proc-waiting { display: flex; align-items: center; gap: 0.6rem; font-size: 0.875rem; color: var(--muted); margin-top: 1rem; }
+    .proc-error-box { background: var(--red-bg); border: 1px solid #FCCAC8; border-radius: var(--radius); padding: 1.25rem 1.5rem; }
+    html[data-theme="dark"] .proc-error-box { border-color: var(--red); }
+    .proc-error-title { font-weight: 600; color: var(--red); margin-bottom: 0.4rem; }
+    .proc-error-msg   { font-size: 0.875rem; color: var(--text-2); margin-bottom: 1rem; }
+
+    @keyframes stepIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes spin   { to { transform: rotate(360deg); } }
+
+    /* ── Sanity screen ──────────────────────────────────────── */
+    .sanity-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--surface);
+      margin-top: 1.5rem;
+    }
+    @media (max-width: 680px) { .sanity-split { grid-template-columns: 1fr; } }
+    .sanity-panel { display: flex; flex-direction: column; height: 500px; }
+    .sanity-panel + .sanity-panel { border-left: 1px solid var(--border); }
+    .sanity-head {
       display: flex;
+      align-items: center;
       justify-content: space-between;
-      align-items: flex-start;
-      gap: 1rem;
-      padding: 0.6rem 1rem;
+      padding: 0.65rem 1.25rem;
       border-bottom: 1px solid var(--border);
-      font-size: 0.875rem;
+      flex-shrink: 0;
     }
+    .sanity-head-label { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: var(--muted); }
+    .sanity-head-count { font-size: 0.78rem; color: var(--muted); }
+    .preview-frame { width: 100%; flex: 1; border: none; display: block; }
+    .preview-img   { width: 100%; flex: 1; object-fit: contain; display: block; background: var(--surface-alt); }
+    .item-scroll   { flex: 1; overflow-y: auto; }
+    .item-row      { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 0.6rem 1.25rem; border-bottom: 1px solid var(--border); font-size: 0.875rem; }
     .item-row:last-child { border-bottom: none; }
     .item-name   { font-weight: 500; }
     .item-qty    { font-size: 0.78rem; color: var(--muted); margin-top: 0.1rem; }
     .item-amount { font-weight: 600; font-variant-numeric: tabular-nums; flex-shrink: 0; }
 
-    /* ── Summary bar ─────────────────────────────────── */
-    .summary {
+    /* ── Results screen ─────────────────────────────────────── */
+    .summary-card {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 1.25rem 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 2.5rem;
-      flex-wrap: wrap;
-      margin-bottom: 2rem;
+      border-radius: 8px;
+      padding: 1.5rem 2rem;
+      margin-bottom: 0.75rem;
     }
-    .stat-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.2rem; }
-    .stat-value { font-family: var(--display); font-size: 1.65rem; font-weight: 600; line-height: 1; }
+    .summary-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      padding-bottom: 1.25rem;
+      margin-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border);
+    }
+    @media (max-width: 640px) { .summary-stats { grid-template-columns: 1fr 1fr; } }
+    .stat-label { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.35rem; }
+    .stat-value { font-family: var(--display); font-size: 2.1rem; font-weight: 400; line-height: 1; }
     .stat-value--red { color: var(--red); }
-    .summary-actions { margin-left: auto; display: flex; gap: 0.75rem; flex-wrap: wrap; }
+    .summary-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+    .summary-note { font-size: 0.8rem; color: var(--muted); margin-bottom: 1.75rem; }
 
-    /* ── Flag cards ──────────────────────────────────── */
-    .section-head {
-      margin-top: 1.75rem;
-      margin-bottom: 0.65rem;
+    .section-label-results {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 2rem;
+      margin-bottom: 0.6rem;
     }
-    .card {
+    .section-label-results--red   { color: var(--red); }
+    .section-label-results--amber { color: var(--amber); }
+    .section-label-results--green { color: var(--green); }
+
+    .flag-card {
       background: var(--surface);
       border: 1px solid var(--border);
       border-left: 3px solid var(--red);
       border-radius: 0 var(--radius) var(--radius) 0;
-      padding: 0.9rem 1.1rem;
-      margin-bottom: 0.45rem;
+      padding: 0.875rem 1.1rem;
+      margin-bottom: 0.4rem;
     }
-    .card--amber { border-left-color: var(--amber); }
-    .card--green { border-left-color: var(--green); }
-    .card-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 1rem;
-    }
-    .card-name     { font-weight: 600; font-size: 0.9rem; }
-    .card-citation { font-size: 0.8rem; color: var(--muted); margin-top: 0.2rem; }
-    .card-amount   { font-weight: 700; font-size: 0.95rem; font-variant-numeric: tabular-nums; flex-shrink: 0; }
-    .card-amount--red { color: var(--red); }
-    .badge {
-      display: inline-block;
-      font-size: 0.72rem;
-      font-weight: 700;
-      padding: 0.1rem 0.4rem;
-      border-radius: 3px;
-      margin-top: 0.25rem;
-    }
+    .flag-card--amber { border-left-color: var(--amber); }
+    .flag-card--green { border-left-color: var(--green); border-left-width: 2px; }
+    .flag-top        { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; }
+    .flag-name       { font-weight: 600; font-size: 0.875rem; margin-bottom: 0.15rem; }
+    .flag-citation   { font-size: 0.78rem; color: var(--muted); }
+    .flag-right      { text-align: right; flex-shrink: 0; }
+    .flag-amount        { font-weight: 700; font-size: 0.9rem; font-variant-numeric: tabular-nums; color: var(--red); }
+    .flag-amount--green { color: var(--green); }
+    .badge        { display: inline-block; font-size: 0.68rem; font-weight: 700; padding: 0.1rem 0.4rem; border-radius: 3px; margin-top: 0.2rem; }
     .badge--red   { background: var(--red-bg);   color: var(--red); }
     .badge--amber { background: var(--amber-bg); color: var(--amber); }
-    .card-meta {
-      display: flex;
-      gap: 1.5rem;
-      margin-top: 0.4rem;
-      font-size: 0.8rem;
-    }
-    .card-delta { color: var(--red); font-weight: 500; }
+    .flag-meta      { display: flex; gap: 1.5rem; margin-top: 0.4rem; font-size: 0.78rem; }
+    .flag-benchmark { color: var(--muted); }
+    .flag-delta     { color: var(--red); font-weight: 500; }
 
-    /* ── Collapsible ─────────────────────────────────── */
-    .toggle {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      cursor: pointer;
-      user-select: none;
-    }
-    .toggle:hover .eyebrow { color: var(--text); }
-    .chevron {
-      width: 15px; height: 15px;
-      transition: transform 0.2s;
-      color: var(--muted); flex-shrink: 0;
-    }
+    .collapse-trigger { display: flex; align-items: center; justify-content: space-between; cursor: pointer; padding: 0.35rem 0; user-select: none; }
+    .collapse-trigger:hover .label { color: var(--text); }
+    .chevron { width: 14px; height: 14px; color: var(--muted); transition: transform 0.2s; flex-shrink: 0; }
     .chevron--open { transform: rotate(180deg); }
 
-    /* ── Letter ──────────────────────────────────────── */
+    /* ── Letter screen ──────────────────────────────────────── */
+    .letter-note {
+      background: var(--amber-bg);
+      border: 1px solid #E8C07A;
+      border-radius: var(--radius);
+      padding: 0.6rem 1rem;
+      font-size: 0.82rem;
+      color: #7C4A0A;
+      margin-bottom: 1rem;
+    }
+    html[data-theme="dark"] .letter-note { color: var(--amber); border-color: var(--amber); }
     .letter-box {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -274,32 +356,33 @@
       max-height: 580px;
       overflow-y: auto;
     }
+    .letter-actions { margin-top: 1.25rem; display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center; }
 
-    /* ── Error ───────────────────────────────────────── */
-    .error {
-      background: var(--red-bg);
-      border: 1px solid #E8A09A;
-      border-radius: var(--radius);
-      padding: 0.7rem 1rem;
-      font-size: 0.875rem;
-      color: var(--red);
-      margin-top: 0.875rem;
-    }
-
-    /* ── Notice ──────────────────────────────────────── */
+    /* ── Shared feedback ────────────────────────────────────── */
     .notice {
       background: var(--amber-bg);
-      border: 1px solid #F0B980;
+      border: 1px solid #E8C07A;
       border-radius: var(--radius);
-      padding: 0.7rem 1rem;
+      padding: 0.65rem 1rem;
       font-size: 0.875rem;
-      color: #8C4A0E;
+      color: #7C4A0A;
       margin-bottom: 1rem;
     }
+    html[data-theme="dark"] .notice { color: var(--amber); border-color: var(--amber); }
+    .error {
+      background: var(--red-bg);
+      border: 1px solid #FCCAC8;
+      border-radius: var(--radius);
+      padding: 0.65rem 1rem;
+      font-size: 0.875rem;
+      color: var(--red);
+      margin-top: 0.75rem;
+    }
+    html[data-theme="dark"] .error { border-color: var(--red); }
 
-    /* ── Print ───────────────────────────────────────── */
+    /* ── Print ──────────────────────────────────────────────── */
     @media print {
-      .nav, .letter-actions, .summary, .section-head { display: none !important; }
+      .nav, .letter-actions, .summary-card, .section-label-results { display: none !important; }
       .letter-box { border: none; max-height: none; padding: 0; }
     }
   </style>
@@ -311,11 +394,20 @@ const { useState, useRef, useCallback, useEffect } = React;
 const API = 'http://localhost:8080';
 const fmt = n => '₹' + Number(n).toLocaleString('en-IN');
 
-// ── Icons ──────────────────────────────────────────────────────────────────
+// ── Icons ──────────────────────────────────────────────────────────────
+
+function IconShield() {
+  return (
+    <svg width="17" height="19" viewBox="0 0 18 20" fill="none" aria-hidden="true">
+      <path d="M9 0L0 3.5V9.5C0 14.45 3.84 19.07 9 20C14.16 19.07 18 14.45 18 9.5V3.5L9 0Z" fill="#DC2626"/>
+      <path d="M5.5 10L7.8 12.3L12.5 7.5" stroke="white" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  );
+}
 
 function IconUpload() {
   return (
-    <svg className="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg className="dz-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
       <polyline points="17 8 12 3 7 8"/>
       <line x1="12" y1="3" x2="12" y2="15"/>
@@ -323,37 +415,58 @@ function IconUpload() {
   );
 }
 
+function IconSun() {
+  return (
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="5"/>
+      <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+      <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+    </svg>
+  );
+}
+
+function IconMoon() {
+  return (
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+    </svg>
+  );
+}
+
 function Chevron({ open }) {
   return (
-    <svg className={`chevron ${open ? 'chevron--open' : ''}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg className={`chevron ${open ? 'chevron--open' : ''}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <polyline points="6 9 12 15 18 9"/>
     </svg>
   );
 }
 
-// ── Nav ────────────────────────────────────────────────────────────────────
+// ── Nav ────────────────────────────────────────────────────────────────
 
-function Nav() {
+function Nav({ dark, onToggle }) {
   return (
-    <nav className="nav">
-      <span className="wordmark">
-        <svg className="wordmark-icon" width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M9 0L0 3.5V9.5C0 14.45 3.84 19.07 9 20C14.16 19.07 18 14.45 18 9.5V3.5L9 0Z" fill="#DC2626"/>
-          <path d="M5.5 10L7.8 12.3L12.5 7.5" stroke="white" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
+    <nav className="nav" role="navigation" aria-label="Main navigation">
+      <a href="/landing.html" className="nav-brand" aria-label="BillShield — back to home">
+        <IconShield />
         BillShield
-      </span>
+      </a>
+      <a href="/landing.html" className="nav-about">How it works</a>
+      <button className="nav-toggle" onClick={onToggle} aria-label={dark ? 'Switch to light mode' : 'Switch to dark mode'}>
+        {dark ? <IconSun /> : <IconMoon />}
+        {dark ? 'Light' : 'Dark'}
+      </button>
     </nav>
   );
 }
 
-// ── Screen 1: Upload ───────────────────────────────────────────────────────
+// ── Screen 1: Upload ───────────────────────────────────────────────────
 
 function UploadScreen({ onDone }) {
-  const [file, setFile]       = useState(null);
-  const [over, setOver]       = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [error, setError]     = useState(null);
+  const [file, setFile]   = useState(null);
+  const [over, setOver]   = useState(false);
+  const [error, setError] = useState(null);
   const inputRef = useRef(null);
 
   const VALID_TYPES = ['application/pdf', 'image/jpeg', 'image/png'];
@@ -367,74 +480,173 @@ function UploadScreen({ onDone }) {
     setFile(f);
   };
 
-  const onDrop = useCallback(e => {
-    e.preventDefault(); setOver(false);
-    pick(e.dataTransfer.files[0]);
-  }, []);
-
-  const analyse = async () => {
-    setLoading(true); setError(null);
-    try {
-      const form = new FormData();
-      form.append('file', file);
-      const res = await fetch(`${API}/api/extract`, { method: 'POST', body: form });
-      if (!res.ok) { const j = await res.json().catch(() => ({})); throw new Error(j.error || `Server returned ${res.status}`); }
-      onDone(file, await res.json());
-    } catch (e) {
-      setError(e.message.includes('fetch') ? 'Cannot reach server. Is app.py running on port 8080?' : e.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const sizeLabel = f => f.size < 1e6 ? (f.size/1024).toFixed(0)+' KB' : (f.size/1e6).toFixed(1)+' MB';
+  const onDrop = useCallback(e => { e.preventDefault(); setOver(false); pick(e.dataTransfer.files[0]); }, []);
+  const sizeLabel = f => f.size < 1e6 ? (f.size / 1024).toFixed(0) + ' KB' : (f.size / 1e6).toFixed(1) + ' MB';
 
   return (
-    <div className="page page--sm" style={{paddingTop: '5rem'}}>
-      <h1 className="display" style={{marginBottom: '0.4rem'}}>BillShield</h1>
-      <p style={{color: 'var(--muted)', fontSize: '1rem', marginBottom: '3rem', fontFamily: 'var(--display)', fontStyle: 'italic'}}>
-        Hospital bill auditor for Indian families.
-      </p>
+    <div className="upload-wrap">
+      <div className="upload-inner">
+        <h1 className="display" style={{ marginBottom: '1rem' }}>Know what<br />you owe.</h1>
+        <p style={{ color: 'var(--muted)', fontSize: '1rem', lineHeight: 1.65, maxWidth: 420, margin: '0 auto' }}>
+          Upload your hospital bill. We check every line against verified government rates.
+        </p>
 
-      <div
-        className={`dropzone ${over ? 'dropzone--over' : ''} ${file ? 'dropzone--ready' : ''}`}
-        onClick={() => !loading && inputRef.current.click()}
-        onDrop={onDrop}
-        onDragOver={e => { e.preventDefault(); setOver(true); }}
-        onDragLeave={() => setOver(false)}
-      >
-        <input ref={inputRef} type="file" accept=".pdf,.jpg,.jpeg,.png" style={{display:'none'}} onChange={e => pick(e.target.files[0])} />
-        {file ? (
-          <>
-            <div className="file-check">✓</div>
-            <div style={{fontWeight: 600, marginBottom: '0.3rem'}}>{file.name}</div>
-            <div style={{color: 'var(--muted)', fontSize: '0.875rem'}}>{sizeLabel(file)} · click to change</div>
-          </>
-        ) : (
-          <>
-            <IconUpload />
-            <div style={{fontWeight: 500, marginBottom: '0.3rem'}}>Drop your hospital bill here, or click to browse</div>
-            <div style={{color: 'var(--muted)', fontSize: '0.875rem'}}>PDF, JPG, PNG · Max 10 MB</div>
-          </>
-        )}
+        <div
+          className={`dropzone ${over ? 'dropzone--over' : ''} ${file ? 'dropzone--ready' : ''}`}
+          onClick={() => inputRef.current.click()}
+          onDrop={onDrop}
+          onDragOver={e => { e.preventDefault(); setOver(true); }}
+          onDragLeave={() => setOver(false)}
+          role="button"
+          tabIndex={0}
+          aria-label="Upload bill"
+          onKeyDown={e => e.key === 'Enter' && inputRef.current.click()}
+        >
+          <input ref={inputRef} type="file" accept=".pdf,.jpg,.jpeg,.png" style={{ display: 'none' }} onChange={e => pick(e.target.files[0])} aria-hidden="true" />
+          {file ? (
+            <>
+              <div className="dz-check" aria-hidden="true">✓</div>
+              <div className="dz-name">{file.name}</div>
+              <div className="dz-size">{sizeLabel(file)}</div>
+              <span className="dz-change">Change file</span>
+            </>
+          ) : (
+            <>
+              <IconUpload />
+              <div className="dz-label">Drop your bill here, or click to browse</div>
+              <div className="dz-hint">PDF, JPG, PNG · Max 10 MB</div>
+            </>
+          )}
+        </div>
+
+        {error && <div className="error" role="alert">{error}</div>}
+
+        <div style={{ marginTop: '1.5rem', display: 'flex', justifyContent: 'center' }}>
+          <button className="btn btn--dark" style={{ minWidth: 180 }} disabled={!file} onClick={() => onDone(file)}>
+            Analyse Bill →
+          </button>
+        </div>
+
+        <div className="trust-row" aria-label="Trust signals">
+          <div className="trust-item"><span className="trust-dot" aria-hidden="true" />Verified CGHS rates</div>
+          <div className="trust-item"><span className="trust-dot" aria-hidden="true" />No login required</div>
+          <div className="trust-item"><span className="trust-dot" aria-hidden="true" />Your data never stored</div>
+        </div>
       </div>
-
-      {error && <div className="error">{error}</div>}
-
-      <div style={{marginTop: '1.5rem', display: 'flex', gap: '1rem', alignItems: 'center'}}>
-        <button className="btn btn--dark" style={{minWidth: 160}} disabled={!file || loading} onClick={analyse}>
-          {loading ? 'Extracting…' : 'Analyse Bill →'}
-        </button>
-      </div>
-
-      <p style={{marginTop: '2.75rem', fontSize: '15px', fontWeight: 500, color: '#4B5563', fontFamily: 'var(--body)'}}>
-        Verified CGHS rates. In under 2 minutes.
-      </p>
     </div>
   );
 }
 
-// ── Screen 2: Sanity Check ─────────────────────────────────────────────────
+// ── Screen 2: Processing ───────────────────────────────────────────────
+
+const PROC_STEPS = [
+  { stage: 0, text: 'Reading document structure' },
+  { stage: 0, text: 'Identifying hospital and accreditation' },
+  { stage: 0, text: 'Extracting line items' },
+  { stage: 0, text: 'Checking confidence levels' },
+  { stage: 0, text: 'Redacting personal information' },
+  { stage: 1, text: 'Loading CGHS rate schedule (Oct 2025)' },
+  { stage: 1, text: 'Checking Tier I / Tier II / Tier III rates' },
+  { stage: 1, text: 'Comparing each line item' },
+  { stage: 1, text: 'Checking CGHS Annexure-III bundled items' },
+  { stage: 1, text: 'Applying accreditation adjustments' },
+  { stage: 1, text: 'Computing overcharge amounts' },
+  { stage: 2, text: 'Verifying citations' },
+  { stage: 2, text: 'Checking ₹2,500 threshold' },
+  { stage: 2, text: 'Finalising report' },
+];
+const STAGE_TITLES = ['Extracting bill', 'Analysing against benchmarks', 'Preparing results'];
+
+function ProcessingScreen({ file, onDone, onBack }) {
+  const [shown, setShown]       = useState(0);
+  const [apiData, setApiData]   = useState(null);
+  const [apiError, setApiError] = useState(null);
+  const doneRef = useRef(false);
+
+  useEffect(() => {
+    const ctrl = new AbortController();
+    const form = new FormData();
+    form.append('file', file);
+    fetch(`${API}/api/extract`, { method: 'POST', body: form, signal: ctrl.signal })
+      .then(r => r.ok ? r.json() : r.json().then(j => Promise.reject(j.error || `Server ${r.status}`)))
+      .then(data => setApiData(data))
+      .catch(err => { if (err.name !== 'AbortError') setApiError(String(err)); });
+    return () => ctrl.abort();
+  }, []);
+
+  useEffect(() => {
+    if (shown >= PROC_STEPS.length) return;
+    const delay = apiData ? 80 : (380 + Math.random() * 180);
+    const t = setTimeout(() => setShown(s => s + 1), delay);
+    return () => clearTimeout(t);
+  }, [shown, apiData]);
+
+  useEffect(() => {
+    if (apiData && shown >= 4 && !doneRef.current) {
+      doneRef.current = true;
+      const t = setTimeout(() => onDone(apiData), 350);
+      return () => clearTimeout(t);
+    }
+  }, [apiData, shown]);
+
+  if (apiError) {
+    return (
+      <div className="proc-wrap">
+        <div className="proc-error-box" role="alert">
+          <div className="proc-error-title">Something went wrong</div>
+          <div className="proc-error-msg">{apiError}</div>
+          <button className="btn btn--outline" onClick={onBack}>Start over</button>
+        </div>
+      </div>
+    );
+  }
+
+  const currentStage = shown > 0 ? PROC_STEPS[Math.min(shown - 1, PROC_STEPS.length - 1)].stage : 0;
+  const allDone = shown >= PROC_STEPS.length;
+
+  return (
+    <div className="proc-wrap" aria-live="polite" aria-label="Processing your bill">
+      <div className="proc-title">Auditing your bill…</div>
+      {STAGE_TITLES.map((title, si) => {
+        if (si > currentStage) return null;
+        const stageSteps    = PROC_STEPS.filter(s => s.stage === si);
+        const stageStart    = PROC_STEPS.findIndex(s => s.stage === si);
+        const shownInStage  = Math.max(0, Math.min(stageSteps.length, shown - stageStart));
+        const isActive      = si === currentStage;
+
+        return (
+          <div className="proc-stage" key={si}>
+            <div className={`proc-stage-head ${isActive ? 'proc-stage-head--active' : ''}`}>
+              {si < currentStage ? '✓ ' : ''}{title}
+            </div>
+            <div className="proc-steps">
+              {stageSteps.slice(0, shownInStage).map((step, idx) => (
+                <div className="proc-step" key={idx}>
+                  <span className="proc-check" aria-hidden="true">✓</span>
+                  <span>{step.text}</span>
+                </div>
+              ))}
+              {isActive && shownInStage < stageSteps.length && (
+                <div className="proc-step proc-step--pending" key="current">
+                  <span className="proc-spinner" aria-hidden="true" />
+                  <span>{stageSteps[shownInStage].text}</span>
+                </div>
+              )}
+            </div>
+          </div>
+        );
+      })}
+      {allDone && !apiData && (
+        <div className="proc-waiting">
+          <span className="proc-spinner" aria-hidden="true" />
+          <span>Still processing…</span>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ── Screen 2b: Sanity Check ────────────────────────────────────────────
 
 function SanityScreen({ file, extracted, onDone, onBack }) {
   const [loading, setLoading] = useState(false);
@@ -452,7 +664,7 @@ function SanityScreen({ file, extracted, onDone, onBack }) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(extracted),
       });
-      if (!res.ok) { const j = await res.json().catch(() => ({})); throw new Error(j.error || `Server returned ${res.status}`); }
+      if (!res.ok) { const j = await res.json().catch(() => ({})); throw new Error(j.error || `Server ${res.status}`); }
       onDone(await res.json());
     } catch (e) {
       setError(e.message.includes('fetch') ? 'Cannot reach server. Is app.py running?' : e.message);
@@ -463,29 +675,31 @@ function SanityScreen({ file, extracted, onDone, onBack }) {
 
   return (
     <div className="page page--lg">
-      <div style={{marginBottom: '1.5rem'}}>
-        <h2 className="heading" style={{marginBottom: '0.3rem'}}>Does this look right?</h2>
-        {hosp.name && (
-          <p style={{color: 'var(--muted)', fontSize: '0.875rem'}}>
-            {hosp.name}{hosp.city ? `, ${hosp.city}` : ''} · {items.length} line items extracted
-          </p>
-        )}
-      </div>
+      <h2 className="heading" style={{ marginBottom: '0.3rem' }}>Does this look right?</h2>
+      {hosp.name && (
+        <p style={{ color: 'var(--muted)', fontSize: '0.875rem' }}>
+          {hosp.name}{hosp.city ? `, ${hosp.city}` : ''}
+        </p>
+      )}
 
-      <div className="split">
-        <div className="panel">
-          <div className="panel-head">Original bill</div>
+      <div className="sanity-split" role="region" aria-label="Bill comparison">
+        <div className="sanity-panel">
+          <div className="sanity-head">
+            <span className="sanity-head-label">Your bill</span>
+          </div>
           {isPDF
-            ? <iframe src={fileURL} className="preview-frame" title="Bill" />
-            : <img src={fileURL} className="preview-img" alt="Bill" />
+            ? <iframe src={fileURL} className="preview-frame" title="Original bill" />
+            : <img src={fileURL} className="preview-img" alt="Original bill" />
           }
         </div>
-
-        <div className="panel">
-          <div className="panel-head">Extracted line items</div>
-          <div className="item-scroll">
+        <div className="sanity-panel">
+          <div className="sanity-head">
+            <span className="sanity-head-label">What we extracted</span>
+            <span className="sanity-head-count">{items.length} items</span>
+          </div>
+          <div className="item-scroll" role="list" aria-label="Extracted line items">
             {items.map((item, i) => (
-              <div className="item-row" key={i}>
+              <div className="item-row" key={i} role="listitem">
                 <div>
                   <div className="item-name">{item.item_name}</div>
                   {item.quantity > 1 && <div className="item-qty">Qty {item.quantity}</div>}
@@ -497,11 +711,11 @@ function SanityScreen({ file, extracted, onDone, onBack }) {
         </div>
       </div>
 
-      {error && <div className="error">{error}</div>}
+      {error && <div className="error" role="alert">{error}</div>}
 
-      <div style={{marginTop: '1.5rem', display: 'flex', gap: '1.25rem', alignItems: 'center'}}>
+      <div style={{ marginTop: '1.5rem', display: 'flex', gap: '1.25rem', alignItems: 'center' }}>
         <button className="btn btn--dark" disabled={loading} onClick={confirm}>
-          {loading ? 'Analysing…' : 'Looks right — Analyse →'}
+          {loading ? 'Analysing…' : 'This looks right — Analyse →'}
         </button>
         <button className="btn btn--ghost" onClick={onBack}>Something's wrong — start over</button>
       </div>
@@ -509,27 +723,26 @@ function SanityScreen({ file, extracted, onDone, onBack }) {
   );
 }
 
-// ── Screen 3: Results ──────────────────────────────────────────────────────
+// ── Screen 3: Results ──────────────────────────────────────────────────
 
 function ResultsScreen({ extracted, analysis, onLetter }) {
-  const [cleanOpen, setCleanOpen]           = useState(false);
-  const [unverifiableOpen, setUnverOpen]    = useState(false);
-  const [loading, setLoading]               = useState(false);
-  const [error, setError]                   = useState(null);
+  const [cleanOpen, setCleanOpen] = useState(false);
+  const [unverOpen, setUnverOpen] = useState(false);
+  const [loading, setLoading]     = useState(false);
+  const [error, setError]         = useState(null);
 
-  const flags       = analysis.flags       || [];
-  const unverifiable= analysis.unverifiable|| [];
-  const allItems    = extracted.line_items || [];
+  const flags        = analysis.flags        || [];
+  const unverifiable = analysis.unverifiable || [];
+  const allItems     = extracted.line_items  || [];
 
   const rateFlags   = flags.filter(f => f.flag_type === 'RATE_OVERCHARGE');
   const structFlags = flags.filter(f => f.flag_type === 'STRUCTURAL_VIOLATION');
 
-  // Items neither flagged nor unverifiable
-  const flaggedSet  = new Set(flags.map(f => f.item_name));
-  const unverSet    = new Set(unverifiable.map(u => u.item_name));
-  const cleanItems  = allItems.filter(i => !flaggedSet.has(i.item_name) && !unverSet.has(i.item_name));
+  const flaggedSet = new Set(flags.map(f => f.item_name));
+  const unverSet   = new Set(unverifiable.map(u => u.item_name));
+  const cleanItems = allItems.filter(i => !flaggedSet.has(i.item_name) && !unverSet.has(i.item_name));
 
-  const getletter = async () => {
+  const getLetter = async () => {
     setLoading(true); setError(null);
     try {
       const res = await fetch(`${API}/api/letter`, {
@@ -554,97 +767,95 @@ function ResultsScreen({ extracted, analysis, onLetter }) {
 
   return (
     <div className="page">
-      {/* Summary bar */}
-      <div className="summary">
-        <div>
-          <div className="stat-label">Total flagged</div>
-          <div className="stat-value stat-value--red">{fmt(analysis.total_flagged_amount || 0)}</div>
-        </div>
-        <div>
-          <div className="stat-label">Issues found</div>
-          <div className="stat-value">{flags.length}</div>
-        </div>
-        <div>
-          <div className="stat-label">Rate overcharges</div>
-          <div className="stat-value">{rateFlags.length}</div>
-        </div>
-        <div>
-          <div className="stat-label">Structural violations</div>
-          <div className="stat-value">{structFlags.length}</div>
+      <div className="summary-card" role="region" aria-label="Analysis summary">
+        <div className="summary-stats">
+          <div>
+            <div className="stat-label">Total flagged</div>
+            <div className="stat-value stat-value--red" aria-label={`Total flagged ${fmt(analysis.total_flagged_amount || 0)}`}>{fmt(analysis.total_flagged_amount || 0)}</div>
+          </div>
+          <div>
+            <div className="stat-label">Issues found</div>
+            <div className="stat-value">{flags.length}</div>
+          </div>
+          <div>
+            <div className="stat-label">Rate overcharges</div>
+            <div className="stat-value">{rateFlags.length}</div>
+          </div>
+          <div>
+            <div className="stat-label">Structural violations</div>
+            <div className="stat-value">{structFlags.length}</div>
+          </div>
         </div>
         <div className="summary-actions">
           {analysis.letter_warranted
-            ? <button className="btn btn--red" disabled={loading} onClick={getletter}>{loading ? 'Drafting…' : 'Generate Dispute Letter'}</button>
-            : <button className="btn btn--outline" disabled title="Total below ₹2,500 threshold">Dispute letter not warranted</button>
+            ? <button className="btn btn--dark" style={{ flex: 1 }} disabled={loading} onClick={getLetter}>{loading ? 'Drafting…' : 'Generate Dispute Letter'}</button>
+            : <button className="btn btn--outline" style={{ flex: 1 }} disabled aria-disabled="true">Dispute letter not warranted</button>
           }
           <button className="btn btn--outline" onClick={saveRecords}>Save for records</button>
         </div>
       </div>
 
-      {!analysis.letter_warranted && (
-        <div className="notice">{analysis.letter_threshold_note || 'Total flagged amount is below the ₹2,500 threshold. No dispute letter is warranted at this time.'}</div>
-      )}
-      {error && <div className="error">{error}</div>}
+      <p className="summary-note">
+        Figures based on verified CGHS benchmarks only. Results are consistent across runs for verified items.
+      </p>
 
-      {/* Rate overcharges */}
+      {!analysis.letter_warranted && (
+        <div className="notice" role="status">{analysis.letter_threshold_note || 'Total flagged amount is below the ₹2,500 threshold. No dispute letter is warranted at this time.'}</div>
+      )}
+      {error && <div className="error" role="alert">{error}</div>}
+
       {rateFlags.length > 0 && (
-        <div className="section-head">
-          <div className="eyebrow">Rate overcharges ({rateFlags.length})</div>
-        </div>
+        <div className="section-label-results section-label-results--red" aria-label={`${rateFlags.length} rate overcharges`}>Rate overcharges ({rateFlags.length})</div>
       )}
       {rateFlags.map((f, i) => (
-        <div className="card" key={i}>
-          <div className="card-row">
-            <div style={{flex: 1}}>
-              <div className="card-name">{f.item_name}</div>
-              <div className="card-citation">{f.citation}</div>
+        <div className="flag-card" key={i} role="article" aria-label={`Rate overcharge: ${f.item_name}`}>
+          <div className="flag-top">
+            <div style={{ flex: 1 }}>
+              <div className="flag-name">{f.item_name}</div>
+              <div className="flag-citation">{f.citation}</div>
             </div>
-            <div style={{textAlign: 'right'}}>
-              <div className="card-amount card-amount--red">{fmt(f.billed_amount)}</div>
-              {f.multiplier && <span className="badge badge--red">{f.multiplier}×</span>}
+            <div className="flag-right">
+              <div className="flag-amount">{fmt(f.billed_amount)}</div>
+              {f.multiplier && <div><span className="badge badge--red">{f.multiplier}×</span></div>}
             </div>
           </div>
-          <div className="card-meta">
-            <span style={{color: 'var(--muted)'}}>Benchmark: {fmt(f.cghs_rate)}</span>
-            <span className="card-delta">Overcharge: +{fmt(f.delta)}</span>
+          <div className="flag-meta">
+            <span className="flag-benchmark">Benchmark: {fmt(f.cghs_rate)}</span>
+            <span className="flag-delta">Overcharge: +{fmt(f.delta)}</span>
           </div>
         </div>
       ))}
 
-      {/* Structural violations */}
       {structFlags.length > 0 && (
-        <div className="section-head">
-          <div className="eyebrow">Structural violations — cannot be billed separately ({structFlags.length})</div>
-        </div>
+        <div className="section-label-results section-label-results--red">Structural violations — cannot be billed separately ({structFlags.length})</div>
       )}
       {structFlags.map((f, i) => (
-        <div className="card" key={i}>
-          <div className="card-row">
-            <div style={{flex: 1}}>
-              <div className="card-name">{f.item_name}</div>
-              <div className="card-citation">{f.citation}</div>
+        <div className="flag-card" key={i} role="article" aria-label={`Structural violation: ${f.item_name}`}>
+          <div className="flag-top">
+            <div style={{ flex: 1 }}>
+              <div className="flag-name">{f.item_name}</div>
+              <div className="flag-citation">{f.citation}</div>
             </div>
-            <div style={{textAlign: 'right'}}>
-              <div className="card-amount card-amount--red">{fmt(f.billed_amount)}</div>
-              <span className="badge badge--red">not billable</span>
+            <div className="flag-right">
+              <div className="flag-amount">{fmt(f.billed_amount)}</div>
+              <div><span className="badge badge--red">not billable</span></div>
             </div>
           </div>
         </div>
       ))}
 
-      {/* Unverifiable — collapsed by default */}
       {unverifiable.length > 0 && (
-        <div style={{marginTop: '1.75rem'}}>
-          <div className="toggle" onClick={() => setUnverOpen(o => !o)}>
-            <span className="eyebrow" style={{color: 'var(--amber)'}}>Could not verify — no benchmark found ({unverifiable.length})</span>
-            <Chevron open={unverifiableOpen} />
+        <div style={{ marginTop: '1.5rem' }}>
+          <div className="collapse-trigger" onClick={() => setUnverOpen(o => !o)} role="button" tabIndex={0} aria-expanded={unverOpen} onKeyDown={e => e.key === 'Enter' && setUnverOpen(o => !o)}>
+            <span className="label" style={{ color: 'var(--amber)' }}>Could not verify — no benchmark found ({unverifiable.length})</span>
+            <Chevron open={unverOpen} />
           </div>
-          {unverifiableOpen && (
-            <div style={{marginTop: '0.65rem'}}>
+          {unverOpen && (
+            <div style={{ marginTop: '0.5rem' }}>
               {unverifiable.map((u, i) => (
-                <div className="card card--amber" key={i}>
-                  <div className="card-name">{u.item_name}</div>
-                  <div className="card-citation" style={{marginTop: '0.2rem'}}>{u.reason}</div>
+                <div className="flag-card flag-card--amber" key={i}>
+                  <div className="flag-name">{u.item_name}</div>
+                  <div className="flag-citation" style={{ marginTop: '0.2rem' }}>{u.reason}</div>
                 </div>
               ))}
             </div>
@@ -652,20 +863,19 @@ function ResultsScreen({ extracted, analysis, onLetter }) {
         </div>
       )}
 
-      {/* Clean — collapsed by default */}
       {cleanItems.length > 0 && (
-        <div style={{marginTop: '1.75rem'}}>
-          <div className="toggle" onClick={() => setCleanOpen(o => !o)}>
-            <span className="eyebrow" style={{color: 'var(--green)'}}>Within benchmark ({cleanItems.length})</span>
+        <div style={{ marginTop: '1.5rem' }}>
+          <div className="collapse-trigger" onClick={() => setCleanOpen(o => !o)} role="button" tabIndex={0} aria-expanded={cleanOpen} onKeyDown={e => e.key === 'Enter' && setCleanOpen(o => !o)}>
+            <span className="label" style={{ color: 'var(--green)' }}>Within benchmark ({cleanItems.length})</span>
             <Chevron open={cleanOpen} />
           </div>
           {cleanOpen && (
-            <div style={{marginTop: '0.65rem'}}>
+            <div style={{ marginTop: '0.5rem' }}>
               {cleanItems.map((item, i) => (
-                <div className="card card--green" key={i}>
-                  <div className="card-row">
-                    <div className="card-name">{item.item_name}</div>
-                    <div className="card-amount" style={{color: 'var(--green)'}}>{fmt(item.total)}</div>
+                <div className="flag-card flag-card--green" key={i}>
+                  <div className="flag-top">
+                    <div className="flag-name">{item.item_name}</div>
+                    <div className="flag-amount flag-amount--green">{fmt(item.total)}</div>
                   </div>
                 </div>
               ))}
@@ -677,7 +887,7 @@ function ResultsScreen({ extracted, analysis, onLetter }) {
   );
 }
 
-// ── Screen 4: Letter ───────────────────────────────────────────────────────
+// ── Screen 4: Letter ───────────────────────────────────────────────────
 
 function LetterScreen({ letter, onBack }) {
   const [copied, setCopied] = useState(false);
@@ -697,34 +907,30 @@ function LetterScreen({ letter, onBack }) {
   const printAsPDF = () => {
     const w = window.open('', '_blank');
     w.document.write(`<!DOCTYPE html><html><head><title>Dispute Letter — BillShield</title>
-      <style>
-        body { font-family: Georgia, serif; font-size: 12pt; line-height: 1.9; padding: 3cm 3.5cm; color: #000; max-width: none; }
-        pre  { white-space: pre-wrap; font-family: inherit; }
-      </style></head><body><pre>${letter.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}</pre>
-      <script>window.onload = () => { window.print(); }<\/script></body></html>`);
+      <style>body{font-family:Georgia,serif;font-size:12pt;line-height:1.9;padding:3cm 3.5cm;color:#000;max-width:none;}pre{white-space:pre-wrap;font-family:inherit;}</style>
+      </head><body><pre>${letter.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}</pre>
+      <script>window.onload=()=>{window.print();}<\/script></body></html>`);
     w.document.close();
   };
 
   return (
-    <div className="page" style={{maxWidth: 760}}>
-      <div style={{marginBottom: '1.5rem'}}>
-        <h2 className="heading" style={{marginBottom: '0.3rem'}}>Your dispute letter is ready.</h2>
-        <p style={{color: 'var(--muted)', fontSize: '0.875rem'}}>Review before sending. You may edit after downloading.</p>
+    <div className="page" style={{ maxWidth: 760 }}>
+      <h2 className="heading" style={{ marginBottom: '1rem' }}>Your dispute letter is ready.</h2>
+      <div className="letter-note" role="note">
+        Review before sending. Fill in [Admission Date] and [Discharge Date] manually if they appear in the letter.
       </div>
-
-      <div className="letter-box">{letter}</div>
-
-      <div className="letter-actions" style={{marginTop: '1.25rem', display: 'flex', gap: '0.75rem', flexWrap: 'wrap', alignItems: 'center'}}>
+      <div className="letter-box" tabIndex={0} aria-label="Dispute letter content">{letter}</div>
+      <div className="letter-actions">
         <button className="btn btn--dark"    onClick={download}>Download .txt</button>
         <button className="btn btn--outline" onClick={printAsPDF}>Print / Save as PDF</button>
         <button className="btn btn--outline" onClick={copy}>{copied ? '✓ Copied' : 'Copy text'}</button>
-        <button className="btn btn--ghost"   onClick={onBack} style={{marginLeft: 'auto'}}>← Back to results</button>
+        <button className="btn btn--ghost"   onClick={onBack} style={{ marginLeft: 'auto' }}>← Back to results</button>
       </div>
     </div>
   );
 }
 
-// ── App ────────────────────────────────────────────────────────────────────
+// ── App ────────────────────────────────────────────────────────────────
 
 function App() {
   const [screen,    setScreen]    = useState('upload');
@@ -732,16 +938,52 @@ function App() {
   const [extracted, setExtracted] = useState(null);
   const [analysis,  setAnalysis]  = useState(null);
   const [letter,    setLetter]    = useState(null);
+  const [dark, setDark] = useState(() => {
+    try {
+      const stored = localStorage.getItem('bs-theme');
+      if (stored) return stored === 'dark';
+      return window.matchMedia('(prefers-color-scheme: dark)').matches;
+    } catch { return false; }
+  });
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+    try { localStorage.setItem('bs-theme', dark ? 'dark' : 'light'); } catch {}
+  }, [dark]);
 
   const reset = () => { setScreen('upload'); setFile(null); setExtracted(null); setAnalysis(null); setLetter(null); };
 
   return (
     <>
-      <Nav />
-      {screen === 'upload'  && <UploadScreen  onDone={(f, d) => { setFile(f); setExtracted(d); setScreen('sanity'); }} />}
-      {screen === 'sanity'  && <SanityScreen  file={file} extracted={extracted} onDone={d => { setAnalysis(d); setScreen('results'); }} onBack={reset} />}
-      {screen === 'results' && <ResultsScreen extracted={extracted} analysis={analysis} onLetter={t => { setLetter(t); setScreen('letter'); }} />}
-      {screen === 'letter'  && <LetterScreen  letter={letter} onBack={() => setScreen('results')} />}
+      <Nav dark={dark} onToggle={() => setDark(d => !d)} />
+      {screen === 'upload' && (
+        <UploadScreen onDone={f => { setFile(f); setScreen('processing'); }} />
+      )}
+      {screen === 'processing' && (
+        <ProcessingScreen
+          file={file}
+          onDone={data => { setExtracted(data); setScreen('sanity'); }}
+          onBack={reset}
+        />
+      )}
+      {screen === 'sanity' && (
+        <SanityScreen
+          file={file}
+          extracted={extracted}
+          onDone={data => { setAnalysis(data); setScreen('results'); }}
+          onBack={reset}
+        />
+      )}
+      {screen === 'results' && (
+        <ResultsScreen
+          extracted={extracted}
+          analysis={analysis}
+          onLetter={t => { setLetter(t); setScreen('letter'); }}
+        />
+      )}
+      {screen === 'letter' && (
+        <LetterScreen letter={letter} onBack={() => setScreen('results')} />
+      )}
     </>
   );
 }
