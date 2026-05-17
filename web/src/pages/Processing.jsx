@@ -1,16 +1,17 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import LightNav from '../components/LightNav'
 
-const steps = [
+const API = 'http://localhost:5000'
+
+const BASE_STEPS = [
   { label: 'Extracting items from bill...', startAt: 0 },
   { label: 'Comparing against CGHS/NPPA rates...', startAt: 3000 },
   { label: 'Checking IRDAI compliance...', startAt: 6000 },
   { label: 'Flagging structural violations...', startAt: 9000 },
 ]
-
 const STEP_DURATION = 3000
-const NAVIGATE_AT = 13000
+const MIN_DISPLAY_MS = 12000
 
 function Spinner() {
   return (
@@ -147,26 +148,106 @@ function StepCard({ step, elapsed }) {
 export default function Processing() {
   const navigate = useNavigate()
   const [elapsed, setElapsed] = useState(0)
+  const [apiDone, setApiDone] = useState(false)
+  const [error, setError] = useState(null)
+  const apiDoneRef = useRef(false)
+  const elapsedRef = useRef(0)
 
+  // Animation timer
   useEffect(() => {
     const start = Date.now()
     const interval = setInterval(() => {
       const now = Date.now() - start
+      elapsedRef.current = now
       setElapsed(now)
-      if (now >= NAVIGATE_AT) {
-        clearInterval(interval)
-        navigate('/sanity-check')
-      }
     }, 50)
     return () => clearInterval(interval)
+  }, [])
+
+  // API call
+  useEffect(() => {
+    const extracted = JSON.parse(sessionStorage.getItem('extracted') || 'null')
+    if (!extracted) {
+      navigate('/upload')
+      return
+    }
+
+    fetch(`${API}/api/analyse`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(extracted),
+    })
+      .then((r) => r.json())
+      .then((data) => {
+        if (data.error) throw new Error(data.error)
+        sessionStorage.setItem('analysis', JSON.stringify(data))
+        apiDoneRef.current = true
+        setApiDone(true)
+      })
+      .catch((err) => setError(err.message))
   }, [navigate])
+
+  // Navigate when both conditions met
+  useEffect(() => {
+    if (apiDone && elapsed >= MIN_DISPLAY_MS) {
+      navigate('/sanity-check')
+    }
+  }, [apiDone, elapsed, navigate])
+
+  if (error) {
+    return (
+      <div style={{ backgroundColor: '#F0EEE8', minHeight: '100vh' }}>
+        <LightNav />
+        <div style={{
+          maxWidth: '480px',
+          margin: '0 auto',
+          padding: '80px 24px',
+          textAlign: 'center',
+        }}>
+          <p style={{
+            fontFamily: "'Sora', sans-serif",
+            fontSize: '1.5rem',
+            fontWeight: 700,
+            color: '#DC2626',
+            marginBottom: '12px',
+          }}>Analysis failed</p>
+          <p style={{
+            fontFamily: "'Satoshi', sans-serif",
+            fontSize: '0.9rem',
+            color: '#6B6860',
+            marginBottom: '28px',
+          }}>{error}</p>
+          <button
+            onClick={() => navigate('/upload')}
+            style={{
+              backgroundColor: '#1A1A1A',
+              color: '#FFFFFF',
+              fontFamily: "'Satoshi', sans-serif",
+              fontWeight: 700,
+              fontSize: '0.9rem',
+              padding: '10px 24px',
+              borderRadius: '8px',
+              border: 'none',
+              cursor: 'pointer',
+            }}
+          >
+            Try again
+          </button>
+        </div>
+      </div>
+    )
+  }
+
+  // After base steps complete, show "finalising" if API not done yet
+  const showFinalising = elapsed >= MIN_DISPLAY_MS && !apiDone
+  const steps = showFinalising
+    ? [...BASE_STEPS, { label: 'Finalising analysis…', startAt: MIN_DISPLAY_MS }]
+    : BASE_STEPS
 
   return (
     <div style={{ backgroundColor: '#F0EEE8', minHeight: '100vh' }}>
       <style>{`
-        @keyframes spin {
-          to { transform: rotate(360deg); }
-        }
+        @keyframes spin { to { transform: rotate(360deg); } }
         @keyframes stepFadeIn {
           from { opacity: 0; transform: translateY(10px); }
           to { opacity: 1; transform: translateY(0); }
@@ -179,9 +260,7 @@ export default function Processing() {
           0%, 100% { opacity: 1; transform: scale(1); }
           50% { opacity: 0.3; transform: scale(0.7); }
         }
-        .processing-content {
-          animation: fadeInUp 0.5s ease-out forwards;
-        }
+        .processing-content { animation: fadeInUp 0.5s ease-out forwards; }
       `}</style>
 
       <LightNav />

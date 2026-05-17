@@ -2,6 +2,8 @@ import { useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import DarkNav from '../components/DarkNav'
 
+const API = 'http://localhost:5000'
+
 const CloudUploadIcon = () => (
   <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path
@@ -37,6 +39,8 @@ export default function Upload() {
   const navigate = useNavigate()
   const [file, setFile] = useState(null)
   const [isDragging, setIsDragging] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
   const inputRef = useRef(null)
 
   const handleFile = (f) => {
@@ -44,26 +48,37 @@ export default function Upload() {
     const validTypes = ['application/pdf', 'image/jpeg', 'image/jpg', 'image/png']
     if (!validTypes.includes(f.type) && !f.name.match(/\.(pdf|jpg|jpeg|png)$/i)) return
     if (f.size > 10 * 1024 * 1024) {
-      alert('File too large. Maximum size is 10 MB.')
+      setError('File too large. Maximum size is 10 MB.')
       return
     }
+    setError(null)
     setFile(f)
   }
 
   const handleDrop = (e) => {
     e.preventDefault()
     setIsDragging(false)
-    const droppedFile = e.dataTransfer.files[0]
-    handleFile(droppedFile)
+    handleFile(e.dataTransfer.files[0])
   }
 
-  const handleDragOver = (e) => {
-    e.preventDefault()
-    setIsDragging(true)
-  }
+  const handleAnalyse = async () => {
+    if (!file || loading) return
+    setLoading(true)
+    setError(null)
 
-  const handleDragLeave = () => {
-    setIsDragging(false)
+    try {
+      const form = new FormData()
+      form.append('file', file)
+      const res = await fetch(`${API}/api/upload`, { method: 'POST', body: form })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error || 'Upload failed')
+      if (data.status === 'extraction_failed') throw new Error(data.reason || 'Could not read bill')
+      sessionStorage.setItem('extracted', JSON.stringify(data))
+      navigate('/processing')
+    } catch (err) {
+      setError(err.message)
+      setLoading(false)
+    }
   }
 
   const dropzoneBorder = file
@@ -78,6 +93,8 @@ export default function Upload() {
     ? 'rgba(34,197,94,0.03)'
     : 'transparent'
 
+  const btnActive = file && !loading
+
   return (
     <div style={{ backgroundColor: '#0A0A0A', minHeight: '100vh', color: '#FFFFFF' }}>
       <style>{`
@@ -85,11 +102,18 @@ export default function Upload() {
           from { opacity: 0; transform: translateY(20px); }
           to { opacity: 1; transform: translateY(0); }
         }
-        .upload-content {
-          animation: fadeInUp 0.5s ease-out forwards;
-        }
-        .change-link:hover {
-          color: rgba(255,255,255,0.8) !important;
+        .upload-content { animation: fadeInUp 0.5s ease-out forwards; }
+        .change-link:hover { color: rgba(255,255,255,0.8) !important; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .btn-spinner {
+          width: 16px; height: 16px;
+          border: 2px solid rgba(10,10,10,0.3);
+          border-top-color: #0A0A0A;
+          border-radius: 50%;
+          animation: spin 0.7s linear infinite;
+          display: inline-block;
+          vertical-align: middle;
+          margin-right: 8px;
         }
       `}</style>
 
@@ -107,7 +131,6 @@ export default function Upload() {
         }}
       >
         <div style={{ width: '100%', maxWidth: '480px' }}>
-          {/* Label */}
           <p style={{
             fontFamily: "'Satoshi', sans-serif",
             fontSize: '0.7rem',
@@ -121,7 +144,6 @@ export default function Upload() {
             Step 1 of 3
           </p>
 
-          {/* Heading */}
           <h1 style={{
             fontFamily: "'Sora', sans-serif",
             fontSize: '2.8rem',
@@ -135,7 +157,6 @@ export default function Upload() {
             Know what you owe.
           </h1>
 
-          {/* Subhead */}
           <p style={{
             fontFamily: "'Satoshi', sans-serif",
             fontSize: '1rem',
@@ -150,10 +171,10 @@ export default function Upload() {
 
           {/* Dropzone */}
           <div
-            onClick={() => inputRef.current?.click()}
+            onClick={() => !loading && inputRef.current?.click()}
             onDrop={handleDrop}
-            onDragOver={handleDragOver}
-            onDragLeave={handleDragLeave}
+            onDragOver={(e) => { e.preventDefault(); setIsDragging(true) }}
+            onDragLeave={() => setIsDragging(false)}
             style={{
               border: dropzoneBorder,
               borderRadius: '16px',
@@ -164,7 +185,7 @@ export default function Upload() {
               flexDirection: 'column',
               alignItems: 'center',
               justifyContent: 'center',
-              cursor: 'pointer',
+              cursor: loading ? 'default' : 'pointer',
               transition: 'all 0.2s ease',
             }}
           >
@@ -177,7 +198,6 @@ export default function Upload() {
             />
 
             {file ? (
-              /* File selected state */
               <div style={{ textAlign: 'center', width: '100%' }}>
                 <div style={{
                   width: '48px',
@@ -209,29 +229,31 @@ export default function Upload() {
                 }}>
                   {formatFileSize(file.size)}
                 </p>
-                <button
-                  className="change-link"
-                  onClick={(e) => {
-                    e.stopPropagation()
-                    setFile(null)
-                    inputRef.current.value = ''
-                  }}
-                  style={{
-                    background: 'none',
-                    border: 'none',
-                    fontFamily: "'Satoshi', sans-serif",
-                    fontSize: '0.8rem',
-                    color: 'rgba(255,255,255,0.4)',
-                    cursor: 'pointer',
-                    textDecoration: 'underline',
-                    transition: 'color 0.2s',
-                  }}
-                >
-                  Change file
-                </button>
+                {!loading && (
+                  <button
+                    className="change-link"
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      setFile(null)
+                      setError(null)
+                      inputRef.current.value = ''
+                    }}
+                    style={{
+                      background: 'none',
+                      border: 'none',
+                      fontFamily: "'Satoshi', sans-serif",
+                      fontSize: '0.8rem',
+                      color: 'rgba(255,255,255,0.4)',
+                      cursor: 'pointer',
+                      textDecoration: 'underline',
+                      transition: 'color 0.2s',
+                    }}
+                  >
+                    Change file
+                  </button>
+                )}
               </div>
             ) : (
-              /* Empty state */
               <div style={{ textAlign: 'center' }}>
                 <div style={{ marginBottom: '16px' }}>
                   <CloudUploadIcon />
@@ -264,9 +286,23 @@ export default function Upload() {
             )}
           </div>
 
+          {/* Error */}
+          {error && (
+            <p style={{
+              fontFamily: "'Satoshi', sans-serif",
+              fontSize: '0.85rem',
+              color: '#F87171',
+              marginTop: '12px',
+              textAlign: 'center',
+            }}>
+              {error}
+            </p>
+          )}
+
           {/* Analyse Button */}
           <button
-            onClick={() => file && navigate('/processing')}
+            onClick={handleAnalyse}
+            disabled={!btnActive}
             style={{
               width: '100%',
               marginTop: '20px',
@@ -274,16 +310,19 @@ export default function Upload() {
               borderRadius: '12px',
               border: 'none',
               fontFamily: "'Satoshi', sans-serif",
-              fontWeight: file ? 700 : 400,
+              fontWeight: btnActive ? 700 : 400,
               fontSize: '1rem',
-              cursor: file ? 'pointer' : 'not-allowed',
-              backgroundColor: file ? '#22C55E' : 'rgba(255,255,255,0.08)',
-              color: file ? '#0A0A0A' : 'rgba(255,255,255,0.3)',
+              cursor: btnActive ? 'pointer' : 'not-allowed',
+              backgroundColor: btnActive ? '#22C55E' : 'rgba(255,255,255,0.08)',
+              color: btnActive ? '#0A0A0A' : 'rgba(255,255,255,0.3)',
               transition: 'all 0.2s ease',
               letterSpacing: '0.01em',
             }}
           >
-            {file ? 'Analyse Bill →' : 'Analyse Bill'}
+            {loading
+              ? <><span className="btn-spinner" />Extracting bill…</>
+              : file ? 'Analyse Bill →' : 'Analyse Bill'
+            }
           </button>
 
           {/* Trust Badges */}

@@ -1,33 +1,35 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import LightNav from '../components/LightNav'
-import { mockLetter } from '../data/mockData'
 
 export default function Letter() {
   const navigate = useNavigate()
+  const [letter, setLetter] = useState(null)
   const [copied, setCopied] = useState(false)
 
+  useEffect(() => {
+    const text = sessionStorage.getItem('letter')
+    if (!text) { navigate('/upload'); return }
+    setLetter(text)
+  }, [navigate])
+
   const handleCopy = async () => {
+    if (!letter) return
     try {
-      await navigator.clipboard.writeText(mockLetter)
-      setCopied(true)
-      setTimeout(() => setCopied(false), 2000)
-    } catch (err) {
-      // Fallback for environments without clipboard API
-      const textarea = document.createElement('textarea')
-      textarea.value = mockLetter
-      document.body.appendChild(textarea)
-      textarea.select()
+      await navigator.clipboard.writeText(letter)
+    } catch {
+      const ta = document.createElement('textarea')
+      ta.value = letter
+      document.body.appendChild(ta)
+      ta.select()
       document.execCommand('copy')
-      document.body.removeChild(textarea)
-      setCopied(true)
-      setTimeout(() => setCopied(false), 2000)
+      document.body.removeChild(ta)
     }
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
   }
 
-  const handleSavePdf = () => {
-    window.print()
-  }
+  if (!letter) return null
 
   return (
     <div style={{ backgroundColor: '#F0EEE8', minHeight: '100vh' }}>
@@ -36,19 +38,10 @@ export default function Letter() {
           from { opacity: 0; transform: translateY(16px); }
           to { opacity: 1; transform: translateY(0); }
         }
-        .letter-content {
-          animation: fadeInUp 0.5s ease-out forwards;
-        }
-        .copy-btn:hover {
-          background-color: #E8E6DF !important;
-        }
-        .pdf-btn:hover {
-          background-color: #2D2D2D !important;
-        }
-        .back-link:hover {
-          opacity: 0.75;
-        }
-
+        .letter-content { animation: fadeInUp 0.5s ease-out forwards; }
+        .copy-btn:hover { background-color: #E8E6DF !important; }
+        .pdf-btn:hover { background-color: #2D2D2D !important; }
+        .back-link:hover { opacity: 0.75; }
         @media print {
           nav, .no-print { display: none !important; }
           body { background: white !important; }
@@ -60,13 +53,9 @@ export default function Letter() {
 
       <div
         className="letter-content"
-        style={{
-          maxWidth: '720px',
-          margin: '0 auto',
-          padding: '48px 24px 80px 24px',
-        }}
+        style={{ maxWidth: '720px', margin: '0 auto', padding: '48px 24px 80px 24px' }}
       >
-        {/* Back Link */}
+        {/* Back */}
         <button
           className="back-link"
           onClick={() => navigate('/upload')}
@@ -86,7 +75,7 @@ export default function Letter() {
           ← Audit another bill
         </button>
 
-        {/* Heading Row */}
+        {/* Heading + buttons */}
         <div style={{
           display: 'flex',
           alignItems: 'center',
@@ -129,7 +118,7 @@ export default function Letter() {
 
             <button
               className="pdf-btn"
-              onClick={handleSavePdf}
+              onClick={() => window.print()}
               style={{
                 backgroundColor: '#1A1A1A',
                 color: '#FFFFFF',
@@ -148,7 +137,7 @@ export default function Letter() {
           </div>
         </div>
 
-        {/* Letter Document */}
+        {/* Letter document */}
         <div
           className="letter-doc"
           style={{
@@ -165,10 +154,10 @@ export default function Letter() {
             wordBreak: 'break-word',
           }}
         >
-          {mockLetter}
+          {letter}
         </div>
 
-        {/* Legal Disclaimer */}
+        {/* Disclaimer */}
         <div
           className="no-print"
           style={{
@@ -194,7 +183,6 @@ export default function Letter() {
           }}>
             <span style={{ color: '#DC2626' }}>⚠</span>
           </div>
-
           <p style={{
             fontFamily: "'Satoshi', sans-serif",
             fontSize: '0.85rem',
