@@ -6,38 +6,39 @@
   <title>BillShield — Know What You Owe</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
   <style>
     /* ── Tokens ─────────────────────────────────────────────── */
     :root {
-      --bg:          #F7F6F3;
+      --bg:          #F8FAFC;
       --surface:     #FFFFFF;
-      --surface-alt: #EDECE8;
-      --text:        #111110;
-      --text-2:      #4B4B49;
-      --muted:       #767673;
-      --border:      #E0DED8;
+      --surface-alt: #EEF2F7;
+      --text:        #0F172A;
+      --text-2:      #334155;
+      --muted:       #64748B;
+      --border:      #CBD5E1;
+      --accent:      #B45309;
       --red:         #DC2626;
       --red-bg:      #FEF2F2;
       --red-border:  #FCA5A5;
       --green:       #16A34A;
       --green-bg:    #F0FDF4;
       --amber:       #D97706;
-      --display:     'DM Serif Display', Georgia, serif;
-      --body:        'DM Sans', 'Helvetica Neue', sans-serif;
+      --display:     'EB Garamond', Georgia, serif;
+      --body:        'Lato', 'Helvetica Neue', sans-serif;
       --radius:      5px;
       --max-w:       920px;
       --nav-h:       52px;
     }
 
     html[data-theme="dark"] {
-      --bg:          #18181A;
-      --surface:     #222220;
-      --surface-alt: #1E1E1C;
-      --text:        #F2F1EE;
-      --text-2:      #C0BFB8;
-      --muted:       #8D8D8A;
-      --border:      #333331;
+      --bg:          #0F172A;
+      --surface:     #1E293B;
+      --surface-alt: #162032;
+      --text:        #F8FAFC;
+      --text-2:      #CBD5E1;
+      --muted:       #94A3B8;
+      --border:      #334155;
       --red-bg:      #2D1010;
       --red-border:  #7F1D1D;
       --green-bg:    #0F231A;
@@ -104,8 +105,8 @@
       display: inline-flex;
       align-items: center;
       gap: 0.3rem;
-      background: var(--text);
-      color: var(--bg);
+      background: var(--accent);
+      color: #fff;
       font-family: var(--body);
       font-size: 0.85rem;
       font-weight: 500;
@@ -148,7 +149,7 @@
       border: none;
       white-space: nowrap;
     }
-    .btn--dark    { background: var(--text); color: var(--bg); }
+    .btn--dark    { background: var(--accent); color: #fff; }
     .btn--dark:hover { opacity: 0.82; }
     .btn--outline { background: transparent; border: 1px solid var(--border); color: var(--text); }
     .btn--outline:hover { background: var(--surface-alt); }
@@ -196,6 +197,7 @@
     .phrase-col {
       display: flex;
       flex-direction: column;
+      justify-content: center;
     }
     .phrase-col--left  { align-items: flex-end; }
     .phrase-col--right { align-items: flex-start; }
@@ -205,7 +207,7 @@
       font-size: 0.72rem;
       color: var(--muted);
       opacity: 0;
-      line-height: 2.2;
+      line-height: 1.75;
       cursor: default;
       padding: 0 0.4rem;
       border-left: 2px solid transparent;

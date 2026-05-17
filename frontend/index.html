@@ -6,41 +6,42 @@
   <title>BillShield — Hospital Bill Auditor</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
   <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <style>
     /* ── Tokens ─────────────────────────────────────────────── */
     :root {
-      --bg:          #F7F6F3;
+      --bg:          #F8FAFC;
       --surface:     #FFFFFF;
-      --surface-alt: #EDECE8;
-      --text:        #111110;
-      --text-2:      #4B4B49;
-      --muted:       #767673;
-      --border:      #E0DED8;
+      --surface-alt: #EEF2F7;
+      --text:        #0F172A;
+      --text-2:      #334155;
+      --muted:       #64748B;
+      --border:      #CBD5E1;
+      --accent:      #B45309;
       --red:         #DC2626;
       --red-bg:      #FEF2F2;
       --green:       #16A34A;
       --green-bg:    #F0FDF4;
       --amber:       #D97706;
       --amber-bg:    #FFFBEB;
-      --display:     'DM Serif Display', Georgia, serif;
-      --body:        'DM Sans', 'Helvetica Neue', sans-serif;
+      --display:     'EB Garamond', Georgia, serif;
+      --body:        'Lato', 'Helvetica Neue', sans-serif;
       --radius:      5px;
       --max-w:       920px;
       --nav-h:       52px;
     }
 
     html[data-theme="dark"] {
-      --bg:          #18181A;
-      --surface:     #222220;
-      --surface-alt: #1E1E1C;
-      --text:        #F2F1EE;
-      --text-2:      #C0BFB8;
-      --muted:       #8D8D8A;
-      --border:      #333331;
+      --bg:          #0F172A;
+      --surface:     #1E293B;
+      --surface-alt: #162032;
+      --text:        #F8FAFC;
+      --text-2:      #CBD5E1;
+      --muted:       #94A3B8;
+      --border:      #334155;
       --red-bg:      #2D1010;
       --green-bg:    #0F231A;
       --amber-bg:    #2A1E0A;
@@ -159,7 +160,7 @@
       text-decoration: none;
     }
     .btn:disabled                      { opacity: 0.4; cursor: not-allowed; }
-    .btn--dark                         { background: var(--text); color: var(--bg); }
+    .btn--dark                         { background: var(--accent); color: #fff; }
     .btn--dark:not(:disabled):hover    { opacity: 0.82; }
     .btn--outline                      { background: transparent; color: var(--text); border: 1px solid var(--border); }
     .btn--outline:not(:disabled):hover { background: var(--surface-alt); }
@@ -487,7 +488,7 @@ function UploadScreen({ onDone }) {
     <div className="upload-wrap">
       <div className="upload-inner">
         <h1 className="display" style={{ marginBottom: '1rem' }}>Know what<br />you owe.</h1>
-        <p style={{ color: 'var(--muted)', fontSize: '1rem', lineHeight: 1.65, maxWidth: 420, margin: '0 auto' }}>
+        <p style={{ color: 'var(--muted)', fontSize: '1rem', lineHeight: 1.65, maxWidth: 420, textAlign: 'center' }}>
           Upload your hospital bill. We check every line against verified government rates.
         </p>
 
@@ -521,7 +522,7 @@ function UploadScreen({ onDone }) {
 
         {error && <div className="error" role="alert">{error}</div>}
 
-        <div style={{ marginTop: '1.5rem', display: 'flex', justifyContent: 'center' }}>
+        <div style={{ marginTop: '1.5rem' }}>
           <button className="btn btn--dark" style={{ minWidth: 180 }} disabled={!file} onClick={() => onDone(file)}>
             Analyse Bill →
           </button>

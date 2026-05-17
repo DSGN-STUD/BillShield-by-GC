@@ -200,49 +200,6 @@ Avoid:
 
 ---
 
-## UI STYLE
-
-Target user: Indian families aged 30–50. Tone: clean, modern, approachable, trustworthy.
-Not startup-flashy. Not intimidating. Feels like a premium utility — Zerodha meets a legal document.
-
-### Theme
-- Default: off-white background (#F7F6F3), near-black text (#1A1A1A)
-- Optional dark mode: deep charcoal (#1C1C1E) background, off-white text
-- Toggle between light/dark — NOT navy or blue-black
-
-### Status colours (intentional, minimal, consistent)
-- Flagged / overcharge: #DC2626 (clean red)
-- Clean / within benchmark: #16A34A (confident green)
-- Unverifiable: #D97706 (amber)
-- Neutral UI elements: #6B7280 (grey)
-- Never use these colours decoratively — only for status meaning
-
-### Typography
-- Never use Inter, Roboto, Arial, or system fonts
-- Heading font: DM Serif Display or Playfair Display
-- Body font: DM Sans or Work Sans
-- Minimum 15px body, 18px+ for key data
-
-### Layout
-- Desktop-primary, mobile-responsive
-- Generous whitespace
-- Left-aligned text throughout
-- Maximum width: 1100px centered
-
-### The proof moment (results screen)
-- Flagged items appear first, in red
-- Each flag shows: item name, billed amount, CGHS benchmark, multiplier, citation
-- Balanced — clear and firm, not alarming
-- Keep the component easy to iterate
-
-### What to avoid
-- Purple gradients
-- Excessive card shadows
-- Generic SaaS blue
-- Anything designed for a 25-year-old fintech startup
-
----
-
 ## DEBUGGING RULES
 
 When debugging:
