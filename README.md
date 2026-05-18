@@ -1,5 +1,5 @@
-BillShield
-is an AI-powered hospital bill auditor for Indian families
+# BillShield 🛡️
+AI-powered hospital bill auditor for Indian families
 
 > *"Most of them are helpless, fact-less — no data at their thumbs to argue with or compare with, so they give up."*
 
@@ -8,8 +8,6 @@ BillShield checks every line of your hospital bill against verified Indian gover
 ---
 
 ## The Problem
-
-Indian families are routinely overcharged on hospital bills. When they ask questions, they're met with dismissal or silence. Without verified data, they give up.
 
 | Patient | Bill | What happened |
 |---------|------|---------------|
@@ -100,17 +98,169 @@ All structural violations cite **CGHS OM 03.10.2025, Annexure-III §1/§2**.
 | Prompts | Separate `.txt` files per stage |
 | Deploy | ngrok (demo) → Render (production) |
 
-### API Routes
+---
 
-| Method | Route | Description |
-|--------|-------|-------------|
-| `GET` | `/` | Redirects to landing page |
-| `GET` | `/landing.html` | Marketing landing page |
-| `GET` | `/index.html` | The tool — 4 screens |
-| `POST` | `/api/extract` | File upload → extracted JSON |
-| `POST` | `/api/analyze` | Extracted JSON → flags with citations |
-| `POST` | `/api/letter` | Analysis + extracted → dispute letter |
-| `GET` | `/health` | `{"status": "ok"}` |
+## MCP Server
+
+BillShield is packaged as a **Model Context Protocol (MCP) server**, allowing any MCP-compatible client — Claude Desktop, Claude Code, or any LLM tool — to audit hospital bills directly without the web interface.
+
+### MCP Architecture
+
+```
+┌──────────────────────────────────────────────────────┐
+│              BillShield MCP Server                   │
+│                billshield_mcp.py                     │
+│                                                      │
+│  ┌────────────────────────────────────────────────┐  │
+│  │                 4 MCP Tools                     │ │
+│  │                                                 │ │
+│  │  billshield_extract(file_path)                  │ │
+│  │  → Bill PDF/photo → structured JSON             │ │
+│  │                                                 │ │
+│  │  billshield_analyze(extracted_json)             │ │
+│  │  → JSON → flags with CGHS citations             │ │
+│  │                                                 │ │
+│  │  billshield_letter(extracted, analysis)         │ │
+│  │  → Flags → formal dispute letter                │ │
+│  │                                                 │ │
+│  │  billshield_audit(file_path)                    │ │
+│  │  → Full pipeline in one call                    │ │
+│  └────────────────────────────────────────────────┘  │
+│                        │                             │
+│            Calls pipeline.py internally              │
+│  (same extract_bill / analyze_bill / generate_letter)│
+└──────────────────────────────────────────────────────┘
+```
+
+### Installation
+
+```bash
+pip install fastmcp anthropic
+```
+
+### Claude Desktop Setup
+
+Add to `~/.claude_desktop_config.json`:
+
+```json
+{
+  "mcpServers": {
+    "billshield": {
+      "command": "python3",
+      "args": ["/path/to/BillShield-by-GC/billshield_mcp.py"],
+      "env": {
+        "ANTHROPIC_API_KEY": "your-key-here"
+      }
+    }
+  }
+}
+```
+
+Restart Claude Desktop. All four tools are available in any Claude session.
+
+### MCP Tool Reference
+
+| Tool | Input | Output |
+|------|-------|--------|
+| `billshield_extract` | `file_path` — absolute path to PDF/JPG/PNG | JSON with hospital info, line items, metadata |
+| `billshield_analyze` | `extracted_json` — output from extract | JSON with flags, citations, total flagged, letter warranted |
+| `billshield_letter` | `extracted_json` + `analysis_json` | Plain text dispute letter or threshold message |
+| `billshield_audit` | `file_path` — absolute path to bill | Full formatted audit report + letter if warranted |
+
+### MCP Usage Example
+
+In Claude Desktop after connecting the server:
+
+```
+Audit this hospital bill: /Users/gc/bills/bill.pdf
+```
+
+Claude calls `billshield_audit` and returns:
+- Hospital name, city, tier, accreditation
+- All flagged items with CGHS codes and multipliers
+- Total flagged amount
+- Dispute letter if total > ₹2,500
+
+---
+
+## Claude Code Skill
+
+BillShield ships as a **Claude Code skill** — a self-contained knowledge file that teaches any Claude Code session how to audit hospital bills using only its context window. No Flask server. No MCP. No dependencies.
+
+### Skill Structure
+
+```
+skills/billshield/SKILL.md
+├── Trigger conditions (when to use this skill)
+├── Complete knowledge base
+│   ├── CGHS OM 03.10.2025 — 11 key rates + tier multipliers
+│   ├── CGHS Annexure-III — bundled items that cannot be billed separately
+│   ├── NPPA DPCO 2013 — stent price caps
+│   └── IRDAI Master Circular 29.05.2024 — patient rights
+├── Flagging rules (>2× threshold · structural violations · unverifiable)
+├── Three-stage workflow (Extract → Analyse → Letter)
+├── Structured JSON output format
+├── Dispute letter format (4-section)
+└── Guardrails (PII · banned words · citations only · ₹2,500 threshold)
+```
+
+### How to Use the Skill
+
+In any Claude Code session:
+
+```bash
+# The skill is already in the repo at skills/billshield/SKILL.md
+# Just reference it in your prompt:
+
+"Read skills/billshield/SKILL.md.
+Here is a hospital bill: [upload file]
+Run the full BillShield audit."
+```
+
+Claude Code reads the embedded knowledge base and runs the full 3-stage pipeline in its context window — no API server needed.
+
+### Trigger Phrases
+
+The skill activates on:
+- "check my hospital bill"
+- "I think I was overcharged"
+- "help me dispute this bill"
+- "CGHS rates"
+- "audit bill"
+- "insurance rejected"
+- "hospital bill India"
+
+### When to Use Skill vs MCP vs Web App
+
+| Method | Best for | Requires |
+|--------|----------|---------|
+| **Web app** | End users uploading bills via browser | Flask + API key running |
+| **MCP server** | Claude Desktop · developer workflows | fastmcp + API key |
+| **Claude Code Skill** | Claude Code sessions · no server needed | SKILL.md file only |
+| **Public API** | External integrations · other LLMs | Running server + Bearer token |
+
+---
+
+## Public API
+
+REST API with Bearer token authentication and rate limiting (60 req/hour).
+
+```bash
+curl -X POST https://your-api-url/v1/audit \
+  -H "Authorization: Bearer your-api-key" \
+  -F "file=@hospital_bill.pdf"
+```
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/v1/health` | GET | Health check — no auth required |
+| `/v1/rates` | GET | CGHS benchmark rates by tier |
+| `/v1/extract` | POST | File → extracted JSON |
+| `/v1/analyze` | POST | JSON → flags with citations |
+| `/v1/letter` | POST | Analysis → dispute letter |
+| `/v1/audit` | POST | Full pipeline in one call |
+
+See [API_DOCS.md](./API_DOCS.md) for full documentation.
 
 ---
 
@@ -119,20 +269,21 @@ All structural violations cite **CGHS OM 03.10.2025, Annexure-III §1/§2**.
 1. **PII redaction** — Aadhaar, PAN, phone stripped before any LLM call
 2. **Prompt injection resistance** — adversarial inputs tested and blocked
 3. **No fabricated citations** — "Could not verify" instead of guessing
-4. **Banned language** — FIR, IPC, Section 420, fraud removed from letters
+4. **Banned language** — FIR, IPC, Section 420 removed from all letters
 5. **Sanity check UI** — user confirms extracted items before analysis
-6. **Letter threshold** — no letter unless total flagged > ₹2,500
+6. **Empty extraction guard** — analyst blocked if no line items extracted
+7. **₹2,500 threshold** — no letter unless total flagged exceeds threshold
 
 ---
 
-## Evaluation — 4 Bills
+## Evaluation — 4 Golden Dataset Bills
 
-| Bill | Type | Extractor | Analyst | Letter |
-|------|------|-----------|---------|--------|
-| **A** | Clean cataract · ₹18,198 | ✅ 21 items | ✅ **0 flags** | — |
-| **B** | Brain stroke · ₹1,35,820 | ✅ 21 items | ✅ 15 flags · ₹54,730 | ✅ |
-| **C** | Adversarial (PII + injection) | ✅ Blocked | — | — |
-| **D** | Photo · fever · ₹20,500 | ✅ OCR works | ✅ 6 flags | — |
+| Bill | Type | Result |
+|------|------|--------|
+| **A** | Clean cataract · ₹18,198 | ✅ 0 flags — true negative |
+| **B** | Brain stroke · ₹1,35,820 | ✅ 15 flags · ₹54,730 flagged |
+| **C** | Adversarial (PII + injection) | ✅ Blocked |
+| **D** | Real photo · fever · ₹20,500 | ✅ 6 flags detected |
 
 ---
 
@@ -153,11 +304,13 @@ BillShield-by-GC/
 │   └── letter_writer.txt
 │
 ├── frontend/
-│   ├── landing.html                # Landing page
-│   ├── index.html                  # Tool — 4 screens
-│   └── advisors.html               # Legal advisor directory
+│   ├── landing.html
+│   ├── index.html
+│   └── advisors.html
 │
-├── skills/billshield/SKILL.md      # Claude Code skill
+├── skills/
+│   └── billshield/
+│       └── SKILL.md                # Claude Code skill
 │
 ├── BillShield_DESIGN_QUESTIONS.md
 ├── BillShield_INTERVIEW_INSIGHTS.md
@@ -173,32 +326,11 @@ BillShield-by-GC/
 ```bash
 git clone https://github.com/DSGN-STUD/BillShield-by-GC.git
 cd BillShield-by-GC
-
 pip3 install anthropic flask flask-cors gunicorn
-
 export ANTHROPIC_API_KEY=your-key-here
-
 python3 app.py
 # Open http://localhost:8080/landing.html
 ```
-
----
-
-## MCP Server
-
-```json
-{
-  "mcpServers": {
-    "billshield": {
-      "command": "python3",
-      "args": ["/path/to/BillShield-by-GC/billshield_mcp.py"],
-      "env": { "ANTHROPIC_API_KEY": "your-key" }
-    }
-  }
-}
-```
-
-Four tools: `billshield_extract` · `billshield_analyze` · `billshield_letter` · `billshield_audit`
 
 ---
 
@@ -221,17 +353,20 @@ Eight questions answered before writing a single line of code:
 
 ## v2 Roadmap
 
-- MCP server — built, not deployed
-- Public REST API with auth + rate limiting — built
-- Claude Code Skill — built
-- Real legal advisor integrations with Whatsapp support - frontend available
-- Case study page with 4 patient stories
-- Mobile app
-- Vernacular support (Hindi, Tamil)
+| Feature | Status |
+|---------|--------|
+| MCP server | ✅ Built |
+| Public REST API | ✅ Built |
+| Claude Code Skill | ✅ Built |
+| Empty extraction guard | ✅ Built |
+| Real legal advisor integrations | Planned |
+| Case study page | Planned |
+| Mobile app | Future |
+| Vernacular support (Hindi, Tamil) | Future |
 
 ---
 
-## Cost to Build
+## Cost
 
 **Total: ₹15,000 INR** — API subscriptions, Claude Pro, Google AI Studio, Lovable, tools.
 
@@ -239,6 +374,6 @@ Eight questions answered before writing a single line of code:
 
 ## Built By
 
-**Gurucharan Ganesan** — · May 2026
+**Gurucharan** — Design Student, 100x Cohort · May 2026
 
 *Informational tool only. Not legal advice.*
