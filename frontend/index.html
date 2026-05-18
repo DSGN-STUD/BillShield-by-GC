@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script>!function(){var s=localStorage.getItem('bs-theme'),d=window.matchMedia('(prefers-color-scheme:dark)').matches;if(!(s?s==='dark':d))document.documentElement.setAttribute('data-theme','light')}()</script>
+  <script>!function(){var s=localStorage.getItem('billshield-theme'),d=window.matchMedia('(prefers-color-scheme:dark)').matches;if(!(s?s==='dark':d))document.documentElement.classList.add('light')}()</script>
   <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -45,7 +45,7 @@
       --nav-h:   58px;
     }
 
-    html[data-theme="light"] {
+    html.light {
       --bg:          #F4F1EA;
       --bg-2:        #ECE7DC;
       --surface:     #ECE7DC;
@@ -275,7 +275,11 @@
       background: var(--surface);
       margin-top: 1.5rem;
     }
-    @media (max-width: 680px) { .sanity-split { grid-template-columns: 1fr; } }
+    @media (max-width: 680px) {
+      .sanity-split { grid-template-columns: 1fr; }
+      .sanity-panel { height: 250px; }
+      .sanity-panel + .sanity-panel { border-left: none; border-top: 1px solid var(--border); height: auto; max-height: 320px; }
+    }
     .sanity-panel { display: flex; flex-direction: column; height: 500px; }
     .sanity-panel + .sanity-panel { border-left: 1px solid var(--border); }
     .sanity-head {
@@ -428,6 +432,66 @@
       margin-top: 0.75rem;
     }
 
+    /* ── Split results/letter layout ─────────────────────── */
+    .results-split {
+      display: grid;
+      grid-template-columns: 55fr 45fr;
+      align-items: start;
+    }
+    .results-left {
+      position: sticky;
+      top: var(--nav-h);
+      max-height: calc(100vh - var(--nav-h));
+      overflow-y: auto;
+      padding: 2.5rem 2rem;
+      border-right: 1px solid var(--border);
+    }
+    .results-right {
+      padding: 2.5rem 2rem;
+      min-height: calc(100vh - var(--nav-h));
+    }
+    .letter-box--split { max-height: 420px; }
+    @media (max-width: 768px) {
+      .results-split { grid-template-columns: 1fr; }
+      .results-left { position: static; max-height: none; border-right: none; border-bottom: 1px solid var(--border); }
+    }
+
+    /* Pulsing loading dots */
+    .pulse-dots { display: inline-flex; gap: 2px; align-items: center; margin-left: 4px; }
+    .pulse-dot {
+      display: inline-block;
+      animation: pulseDot 1.4s ease-in-out infinite;
+      color: var(--accent);
+      font-size: 1.1rem;
+      line-height: 1;
+    }
+    .pulse-dot:nth-child(2) { animation-delay: 0.2s; }
+    .pulse-dot:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes pulseDot { 0%, 80%, 100% { opacity: 0.25; } 40% { opacity: 1; } }
+
+    /* Typewriter cursor */
+    .tw-cursor {
+      display: inline-block; width: 2px; height: 1em;
+      background: var(--accent); margin-left: 1px;
+      vertical-align: text-bottom;
+      animation: blink 1s step-end infinite;
+    }
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+    /* ── Mobile responsive ─────────────────────────────────── */
+    @media (max-width: 640px) {
+      .nav-about { display: none; }
+      .upload-wrap { padding: 2rem 1.25rem; }
+      .upload-inner { max-width: 100%; }
+      .display { font-size: 2.2rem; }
+      .dropzone { padding: 2rem 1.25rem; min-height: 160px; }
+      .proc-wrap { padding: 3rem 1.25rem; }
+      .letter-actions { flex-direction: column; align-items: stretch; }
+      .letter-actions .btn { width: 100%; justify-content: center; }
+      .letter-box { padding: 1.5rem 1.25rem; }
+      .page { padding: 2rem 1.25rem; }
+    }
+
     /* ── Print ──────────────────────────────────────────────── */
     @media print {
       .nav, .letter-actions, .summary-card, .section-label-results { display: none !important; }
@@ -503,12 +567,19 @@ function Nav({ dark, onToggle }) {
   );
 }
 
-// ── Screen 1: Upload ───────────────────────────────────────────────────
+// ── Screen 1: Upload ──────────────────────────────────────────────────
+
+const UPLOAD_STATUS = ['Reading document…', 'Extracting line items…', 'Checking confidence…', 'Almost done…'];
 
 function UploadScreen({ onDone }) {
-  const [file, setFile]   = useState(null);
-  const [over, setOver]   = useState(false);
-  const [error, setError] = useState(null);
+  const [file,     setFile]     = useState(null);
+  const [over,     setOver]     = useState(false);
+  const [error,    setError]    = useState(null);
+  const [phase,    setPhase]    = useState('idle');
+  const [msgIdx,   setMsgIdx]   = useState(0);
+  const [apiData,  setApiData]  = useState(null);
+  const [apiError, setApiError] = useState(null);
+  const doneRef  = useRef(false);
   const inputRef = useRef(null);
 
   const VALID_TYPES = ['application/pdf', 'image/jpeg', 'image/png'];
@@ -517,13 +588,58 @@ function UploadScreen({ onDone }) {
   const pick = f => {
     if (!f) return;
     if (!VALID_TYPES.includes(f.type)) { setError('Please upload a PDF, JPG, or PNG file.'); return; }
-    if (f.size > MAX)                  { setError('File exceeds 10 MB. Please compress or crop it.'); return; }
+    if (f.size > MAX) { setError('File exceeds 10 MB. Please compress or crop it.'); return; }
     setError(null);
     setFile(f);
   };
 
   const onDrop = useCallback(e => { e.preventDefault(); setOver(false); pick(e.dataTransfer.files[0]); }, []);
   const sizeLabel = f => f.size < 1e6 ? (f.size / 1024).toFixed(0) + ' KB' : (f.size / 1e6).toFixed(1) + ' MB';
+
+  // Kick off fetch when phase changes to 'processing'
+  useEffect(() => {
+    if (phase !== 'processing') return;
+    const ctrl = new AbortController();
+    const form = new FormData();
+    form.append('file', file);
+    fetch(`${API}/api/extract`, { method: 'POST', body: form, signal: ctrl.signal })
+      .then(r => r.ok ? r.json() : r.json().then(j => Promise.reject(j.error || `Server ${r.status}`)))
+      .then(data => setApiData(data))
+      .catch(err => { if (err.name !== 'AbortError') setApiError(String(err)); });
+    return () => ctrl.abort();
+  }, [phase]);
+
+  // Cycle status message every 2s while waiting
+  useEffect(() => {
+    if (phase !== 'processing' || apiData) return;
+    if (msgIdx >= UPLOAD_STATUS.length - 1) return;
+    const t = setTimeout(() => setMsgIdx(i => i + 1), 2000);
+    return () => clearTimeout(t);
+  }, [phase, msgIdx, apiData]);
+
+  // Navigate shortly after API responds
+  useEffect(() => {
+    if (!apiData || doneRef.current) return;
+    doneRef.current = true;
+    const t = setTimeout(() => onDone(file, apiData), 700);
+    return () => clearTimeout(t);
+  }, [apiData]);
+
+  const processing = phase === 'processing';
+
+  if (apiError) {
+    return (
+      <div className="upload-wrap">
+        <div className="upload-inner">
+          <div className="proc-error-box" role="alert">
+            <div className="proc-error-title">Something went wrong</div>
+            <div className="proc-error-msg">{apiError}</div>
+            <button className="btn btn--outline" onClick={() => { setPhase('idle'); setApiError(null); setMsgIdx(0); setApiData(null); doneRef.current = false; }}>Try again</button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="upload-wrap">
@@ -534,15 +650,16 @@ function UploadScreen({ onDone }) {
         </p>
 
         <div
-          className={`dropzone ${over ? 'dropzone--over' : ''} ${file ? 'dropzone--ready' : ''}`}
-          onClick={() => inputRef.current.click()}
-          onDrop={onDrop}
-          onDragOver={e => { e.preventDefault(); setOver(true); }}
+          className={`dropzone ${over && !processing ? 'dropzone--over' : ''} ${file ? 'dropzone--ready' : ''}`}
+          onClick={() => !processing && inputRef.current.click()}
+          onDrop={e => !processing && onDrop(e)}
+          onDragOver={e => { if (!processing) { e.preventDefault(); setOver(true); } }}
           onDragLeave={() => setOver(false)}
           role="button"
-          tabIndex={0}
+          tabIndex={processing ? -1 : 0}
           aria-label="Upload bill"
-          onKeyDown={e => e.key === 'Enter' && inputRef.current.click()}
+          onKeyDown={e => e.key === 'Enter' && !processing && inputRef.current.click()}
+          style={{ cursor: processing ? 'default' : 'pointer' }}
         >
           <input ref={inputRef} type="file" accept=".pdf,.jpg,.jpeg,.png" style={{ display: 'none' }} onChange={e => pick(e.target.files[0])} aria-hidden="true" />
           {file ? (
@@ -550,7 +667,7 @@ function UploadScreen({ onDone }) {
               <div className="dz-check" aria-hidden="true">✓</div>
               <div className="dz-name">{file.name}</div>
               <div className="dz-size">{sizeLabel(file)}</div>
-              <span className="dz-change">Change file</span>
+              {!processing && <span className="dz-change">Change file</span>}
             </>
           ) : (
             <>
@@ -561,19 +678,34 @@ function UploadScreen({ onDone }) {
           )}
         </div>
 
-        {error && <div className="error" role="alert">{error}</div>}
+        {error && !processing && <div className="error" role="alert">{error}</div>}
 
         <div style={{ marginTop: '1.5rem' }}>
-          <button className="btn btn--dark" style={{ minWidth: 180 }} disabled={!file} onClick={() => onDone(file)}>
-            Analyse Bill →
+          <button
+            className="btn btn--dark"
+            style={{ minWidth: 180 }}
+            disabled={!file || processing}
+            onClick={() => setPhase('processing')}
+          >
+            {processing
+              ? <><span className="proc-spinner" style={{ borderColor: 'rgba(255,255,255,0.3)', borderTopColor: '#fff' }} /> Auditing…</>
+              : 'Analyse Bill →'}
           </button>
         </div>
 
-        <div className="trust-row" aria-label="Trust signals">
-          <div className="trust-item"><span className="trust-dot" aria-hidden="true" />Verified CGHS rates</div>
-          <div className="trust-item"><span className="trust-dot" aria-hidden="true" />No login required</div>
-          <div className="trust-item"><span className="trust-dot" aria-hidden="true" />Your data never stored</div>
-        </div>
+        {processing && (
+          <p style={{ marginTop: '0.75rem', fontSize: '0.875rem', color: 'var(--accent)', animation: 'stepIn 0.3s ease both' }} aria-live="polite">
+            {apiData ? 'Done ✓' : UPLOAD_STATUS[msgIdx]}
+          </p>
+        )}
+
+        {!processing && (
+          <div className="trust-row" aria-label="Trust signals">
+            <div className="trust-item"><span className="trust-dot" aria-hidden="true" />Verified CGHS rates</div>
+            <div className="trust-item"><span className="trust-dot" aria-hidden="true" />No login required</div>
+            <div className="trust-item"><span className="trust-dot" aria-hidden="true" />Your data never stored</div>
+          </div>
+        )}
       </div>
     </div>
   );
@@ -690,30 +822,65 @@ function ProcessingScreen({ file, onDone, onBack }) {
 
 // ── Screen 2b: Sanity Check ────────────────────────────────────────────
 
+const ANALYSE_STEPS = [
+  { stage: 0, text: 'Loading CGHS rate schedule (Oct 2025)' },
+  { stage: 0, text: 'Comparing each line item' },
+  { stage: 0, text: 'Checking CGHS Annexure-III bundled items' },
+  { stage: 0, text: 'Applying accreditation adjustments' },
+  { stage: 0, text: 'Computing overcharge amounts' },
+  { stage: 1, text: 'Verifying citations' },
+  { stage: 1, text: 'Checking ₹2,500 threshold' },
+  { stage: 1, text: 'Finalising report' },
+];
+const ANALYSE_STAGE_TITLES = ['Analysing against benchmarks', 'Preparing results'];
+
 function SanityScreen({ file, extracted, onDone, onBack }) {
-  const [loading, setLoading] = useState(false);
-  const [error, setError]     = useState(null);
+  const [analysing,  setAnalysing]  = useState(false);
+  const [shown,      setShown]      = useState(0);
+  const [apiResult,  setApiResult]  = useState(null);
+  const [error,      setError]      = useState(null);
+  const doneRef = useRef(false);
   const fileURL = useRef(URL.createObjectURL(file)).current;
   const isPDF   = file.type === 'application/pdf';
   const items   = extracted.line_items || [];
   const hosp    = extracted.hospital   || {};
 
-  const confirm = async () => {
-    setLoading(true); setError(null);
-    try {
-      const res = await fetch(`${API}/api/analyze`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(extracted),
+  const confirm = () => {
+    setAnalysing(true); setError(null);
+    fetch(`${API}/api/analyze`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(extracted),
+    })
+      .then(r => r.ok ? r.json() : r.json().catch(() => ({})).then(j => Promise.reject(j.error || `Server ${r.status}`)))
+      .then(data => setApiResult(data))
+      .catch(e => {
+        setError(e.message && e.message.includes('fetch') ? 'Cannot reach server. Is app.py running?' : String(e));
+        setAnalysing(false);
       });
-      if (!res.ok) { const j = await res.json().catch(() => ({})); throw new Error(j.error || `Server ${res.status}`); }
-      onDone(await res.json());
-    } catch (e) {
-      setError(e.message.includes('fetch') ? 'Cannot reach server. Is app.py running?' : e.message);
-    } finally {
-      setLoading(false);
-    }
   };
+
+  // Step animation while analysing
+  useEffect(() => {
+    if (!analysing) return;
+    if (shown >= ANALYSE_STEPS.length) return;
+    const delay = apiResult ? 80 : (400 + Math.random() * 160);
+    const t = setTimeout(() => setShown(s => s + 1), delay);
+    return () => clearTimeout(t);
+  }, [analysing, shown, apiResult]);
+
+  // Navigate when API done and at least 3 steps shown
+  useEffect(() => {
+    if (apiResult && shown >= 3 && !doneRef.current) {
+      doneRef.current = true;
+      setTimeout(() => onDone(apiResult), 300);
+    }
+  }, [apiResult, shown]);
+
+  const currentStage = analysing && shown > 0
+    ? ANALYSE_STEPS[Math.min(shown - 1, ANALYSE_STEPS.length - 1)].stage
+    : 0;
+  const allDone = shown >= ANALYSE_STEPS.length;
 
   return (
     <div className="page page--lg">
@@ -755,23 +922,66 @@ function SanityScreen({ file, extracted, onDone, onBack }) {
 
       {error && <div className="error" role="alert">{error}</div>}
 
-      <div style={{ marginTop: '1.5rem', display: 'flex', gap: '1.25rem', alignItems: 'center' }}>
-        <button className="btn btn--dark" disabled={loading} onClick={confirm}>
-          {loading ? 'Analysing…' : 'This looks right — Analyse →'}
-        </button>
-        <button className="btn btn--ghost" onClick={onBack}>Something's wrong — start over</button>
-      </div>
+      {!analysing ? (
+        <div style={{ marginTop: '1.5rem', display: 'flex', gap: '1.25rem', alignItems: 'center' }}>
+          <button className="btn btn--dark" onClick={confirm}>
+            This looks right — Analyse →
+          </button>
+          <button className="btn btn--ghost" onClick={onBack}>Something's wrong — start over</button>
+        </div>
+      ) : (
+        <div style={{ marginTop: '1.75rem' }} aria-live="polite">
+          {ANALYSE_STAGE_TITLES.map((title, si) => {
+            if (si > currentStage) return null;
+            const stageSteps   = ANALYSE_STEPS.filter(s => s.stage === si);
+            const stageStart   = ANALYSE_STEPS.findIndex(s => s.stage === si);
+            const shownInStage = Math.max(0, Math.min(stageSteps.length, shown - stageStart));
+            const isActive     = si === currentStage;
+            return (
+              <div className="proc-stage" key={si}>
+                <div className={`proc-stage-head ${isActive ? 'proc-stage-head--active' : ''}`}>
+                  {si < currentStage ? '✓ ' : ''}{title}
+                </div>
+                <div className="proc-steps">
+                  {stageSteps.slice(0, shownInStage).map((step, idx) => (
+                    <div className="proc-step" key={idx}>
+                      <span className="proc-check" aria-hidden="true">✓</span>
+                      <span>{step.text}</span>
+                    </div>
+                  ))}
+                  {isActive && shownInStage < stageSteps.length && (
+                    <div className="proc-step proc-step--pending" key="current">
+                      <span className="proc-spinner" aria-hidden="true" />
+                      <span>{stageSteps[shownInStage].text}</span>
+                    </div>
+                  )}
+                </div>
+              </div>
+            );
+          })}
+          {allDone && !apiResult && (
+            <div className="proc-waiting">
+              <span className="proc-spinner" aria-hidden="true" />
+              <span>Still processing…</span>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }
 
-// ── Screen 3: Results ──────────────────────────────────────────────────
+// ── Screen 3: Results (with inline split letter panel) ────────────────
 
-function ResultsScreen({ extracted, analysis, onLetter }) {
-  const [cleanOpen, setCleanOpen] = useState(false);
-  const [unverOpen, setUnverOpen] = useState(false);
-  const [loading, setLoading]     = useState(false);
-  const [error, setError]         = useState(null);
+function ResultsScreen({ extracted, analysis }) {
+  const [cleanOpen,   setCleanOpen]   = useState(false);
+  const [unverOpen,   setUnverOpen]   = useState(false);
+  const [loading,     setLoading]     = useState(false);
+  const [error,       setError]       = useState(null);
+  const [letterPhase, setLetterPhase] = useState('none'); // 'none'|'loading'|'typing'|'ready'
+  const [letter,      setLetter]      = useState('');
+  const [typeText,    setTypeText]    = useState('');
+  const [copied,      setCopied]      = useState(false);
 
   const flags        = analysis.flags        || [];
   const unverifiable = analysis.unverifiable || [];
@@ -785,7 +995,7 @@ function ResultsScreen({ extracted, analysis, onLetter }) {
   const cleanItems = allItems.filter(i => !flaggedSet.has(i.item_name) && !unverSet.has(i.item_name));
 
   const getLetter = async () => {
-    setLoading(true); setError(null);
+    setLoading(true); setError(null); setLetterPhase('loading');
     try {
       const res = await fetch(`${API}/api/letter`, {
         method: 'POST',
@@ -793,8 +1003,11 @@ function ResultsScreen({ extracted, analysis, onLetter }) {
         body: JSON.stringify({ analysis, extracted }),
       });
       if (!res.ok) throw new Error(`Server returned ${res.status}`);
-      onLetter(await res.text());
+      const text = await res.text();
+      setLetter(text);
+      setLetterPhase('typing');
     } catch (e) {
+      setLetterPhase('none');
       setError(e.message.includes('fetch') ? 'Cannot reach server. Is app.py running?' : e.message);
     } finally {
       setLoading(false);
@@ -807,8 +1020,43 @@ function ResultsScreen({ extracted, analysis, onLetter }) {
     a.click();
   };
 
-  return (
-    <div className="page">
+  const downloadLetter = () => {
+    const a = Object.assign(document.createElement('a'), {
+      href: URL.createObjectURL(new Blob([letter], { type: 'text/plain;charset=utf-8' })),
+      download: 'billshield-dispute-letter.txt',
+    });
+    a.click();
+  };
+
+  const printAsPDF = () => {
+    const w = window.open('', '_blank');
+    w.document.write(`<!DOCTYPE html><html><head><title>Dispute Letter — BillShield</title>
+      <style>body{font-family:Georgia,serif;font-size:12pt;line-height:1.9;padding:3cm 3.5cm;color:#000;max-width:none;}pre{white-space:pre-wrap;font-family:inherit;}</style>
+      </head><body><pre>${letter.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}</pre>
+      <script>window.onload=()=>{window.print();}<\/script></body></html>`);
+    w.document.close();
+  };
+
+  const copyLetter = () => {
+    navigator.clipboard.writeText(letter).then(() => { setCopied(true); setTimeout(() => setCopied(false), 2200); });
+  };
+
+  // Typewriter effect — runs when letterPhase becomes 'typing'
+  useEffect(() => {
+    if (letterPhase !== 'typing' || !letter) return;
+    let i = 0;
+    setTypeText('');
+    const iv = setInterval(() => {
+      i++;
+      setTypeText(letter.slice(0, i));
+      if (i >= letter.length) { clearInterval(iv); setLetterPhase('ready'); }
+    }, 6);
+    return () => clearInterval(iv);
+  }, [letterPhase]);
+
+  // Reusable results content (JSX variable, not a component — avoids remounting)
+  const resultsContent = (
+    <>
       <div className="summary-card" role="region" aria-label="Analysis summary">
         <div className="summary-stats">
           <div>
@@ -830,7 +1078,9 @@ function ResultsScreen({ extracted, analysis, onLetter }) {
         </div>
         <div className="summary-actions">
           {analysis.letter_warranted
-            ? <button className="btn btn--dark" style={{ flex: 1 }} disabled={loading} onClick={getLetter}>{loading ? 'Drafting…' : 'Generate Dispute Letter'}</button>
+            ? <button className="btn btn--dark" style={{ flex: 1 }} disabled={loading || letterPhase !== 'none'} onClick={getLetter}>
+                {loading ? 'Drafting…' : letterPhase !== 'none' ? 'Letter generated ✓' : 'Generate Dispute Letter'}
+              </button>
             : <button className="btn btn--outline" style={{ flex: 1 }} disabled aria-disabled="true">Dispute letter not warranted</button>
           }
           <button className="btn btn--outline" onClick={saveRecords}>Save for records</button>
@@ -925,51 +1175,67 @@ function ResultsScreen({ extracted, analysis, onLetter }) {
           )}
         </div>
       )}
-    </div>
+    </>
   );
-}
 
-// ── Screen 4: Letter ───────────────────────────────────────────────────
-
-function LetterScreen({ letter, onBack }) {
-  const [copied, setCopied] = useState(false);
-
-  const copy = () => {
-    navigator.clipboard.writeText(letter).then(() => { setCopied(true); setTimeout(() => setCopied(false), 2200); });
-  };
-
-  const download = () => {
-    const a = Object.assign(document.createElement('a'), {
-      href: URL.createObjectURL(new Blob([letter], { type: 'text/plain;charset=utf-8' })),
-      download: 'billshield-dispute-letter.txt',
-    });
-    a.click();
-  };
-
-  const printAsPDF = () => {
-    const w = window.open('', '_blank');
-    w.document.write(`<!DOCTYPE html><html><head><title>Dispute Letter — BillShield</title>
-      <style>body{font-family:Georgia,serif;font-size:12pt;line-height:1.9;padding:3cm 3.5cm;color:#000;max-width:none;}pre{white-space:pre-wrap;font-family:inherit;}</style>
-      </head><body><pre>${letter.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}</pre>
-      <script>window.onload=()=>{window.print();}<\/script></body></html>`);
-    w.document.close();
-  };
-
-  return (
-    <div className="page" style={{ maxWidth: 760 }}>
-      <h2 className="heading" style={{ marginBottom: '1rem' }}>Your dispute letter is ready.</h2>
-      <div className="letter-note" role="note">
-        Review before sending. Fill in [Admission Date] and [Discharge Date] manually if they appear in the letter.
-      </div>
-      <div className="letter-box" tabIndex={0} aria-label="Dispute letter content">{letter}</div>
-      <div className="letter-actions">
-        <button className="btn btn--dark"    onClick={download}>Download .txt</button>
-        <button className="btn btn--outline" onClick={printAsPDF}>Print / Save as PDF</button>
-        <button className="btn btn--outline" onClick={copy}>{copied ? '✓ Copied' : 'Copy text'}</button>
-        <button className="btn btn--ghost"   onClick={onBack} style={{ marginLeft: 'auto' }}>← Back to results</button>
-      </div>
-    </div>
+  // Letter right panel content
+  const letterPanel = (
+    <>
+      <p className="label" style={{ color: 'var(--muted)', marginBottom: '1.25rem', letterSpacing: '0.12em' }}>Dispute Letter</p>
+      {letterPhase === 'loading' && (
+        <div style={{ paddingTop: '3rem', textAlign: 'center' }}>
+          <p style={{ fontFamily: 'var(--display)', fontSize: '1.05rem', fontWeight: 600, display: 'flex', alignItems: 'center', justifyContent: 'center', flexWrap: 'wrap', gap: '4px', marginBottom: '0.75rem' }}>
+            Drafting your dispute letter
+            <span className="pulse-dots" aria-hidden="true">
+              <span className="pulse-dot">·</span>
+              <span className="pulse-dot">·</span>
+              <span className="pulse-dot">·</span>
+            </span>
+          </p>
+          <p style={{ color: 'var(--muted)', fontSize: '0.875rem' }}>This usually takes 15–30 seconds.</p>
+        </div>
+      )}
+      {(letterPhase === 'typing' || letterPhase === 'ready') && (
+        <>
+          <p style={{ fontSize: '0.8rem', color: 'var(--green)', fontWeight: 500, marginBottom: '0.6rem' }}>Ready to send</p>
+          <div className="letter-note" role="note">
+            Review before sending. Fill in [Admission Date] and [Discharge Date] manually if they appear.
+          </div>
+          <div className="letter-box letter-box--split" tabIndex={0} aria-label="Dispute letter content">
+            {letterPhase === 'typing' ? typeText : letter}
+            {letterPhase === 'typing' && <span className="tw-cursor" aria-hidden="true" />}
+          </div>
+          <div className="letter-actions" style={{ marginTop: '1rem' }}>
+            <button className="btn btn--dark"    onClick={downloadLetter}>Download .txt</button>
+            <button className="btn btn--outline" onClick={printAsPDF}>Print / Save as PDF</button>
+            <button className="btn btn--outline" onClick={copyLetter}>{copied ? '✓ Copied' : 'Copy text'}</button>
+          </div>
+          <div style={{ borderTop: '1px solid var(--border)', marginTop: '2rem', paddingTop: '2rem' }}>
+            <h3 style={{ fontFamily: 'var(--display)', fontSize: '1.05rem', fontWeight: 600, letterSpacing: '-0.01em', margin: '0 0 0.4rem 0' }}>
+              Want a legal expert to review this?
+            </h3>
+            <p style={{ color: 'var(--muted)', fontSize: '0.875rem', lineHeight: 1.65, margin: '0 0 1rem 0' }}>
+              Connect with a legal advisor for ₹2,500–₹3,000 per consultation.
+            </p>
+            <a href="/advisors.html" target="_blank" rel="noopener noreferrer" className="btn btn--outline" style={{ display: 'inline-flex' }}>
+              Find a Legal Advisor →
+            </a>
+          </div>
+        </>
+      )}
+    </>
   );
+
+  if (letterPhase !== 'none') {
+    return (
+      <div className="results-split">
+        <div className="results-left">{resultsContent}</div>
+        <div className="results-right">{letterPanel}</div>
+      </div>
+    );
+  }
+
+  return <div className="page">{resultsContent}</div>;
 }
 
 // ── App ────────────────────────────────────────────────────────────────
@@ -979,34 +1245,30 @@ function App() {
   const [file,      setFile]      = useState(null);
   const [extracted, setExtracted] = useState(null);
   const [analysis,  setAnalysis]  = useState(null);
-  const [letter,    setLetter]    = useState(null);
   const [dark, setDark] = useState(() => {
     try {
-      const stored = localStorage.getItem('bs-theme');
+      const stored = localStorage.getItem('billshield-theme');
       if (stored) return stored === 'dark';
       return window.matchMedia('(prefers-color-scheme: dark)').matches;
     } catch { return false; }
   });
 
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
-    try { localStorage.setItem('bs-theme', dark ? 'dark' : 'light'); } catch {}
+    if (dark) {
+      document.documentElement.classList.remove('light');
+    } else {
+      document.documentElement.classList.add('light');
+    }
+    try { localStorage.setItem('billshield-theme', dark ? 'dark' : 'light'); } catch {}
   }, [dark]);
 
-  const reset = () => { setScreen('upload'); setFile(null); setExtracted(null); setAnalysis(null); setLetter(null); };
+  const reset = () => { setScreen('upload'); setFile(null); setExtracted(null); setAnalysis(null); };
 
   return (
     <>
       <Nav dark={dark} onToggle={() => setDark(d => !d)} />
       {screen === 'upload' && (
-        <UploadScreen onDone={f => { setFile(f); setScreen('processing'); }} />
-      )}
-      {screen === 'processing' && (
-        <ProcessingScreen
-          file={file}
-          onDone={data => { setExtracted(data); setScreen('sanity'); }}
-          onBack={reset}
-        />
+        <UploadScreen onDone={(f, data) => { setFile(f); setExtracted(data); setScreen('sanity'); }} />
       )}
       {screen === 'sanity' && (
         <SanityScreen
@@ -1020,11 +1282,7 @@ function App() {
         <ResultsScreen
           extracted={extracted}
           analysis={analysis}
-          onLetter={t => { setLetter(t); setScreen('letter'); }}
         />
-      )}
-      {screen === 'letter' && (
-        <LetterScreen letter={letter} onBack={() => setScreen('results')} />
       )}
     </>
   );
