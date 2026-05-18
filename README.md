@@ -1,5 +1,5 @@
 BillShield
-AI-powered hospital bill auditor for Indian families
+is an AI-powered hospital bill auditor for Indian families
 
 > *"Most of them are helpless, fact-less — no data at their thumbs to argue with or compare with, so they give up."*
 
