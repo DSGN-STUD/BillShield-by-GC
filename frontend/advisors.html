@@ -10,37 +10,28 @@
   <script>!function(){var s=localStorage.getItem('billshield-theme'),d=window.matchMedia('(prefers-color-scheme:dark)').matches;if(!(s?s==='dark':d))document.documentElement.classList.add('light')}()</script>
   <style>
     :root {
-      --bg:          #0E0E10;
-      --bg-2:        #15151A;
-      --ink:         #F4F1EA;
-      --line:        #26262C;
-      --accent:      #2F9E5E;
-      --surface:     #15151A;
-      --surface-alt: #1C1C22;
-      --text:        #F4F1EA;
-      --text-2:      #C8C4B8;
-      --muted:       #9A968D;
-      --border:      #26262C;
+      --bg:      #0E0E10;
+      --bg-2:    #15151A;
+      --ink:     #F4F1EA;
+      --ink-dim: #9A968D;
+      --line:    #26262C;
+      --accent:  #2F9E5E;
       --display: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', system-ui, sans-serif;
       --body:    -apple-system, BlinkMacSystemFont, 'SF Pro Text',    'Inter', system-ui, sans-serif;
-      --radius:  12px;
       --nav-h:   58px;
     }
     html.light {
-      --bg:          #F4F1EA;
-      --bg-2:        #ECE7DC;
-      --surface:     #ECE7DC;
-      --surface-alt: #E2DBCC;
-      --text:        #14140F;
-      --text-2:      #3C3830;
-      --muted:       #5C594F;
-      --border:      #D9D3C5;
+      --bg:      #F4F1EA;
+      --bg-2:    #ECE7DC;
+      --ink:     #14140F;
+      --ink-dim: #5C594F;
+      --line:    #D9D3C5;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       background: var(--bg);
-      color: var(--text);
+      color: var(--ink);
       font-family: var(--body);
       font-size: 15px;
       line-height: 1.55;
@@ -49,130 +40,126 @@
       transition: background .25s, color .25s;
     }
 
-    /* Nav */
+    /* ── Nav ── */
     .nav {
       position: sticky; top: 0; z-index: 100;
       background: color-mix(in oklab, var(--bg) 85%, transparent);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid var(--line);
     }
     .nav-inner {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 0 28px; max-width: 1280px; margin: 0 auto; height: var(--nav-h);
+      padding: 0 28px; max-width: 1200px; margin: 0 auto; height: var(--nav-h);
     }
     .nav-brand {
       display: inline-flex; align-items: center; gap: 10px;
       font-family: var(--display); font-size: 1.25rem; font-weight: 600;
-      letter-spacing: -0.02em; color: var(--text); text-decoration: none;
+      letter-spacing: -0.02em; color: var(--ink); text-decoration: none;
     }
     .nav-dot {
       width: 10px; height: 10px; border-radius: 50%;
       background: var(--accent); box-shadow: 0 0 16px var(--accent); flex-shrink: 0;
     }
     .nav-close {
-      font-size: 0.875rem; color: var(--muted); text-decoration: none;
+      font-size: 0.875rem; color: var(--ink-dim);
       cursor: pointer; background: none; border: none; font-family: var(--body);
       transition: color 0.15s;
     }
-    .nav-close:hover { color: var(--text); }
+    .nav-close:hover { color: var(--ink); }
 
-    /* Page */
-    .page { max-width: 860px; margin: 0 auto; padding: 4rem 2rem 6rem; }
+    /* ── Page ── */
+    .page { max-width: 1120px; margin: 0 auto; padding: 4rem 2rem 6rem; }
 
-    .page-label {
+    /* ── Hero ── */
+    .hero { max-width: 600px; margin-bottom: 3rem; }
+    .hero-label {
       font-size: 11px; font-weight: 600; letter-spacing: 0.14em;
-      text-transform: uppercase; color: var(--muted); margin-bottom: 0.75rem;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem;
     }
-    .page-heading {
-      font-family: var(--display); font-size: clamp(1.8rem, 4vw, 2.6rem);
+    .hero-heading {
+      font-family: var(--display); font-size: clamp(1.9rem, 4vw, 2.8rem);
       font-weight: 700; letter-spacing: -0.03em; line-height: 1.05;
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.85rem;
     }
-    .page-sub {
-      color: var(--muted); font-size: 1rem; line-height: 1.65;
-      max-width: 560px; margin-bottom: 3rem;
-    }
+    .hero-sub { color: var(--ink-dim); font-size: 1rem; line-height: 1.65; }
 
-    /* Advisor card */
+    /* ── Grid ── */
+    .advisor-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    @media (max-width: 860px) { .advisor-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { .advisor-grid { grid-template-columns: 1fr; } }
+
+    /* ── Card ── */
     .advisor-card {
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      background: linear-gradient(180deg, var(--bg-2), var(--bg));
-      padding: 1.25rem 1.5rem;
-      margin-bottom: 14px;
+      background: var(--bg-2);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 24px;
       display: flex;
-      align-items: center;
-      gap: 1.25rem;
+      flex-direction: column;
+      gap: 16px;
+      transition: border-color 0.15s, transform 0.15s;
     }
+    .advisor-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+
+    /* ── Avatar — initials ── */
     .advisor-avatar {
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      object-fit: cover;
+      width: 56px; height: 56px; border-radius: 50%;
+      background: color-mix(in oklab, var(--accent) 18%, var(--bg-2));
+      color: var(--accent);
+      font-family: var(--display); font-size: 20px; font-weight: 600;
+      letter-spacing: -0.02em;
+      display: flex; align-items: center; justify-content: center;
       flex-shrink: 0;
-      border: 2px solid var(--border);
-      background: var(--surface-alt);
-    }
-    .advisor-left { flex: 1; min-width: 0; }
-    .advisor-name {
-      font-family: var(--display); font-size: 1rem; font-weight: 600;
-      letter-spacing: -0.01em; margin-bottom: 0.2rem;
-    }
-    .advisor-spec { font-size: 0.875rem; color: var(--muted); margin-bottom: 0.5rem; }
-    .advisor-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
-    .advisor-tag {
-      display: inline-block;
-      background: color-mix(in oklab, var(--accent) 14%, transparent);
-      color: var(--accent);
-      border: 1px solid color-mix(in oklab, var(--accent) 35%, transparent);
-      padding: 3px 10px; border-radius: 999px;
-      font-size: 12px; font-weight: 600; white-space: nowrap;
-    }
-    .advisor-right { text-align: right; flex-shrink: 0; }
-    .advisor-fee {
-      font-family: var(--display); font-size: 1.05rem; font-weight: 700;
-      letter-spacing: -0.01em; margin-bottom: 0.75rem;
-    }
-    .advisor-action { position: relative; min-width: 130px; text-align: right; }
-
-    /* Buttons */
-    .btn {
-      display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem;
-      padding: 9px 18px; font-family: var(--body); font-size: 0.875rem; font-weight: 500;
-      border-radius: 999px; border: 1px solid transparent; cursor: pointer;
-      white-space: nowrap; transition: transform .15s ease, background .2s, opacity .3s;
-      text-decoration: none;
-    }
-    .btn--dark    { background: var(--accent); color: #fff; border-color: var(--accent); }
-    .btn--dark:hover { transform: translateY(-1px); }
-
-    /* Sent label */
-    .sent-label {
-      color: var(--accent);
-      font-weight: 600;
-      font-size: 0.9rem;
-      display: inline-block;
-      transition: opacity 0.3s;
     }
 
-    /* Disclaimer */
+    /* ── Card body ── */
+    .advisor-name { font-weight: 600; font-size: 17px; letter-spacing: -0.01em; margin-bottom: 4px; }
+    .advisor-role { color: var(--ink-dim); font-size: 13px; margin-bottom: 12px; }
+    .advisor-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .chip {
+      background: color-mix(in oklab, var(--ink) 5%, var(--bg-2));
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 12px; color: var(--ink-dim);
+      white-space: nowrap;
+    }
+
+    /* ── Card footer ── */
+    .advisor-footer { margin-top: auto; display: flex; flex-direction: column; gap: 12px; }
+    .advisor-price { font-size: 14px; font-weight: 600; }
+    .advisor-price .fee { color: var(--accent); }
+
+    /* ── Request button ── */
+    .btn-request {
+      width: 100%; padding: 10px 0;
+      background: var(--accent); color: #fff;
+      border: none; border-radius: 999px;
+      font-family: var(--body); font-size: 0.9rem; font-weight: 500;
+      cursor: pointer; transition: opacity 0.3s, transform 0.15s;
+    }
+    .btn-request:hover { transform: translateY(-1px); }
+
+    /* ── Sent state ── */
+    .sent-state { display: flex; flex-direction: column; gap: 4px; transition: opacity 0.3s; }
+    .sent-label  { color: var(--accent); font-weight: 600; font-size: 14px; line-height: 1.3; }
+    .sent-follow { color: var(--ink-dim); font-size: 12px; line-height: 1.45; }
+
+    /* ── Disclaimer ── */
     .disclaimer {
-      background: color-mix(in oklab, var(--muted) 8%, transparent);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      border-radius: 12px;
       padding: 1rem 1.25rem;
-      font-size: 0.82rem;
-      color: var(--muted);
-      line-height: 1.65;
-      margin-top: 2rem;
+      font-size: 0.82rem; color: var(--ink-dim); line-height: 1.65;
+      margin-top: 2.5rem;
     }
 
-    @media (max-width: 600px) {
-      .advisor-card { flex-wrap: wrap; }
-      .advisor-avatar { width: 48px; height: 48px; }
-      .advisor-right { text-align: left; flex-basis: 100%; }
-      .advisor-action { text-align: left; }
+    @media (max-width: 560px) {
       .page { padding: 2.5rem 1.25rem 4rem; }
     }
   </style>
@@ -190,87 +177,93 @@
 </nav>
 
 <div class="page">
-  <p class="page-label">Legal support</p>
-  <h1 class="page-heading">Find a Legal Advisor</h1>
-  <p class="page-sub">
-    These advisors specialise in healthcare disputes and insurance claims. Share your BillShield report and dispute letter for a focused consultation.
-  </p>
 
-  <div class="advisor-card">
-    <img class="advisor-avatar" src="https://api.dicebear.com/7.x/personas/svg?seed=Priya" alt="" aria-hidden="true" />
-    <div class="advisor-left">
-      <div class="advisor-name">Advocate Priya Sharma</div>
-      <div class="advisor-spec">Consumer law · Delhi</div>
-      <div class="advisor-tags">
-        <span class="advisor-tag">Hospital billing</span>
-        <span class="advisor-tag">Consumer forum</span>
-      </div>
-    </div>
-    <div class="advisor-right">
-      <div class="advisor-fee">₹2,500 / consult</div>
-      <div class="advisor-action">
-        <button class="btn btn--dark" onclick="sendRequest(this)">Send Request</button>
-      </div>
-    </div>
+  <div class="hero">
+    <p class="hero-label">Legal support</p>
+    <h1 class="hero-heading">Get expert advice<br>on your dispute</h1>
+    <p class="hero-sub">Connect with a verified legal advisor specialising in healthcare billing disputes.</p>
   </div>
 
-  <div class="advisor-card">
-    <img class="advisor-avatar" src="https://api.dicebear.com/7.x/personas/svg?seed=Rajesh" alt="" aria-hidden="true" />
-    <div class="advisor-left">
-      <div class="advisor-name">Advocate Rajesh Iyer</div>
-      <div class="advisor-spec">Healthcare disputes · Chennai</div>
-      <div class="advisor-tags">
-        <span class="advisor-tag">Medical negligence</span>
-        <span class="advisor-tag">CGHS disputes</span>
-      </div>
-    </div>
-    <div class="advisor-right">
-      <div class="advisor-fee">₹3,000 / consult</div>
-      <div class="advisor-action">
-        <button class="btn btn--dark" onclick="sendRequest(this)">Send Request</button>
-      </div>
-    </div>
-  </div>
+  <div class="advisor-grid">
 
-  <div class="advisor-card">
-    <img class="advisor-avatar" src="https://api.dicebear.com/7.x/personas/svg?seed=Meena" alt="" aria-hidden="true" />
-    <div class="advisor-left">
-      <div class="advisor-name">Advocate Meena Kulkarni</div>
-      <div class="advisor-spec">Insurance claims · Pune</div>
-      <div class="advisor-tags">
-        <span class="advisor-tag">IRDAI complaints</span>
-        <span class="advisor-tag">Cashless disputes</span>
+    <div class="advisor-card">
+      <div class="advisor-avatar">PS</div>
+      <div>
+        <div class="advisor-name">Advocate Priya Sharma</div>
+        <div class="advisor-role">Consumer law · Delhi</div>
+        <div class="advisor-chips">
+          <span class="chip">Hospital billing</span>
+          <span class="chip">Consumer forum</span>
+        </div>
+      </div>
+      <div class="advisor-footer">
+        <div class="advisor-price"><span class="fee">₹2,500</span> / consult</div>
+        <div class="advisor-action">
+          <button class="btn-request" onclick="sendRequest(this)">Send Request</button>
+        </div>
       </div>
     </div>
-    <div class="advisor-right">
-      <div class="advisor-fee">₹2,500 / consult</div>
-      <div class="advisor-action">
-        <button class="btn btn--dark" onclick="sendRequest(this)">Send Request</button>
-      </div>
-    </div>
-  </div>
 
-  <div class="advisor-card">
-    <img class="advisor-avatar" src="https://api.dicebear.com/7.x/personas/svg?seed=Arjun" alt="" aria-hidden="true" />
-    <div class="advisor-left">
-      <div class="advisor-name">Advocate Arjun Das</div>
-      <div class="advisor-spec">Medical billing disputes · Bengaluru</div>
-      <div class="advisor-tags">
-        <span class="advisor-tag">Bill disputes</span>
-        <span class="advisor-tag">Ombudsman filings</span>
+    <div class="advisor-card">
+      <div class="advisor-avatar">RI</div>
+      <div>
+        <div class="advisor-name">Advocate Rajesh Iyer</div>
+        <div class="advisor-role">Healthcare disputes · Chennai</div>
+        <div class="advisor-chips">
+          <span class="chip">Medical negligence</span>
+          <span class="chip">CGHS disputes</span>
+        </div>
+      </div>
+      <div class="advisor-footer">
+        <div class="advisor-price"><span class="fee">₹3,000</span> / consult</div>
+        <div class="advisor-action">
+          <button class="btn-request" onclick="sendRequest(this)">Send Request</button>
+        </div>
       </div>
     </div>
-    <div class="advisor-right">
-      <div class="advisor-fee">₹3,000 / consult</div>
-      <div class="advisor-action">
-        <button class="btn btn--dark" onclick="sendRequest(this)">Send Request</button>
+
+    <div class="advisor-card">
+      <div class="advisor-avatar">MK</div>
+      <div>
+        <div class="advisor-name">Advocate Meena Kulkarni</div>
+        <div class="advisor-role">Insurance claims · Pune</div>
+        <div class="advisor-chips">
+          <span class="chip">IRDAI complaints</span>
+          <span class="chip">Cashless disputes</span>
+        </div>
+      </div>
+      <div class="advisor-footer">
+        <div class="advisor-price"><span class="fee">₹2,500</span> / consult</div>
+        <div class="advisor-action">
+          <button class="btn-request" onclick="sendRequest(this)">Send Request</button>
+        </div>
       </div>
     </div>
+
+    <div class="advisor-card">
+      <div class="advisor-avatar">AD</div>
+      <div>
+        <div class="advisor-name">Advocate Arjun Das</div>
+        <div class="advisor-role">Medical billing disputes · Bengaluru</div>
+        <div class="advisor-chips">
+          <span class="chip">Bill disputes</span>
+          <span class="chip">Ombudsman filings</span>
+        </div>
+      </div>
+      <div class="advisor-footer">
+        <div class="advisor-price"><span class="fee">₹3,000</span> / consult</div>
+        <div class="advisor-action">
+          <button class="btn-request" onclick="sendRequest(this)">Send Request</button>
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <div class="disclaimer">
     <strong>Note:</strong> These are illustrative listings. BillShield does not endorse or vet any specific legal professional. Verify credentials independently before engaging. Consultation fees are indicative and may vary.
   </div>
+
 </div>
 
 <script>
@@ -278,13 +271,20 @@ function sendRequest(btn) {
   btn.style.opacity = '0';
   setTimeout(function() {
     btn.style.display = 'none';
-    var sent = document.createElement('span');
-    sent.className = 'sent-label';
-    sent.textContent = '✓ Request sent';
-    sent.style.opacity = '0';
-    btn.parentElement.appendChild(sent);
+    var state = document.createElement('div');
+    state.className = 'sent-state';
+    state.style.opacity = '0';
+    var label = document.createElement('span');
+    label.className = 'sent-label';
+    label.textContent = '✓ Request sent';
+    var follow = document.createElement('span');
+    follow.className = 'sent-follow';
+    follow.textContent = 'An advisor will reach out within 24 hours. Check your email or WhatsApp.';
+    state.appendChild(label);
+    state.appendChild(follow);
+    btn.parentElement.appendChild(state);
     requestAnimationFrame(function() {
-      requestAnimationFrame(function() { sent.style.opacity = '1'; });
+      requestAnimationFrame(function() { state.style.opacity = '1'; });
     });
   }, 300);
 }
