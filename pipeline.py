@@ -54,7 +54,15 @@ def extract_bill(bill_path: str) -> dict:
         return json.loads(cleaned)
     except json.JSONDecodeError as e:
         Path("outputs/debug_extractor_raw.txt").write_text(cleaned, encoding="utf-8")
-        raise RuntimeError(f"Extractor JSON parse failed at char {e.pos}: {e.msg}") from e
+        if len(cleaned) > 100:
+            raise ValueError(
+                f"Extractor JSON parse failed — the bill may be too large or complex. "
+                f"Try a clearer photo or split the bill into sections. (Technical: {str(e)})"
+            )
+        else:
+            raise ValueError(
+                "Extractor returned empty or invalid response. Check your API key and try again."
+            )
 
 
 # --- Stage 2: Analyst ---
