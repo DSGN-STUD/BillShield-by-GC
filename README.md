@@ -112,19 +112,19 @@ BillShield is packaged as a **Model Context Protocol (MCP) server**, allowing an
 │                billshield_mcp.py                     │
 │                                                      │
 │  ┌────────────────────────────────────────────────┐  │
-│  │                 4 MCP Tools                     │ │
-│  │                                                 │ │
-│  │  billshield_extract(file_path)                  │ │
-│  │  → Bill PDF/photo → structured JSON             │ │
-│  │                                                 │ │
-│  │  billshield_analyze(extracted_json)             │ │
-│  │  → JSON → flags with CGHS citations             │ │
-│  │                                                 │ │
-│  │  billshield_letter(extracted, analysis)         │ │
-│  │  → Flags → formal dispute letter                │ │
-│  │                                                 │ │
-│  │  billshield_audit(file_path)                    │ │
-│  │  → Full pipeline in one call                    │ │
+│  │                 4 MCP Tools                    │  │
+│  │                                                │  │
+│  │  billshield_extract(file_path)                 │  │
+│  │  → Bill PDF/photo → structured JSON            │  │
+│  │                                                │  │
+│  │  billshield_analyze(extracted_json)            │  │
+│  │  → JSON → flags with CGHS citations            │  │
+│  │                                                │  │
+│  │  billshield_letter(extracted, analysis)        │  │
+│  │  → Flags → formal dispute letter               │  │
+│  │                                                │  │
+│  │  billshield_audit(file_path)                   │  │
+│  │  → Full pipeline in one call                   │  │
 │  └────────────────────────────────────────────────┘  │
 │                        │                             │
 │            Calls pipeline.py internally              │
