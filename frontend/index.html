@@ -292,7 +292,7 @@
       .sanity-panel { height: 250px; }
       .sanity-panel + .sanity-panel { border-left: none; border-top: 1px solid var(--border); height: auto; max-height: 320px; }
     }
-    .sanity-panel { display: flex; flex-direction: column; height: 500px; }
+    .sanity-panel { display: flex; flex-direction: column; height: calc(100vh - 280px); }
     .sanity-panel + .sanity-panel { border-left: 1px solid var(--border); }
     .sanity-head {
       display: flex;
@@ -498,6 +498,38 @@
       .flags-table th:nth-child(4), .flags-table td:nth-child(4) { display: none; }
     }
 
+    /* ── Full-bleed split layout (letter view) ────────────────── */
+    .res-full-split {
+      display: grid;
+      grid-template-columns: 58fr 42fr;
+      gap: 0;
+      min-height: calc(100vh - var(--nav-h));
+    }
+    .res-full-split-left {
+      padding: 2rem;
+      overflow-y: auto;
+      height: calc(100vh - var(--nav-h));
+      position: sticky;
+      top: var(--nav-h);
+      border-right: 1px solid var(--border);
+    }
+    .res-full-split-left .flags-table thead { top: 0; }
+    .res-full-split-right {
+      padding: 2rem 2.5rem;
+      background: color-mix(in oklab, var(--bg-2) 60%, var(--bg));
+      overflow-y: auto;
+      min-height: calc(100vh - var(--nav-h));
+    }
+    @media (max-width: 768px) {
+      .res-full-split { grid-template-columns: 1fr; }
+      .res-full-split-left {
+        position: static;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+    }
+
     /* ── Letter screen — proof-card gradient ────────────────── */
     .letter-note {
       background: var(--amber-bg);
@@ -613,7 +645,7 @@
 <div id="root"></div>
 <script type="text/babel">
 const { useState, useRef, useCallback, useEffect } = React;
-const API = 'http://localhost:8080';
+const API = window.location.origin;
 const fmt = n => '₹' + Number(n).toLocaleString('en-IN');
 
 // ── Icons ──────────────────────────────────────────────────────────────
@@ -1151,55 +1183,63 @@ function ResultsScreen({ extracted, analysis }) {
     const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
     const date = new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
     const rateRows = rateFlags.map(f => `<tr>
-      <td>${esc(f.item_name)}</td>
-      <td class="num">${fmt(f.billed_amount)}</td>
-      <td class="num">${fmt(f.cghs_rate)}</td>
-      <td><span class="badge">${f.multiplier ? esc(String(f.multiplier)) + '&times;' : '&mdash;'}</span></td>
+      <td>${esc(f.item_name)}<div class="cite">${esc(f.citation || '')}</div></td>
+      <td>${f.multiplier ? `<span class="badge">${esc(String(f.multiplier))}&times;</span>` : '&mdash;'}</td>
+      <td class="num red">${fmt(f.billed_amount)}</td>
+      <td class="num muted">${fmt(f.cghs_rate)}</td>
       <td class="num red">+${fmt(f.delta)}</td>
-      <td class="cite">${esc(f.citation)}</td>
     </tr>`).join('');
     const structRows = structFlags.map(f => `<tr>
-      <td>${esc(f.item_name)}</td>
-      <td class="num">${fmt(f.billed_amount)}</td>
+      <td>${esc(f.item_name)}<div class="cite">${esc(f.citation || '')}</div></td>
       <td><span class="badge">Not billable</span></td>
-      <td class="cite">${esc(f.citation)}</td>
+      <td class="num red">${fmt(f.billed_amount)}</td>
+      <td class="num muted">&mdash;</td>
+      <td class="num red">+${fmt(f.billed_amount)}</td>
     </tr>`).join('');
     const html = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>BillShield Audit Report</title>
 <style>
-  body{font-family:Georgia,serif;font-size:11pt;color:#000;background:#fff;margin:0;padding:2.5cm 3cm;}
-  h1{font-size:22pt;margin:0 0 4px;letter-spacing:-.02em;}
-  .sub{font-size:10pt;color:#555;margin-bottom:16px;}
-  hr{border:none;border-top:2px solid #000;margin:0 0 20px;}
-  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;background:#f4f4f4;padding:14px 16px;border-radius:6px;margin-bottom:28px;}
-  .sl{font-size:8.5pt;font-weight:bold;text-transform:uppercase;letter-spacing:.08em;color:#555;}
-  .sv{font-size:22pt;font-weight:bold;letter-spacing:-.02em;line-height:1.1;}
-  .sv.red{color:#c0392b;}
-  h2{font-size:12pt;text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid #ccc;padding-bottom:5px;margin:28px 0 10px;}
-  table{width:100%;border-collapse:collapse;font-size:9.5pt;}
-  th{background:#efefef;text-align:left;padding:5px 8px;font-size:8.5pt;text-transform:uppercase;letter-spacing:.06em;}
-  td{padding:6px 8px;border-bottom:1px solid #eee;vertical-align:top;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Inter',sans-serif;font-size:11pt;color:#F4F1EA;background:#0E0E10;margin:0;padding:2.5cm 3cm;print-color-adjust:exact;-webkit-print-color-adjust:exact;}
+  .header{display:flex;justify-content:space-between;align-items:center;padding-bottom:20px;border-bottom:2px solid #26262C;margin-bottom:32px;}
+  .brand{display:flex;align-items:center;gap:10px;font-size:18pt;font-weight:700;letter-spacing:-.02em;color:#F4F1EA;}
+  .brand-dot{width:10px;height:10px;border-radius:50%;background:#2F9E5E;flex-shrink:0;}
+  .hdate{font-size:10pt;color:#9A968D;}
+  .total-label{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#9A968D;margin-bottom:8px;}
+  .total-amount{font-size:48pt;font-weight:700;color:#E05252;letter-spacing:-.03em;line-height:1;margin-bottom:28px;}
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:36px;}
+  .stat-cell{background:#15151A;border:1px solid #26262C;border-radius:8px;padding:12px;}
+  .stat-l{font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#9A968D;margin-bottom:6px;}
+  .stat-v{font-size:22pt;font-weight:700;letter-spacing:-.02em;color:#F4F1EA;line-height:1;}
+  h2{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#9A968D;padding:10px 0;border-bottom:1px solid #26262C;margin:24px 0 0;}
+  table{width:100%;border-collapse:collapse;font-size:9.5pt;background:#0E0E10;}
+  thead tr{background:#15151A;}
+  th{font-size:8.5pt;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#9A968D;padding:8px 12px;text-align:left;}
+  td{padding:10px 12px;border-bottom:1px solid #26262C;vertical-align:top;color:#F4F1EA;}
   .num{font-variant-numeric:tabular-nums;white-space:nowrap;}
-  .cite{font-style:italic;color:#555;font-size:8.5pt;}
-  .red{color:#c0392b;}
-  .badge{background:#ffeaea;color:#c0392b;padding:2px 7px;border-radius:3px;font-size:8.5pt;font-weight:bold;font-style:normal;white-space:nowrap;}
-  .disc{background:#f9f9f9;border:1px solid #ddd;border-radius:5px;padding:12px 16px;font-size:9pt;color:#555;line-height:1.65;margin-top:36px;}
+  .red{color:#E05252;}
+  .muted{color:#9A968D;}
+  .cite{font-size:8.5pt;color:#9A968D;margin-top:3px;}
+  .badge{background:rgba(224,82,82,0.15);color:#E05252;padding:2px 8px;border-radius:999px;font-size:8pt;font-weight:600;white-space:nowrap;}
+  .disc{border-top:1px solid #26262C;margin-top:36px;padding-top:14px;font-size:11px;color:#9A968D;line-height:1.65;}
 </style></head><body>
-<h1>BillShield Audit Report</h1>
-<div class="sub">Generated ${date}</div>
-<hr>
+<div class="header">
+  <div class="brand"><span class="brand-dot"></span>BillShield</div>
+  <div class="hdate">${date}</div>
+</div>
+<div class="total-label">Total Flagged</div>
+<div class="total-amount">${fmt(analysis.total_flagged_amount || 0)}</div>
 <div class="stats">
-  <div><div class="sl">Total Flagged</div><div class="sv red">${fmt(analysis.total_flagged_amount || 0)}</div></div>
-  <div><div class="sl">Issues Found</div><div class="sv">${flags.length}</div></div>
-  <div><div class="sl">Rate Overcharges</div><div class="sv">${rateFlags.length}</div></div>
-  <div><div class="sl">Structural Violations</div><div class="sv">${structFlags.length}</div></div>
+  <div class="stat-cell"><div class="stat-l">Issues Found</div><div class="stat-v">${flags.length}</div></div>
+  <div class="stat-cell"><div class="stat-l">Rate Overcharges</div><div class="stat-v">${rateFlags.length}</div></div>
+  <div class="stat-cell"><div class="stat-l">Structural Violations</div><div class="stat-v">${structFlags.length}</div></div>
 </div>
 ${rateFlags.length > 0 ? `<h2>Rate Overcharges (${rateFlags.length})</h2>
-<table><thead><tr><th>Item</th><th>Billed</th><th>Benchmark</th><th>Multiple</th><th>Overcharge</th><th>Citation</th></tr></thead>
+<table><thead><tr><th>Item</th><th>Multiple</th><th>Billed</th><th>Benchmark</th><th>Overcharge</th></tr></thead>
 <tbody>${rateRows}</tbody></table>` : ''}
 ${structFlags.length > 0 ? `<h2>Structural Violations (${structFlags.length})</h2>
-<table><thead><tr><th>Item</th><th>Billed</th><th>Status</th><th>Citation</th></tr></thead>
+<table><thead><tr><th>Item</th><th>Status</th><th>Billed</th><th>Benchmark</th><th>Overcharge</th></tr></thead>
 <tbody>${structRows}</tbody></table>` : ''}
-<div class="disc">This report was generated by BillShield using verified CGHS OM 03.10.2025, NPPA 30.01.2026, and IRDAI Master Circular 29.05.2024 benchmarks. It is provided for informational purposes only and does not constitute legal advice. Verify all citations before submitting a formal dispute.</div>
+<div class="disc">Generated by BillShield &middot; CGHS OM 03.10.2025 / NPPA 30.01.2026 / IRDAI Master Circular 29.05.2024. Provided for informational purposes only. Verify all citations before submitting a formal dispute.</div>
 <script>window.onload=function(){window.print();}<\/script>
 </body></html>`;
     const w = window.open('', '_blank');
@@ -1429,11 +1469,13 @@ ${structFlags.length > 0 ? `<h2>Structural Violations (${structFlags.length})</h
 
   if (letterPhase !== 'none') {
     return (
-      <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '2rem' }}>
-        {summarySection}
-        <div className="res-two-col">
-          <div className="ft-scroll">{flagsTable}</div>
-          <div style={{ borderLeft: '1px solid var(--border)', paddingLeft: '2rem' }}>{letterPanel}</div>
+      <div className="res-full-split">
+        <div className="res-full-split-left">
+          {summarySection}
+          {flagsTable}
+        </div>
+        <div className="res-full-split-right">
+          {letterPanel}
         </div>
       </div>
     );
