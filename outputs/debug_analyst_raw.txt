@@ -4,465 +4,278 @@
   "flags": [
     {
       "item_name": "MEDICAL RECORD CHARGES",
-      "billed_amount": 750.0,
-      "cghs_code": "ANNEXURE-III",
-      "cghs_rate": 0.0,
+      "billed_amount": 750,
+      "cghs_code": "Annexure-III",
+      "cghs_rate": 0,
       "multiplier": null,
-      "delta": 750.0,
-      "citation": "CGHS OM 03.10.2025, Annexure-III §1/§2 — bundled into ward/room charges; not separately billable",
+      "delta": 750,
+      "citation": "CGHS OM 03.10.2025, Annexure-III §1/§2 — bundled into ward/room charges; cannot be billed separately",
       "flag_type": "STRUCTURAL_VIOLATION"
     },
     {
       "item_name": "ADMISSION",
-      "billed_amount": 2000.0,
-      "cghs_code": "ANNEXURE-III",
-      "cghs_rate": 0.0,
+      "billed_amount": 2000,
+      "cghs_code": "Annexure-III",
+      "cghs_rate": 0,
       "multiplier": null,
-      "delta": 2000.0,
-      "citation": "CGHS OM 03.10.2025, Annexure-III §1/§2 — admission charges bundled into ward/room charges; not separately billable",
+      "delta": 2000,
+      "citation": "CGHS OM 03.10.2025, Annexure-III §1/§2 — bundled into ward/room charges; cannot be billed separately",
       "flag_type": "STRUCTURAL_VIOLATION"
     },
     {
       "item_name": "BIOMEDICAL WASTE MANAGEMENT SERVICE",
-      "billed_amount": 200.0,
-      "cghs_code": "ANNEXURE-III",
-      "cghs_rate": 0.0,
+      "billed_amount": 200,
+      "cghs_code": "Annexure-III",
+      "cghs_rate": 0,
       "multiplier": null,
-      "delta": 200.0,
-      "citation": "CGHS OM 03.10.2025, Annexure-III §1/§2 — biomedical waste management bundled into ward/room charges; not separately billable",
+      "delta": 200,
+      "citation": "CGHS OM 03.10.2025, Annexure-III §1/§2 — bundled into ward/room charges; cannot be billed separately",
       "flag_type": "STRUCTURAL_VIOLATION"
     },
     {
       "item_name": "DOCUMENT PROCESSING CHARGES",
-      "billed_amount": 400.0,
-      "cghs_code": "ANNEXURE-III",
-      "cghs_rate": 0.0,
+      "billed_amount": 400,
+      "cghs_code": "Annexure-III",
+      "cghs_rate": 0,
       "multiplier": null,
-      "delta": 400.0,
-      "citation": "CGHS OM 03.10.2025, Annexure-III §1/§2 — document processing charges bundled into ward/room charges; not separately billable",
+      "delta": 400,
+      "citation": "CGHS OM 03.10.2025, Annexure-III §1/§2 — bundled into ward/room charges; cannot be billed separately",
       "flag_type": "STRUCTURAL_VIOLATION"
     },
     {
       "item_name": "CONSULTATION- DIETITIAN",
-      "billed_amount": 500.0,
-      "cghs_code": "ANNEXURE-III",
-      "cghs_rate": 0.0,
+      "billed_amount": 500,
+      "cghs_code": "Annexure-III",
+      "cghs_rate": 0,
       "multiplier": null,
-      "delta": 500.0,
-      "citation": "CGHS OM 03.10.2025, Annexure-III §1/§2 — dietitian consultation bundled into ward/room charges; not separately billable",
+      "delta": 500,
+      "citation": "CGHS OM 03.10.2025, Annexure-III §1/§2 — dietitian consultation bundled into ward/room charges; cannot be billed separately",
       "flag_type": "STRUCTURAL_VIOLATION"
     },
     {
       "item_name": "NURSING CHARGE",
-      "billed_amount": 6500.0,
-      "cghs_code": "ANNEXURE-III",
-      "cghs_rate": 0.0,
+      "billed_amount": 6500,
+      "cghs_code": "Annexure-III",
+      "cghs_rate": 0,
       "multiplier": null,
-      "delta": 6500.0,
-      "citation": "CGHS OM 03.10.2025, Annexure-III §1/§2 — nursing charges bundled into ward/room charges; not separately billable",
+      "delta": 6500,
+      "citation": "CGHS OM 03.10.2025, Annexure-III §1/§2 — nursing charges bundled into ward/room charges; cannot be billed separately",
       "flag_type": "STRUCTURAL_VIOLATION"
     },
     {
       "item_name": "NURSING CHARGE",
-      "billed_amount": 4500.0,
-      "cghs_code": "ANNEXURE-III",
-      "cghs_rate": 0.0,
+      "billed_amount": 4500,
+      "cghs_code": "Annexure-III",
+      "cghs_rate": 0,
       "multiplier": null,
-      "delta": 4500.0,
-      "citation": "CGHS OM 03.10.2025, Annexure-III §1/§2 — nursing charges bundled into ward/room charges; not separately billable",
+      "delta": 4500,
+      "citation": "CGHS OM 03.10.2025, Annexure-III §1/§2 — nursing charges bundled into ward/room charges; cannot be billed separately",
       "flag_type": "STRUCTURAL_VIOLATION"
     },
     {
       "item_name": "NURSING CHARGE",
-      "billed_amount": 4500.0,
-      "cghs_code": "ANNEXURE-III",
-      "cghs_rate": 0.0,
+      "billed_amount": 4500,
+      "cghs_code": "Annexure-III",
+      "cghs_rate": 0,
       "multiplier": null,
-      "delta": 4500.0,
-      "citation": "CGHS OM 03.10.2025, Annexure-III §1/§2 — nursing charges bundled into ward/room charges; not separately billable",
+      "delta": 4500,
+      "citation": "CGHS OM 03.10.2025, Annexure-III §1/§2 — nursing charges bundled into ward/room charges; cannot be billed separately",
       "flag_type": "STRUCTURAL_VIOLATION"
+    },
+    {
+      "item_name": "ECG",
+      "billed_amount": 1250,
+      "cghs_code": "CI001",
+      "cghs_rate": 175,
+      "multiplier": 7.14,
+      "delta": 1075,
+      "citation": "CGHS OM 03.10.2025, Tier I, NABH, Code CI001: ₹175",
+      "flag_type": "RATE_OVERCHARGE"
     },
     {
       "item_name": "ECHO COLOR DOPPLER",
-      "billed_amount": 4540.0,
+      "billed_amount": 4540,
       "cghs_code": "RI001",
-      "cghs_rate": 1475.0,
+      "cghs_rate": 1475,
       "multiplier": 3.08,
-      "delta": 3065.0,
+      "delta": 3065,
       "citation": "CGHS OM 03.10.2025, Tier I, NABH, Code RI001 (2D Echocardiography): ₹1,475",
       "flag_type": "RATE_OVERCHARGE"
     },
     {
-      "item_name": "ECG",
-      "billed_amount": 1250.0,
-      "cghs_code": "CI001",
-      "cghs_rate": 175.0,
-      "multiplier": 7.14,
-      "delta": 1075.0,
-      "citation": "CGHS OM 03.10.2025, Tier I, NABH, Code CI001 (ECG): ₹175",
+      "item_name": "MRI NEURO LIMITED ISCHEMIA STUDY",
+      "billed_amount": 16980,
+      "cghs_code": "RI089",
+      "cghs_rate": 2750,
+      "multiplier": 6.17,
+      "delta": 14230,
+      "citation": "CGHS OM 03.10.2025, Tier I, NABH, Code RI089 (MRI Brain without contrast): ₹2,750",
       "flag_type": "RATE_OVERCHARGE"
     },
     {
-      "item_name": "COMPLETE BLOOD COUNT (CBC)",
-      "billed_amount": 1310.0,
-      "cghs_code": "LB097",
-      "cghs_rate": 1320.0,
-      "multiplier": 0.99,
-      "delta": -10.0,
-      "citation": "CGHS OM 03.10.2025, Tier I, NABH, Code LB097 (CBC/Hemogram): ₹1,320 — billed amount is below CGHS rate; not flagged",
+      "item_name": "USG ABDOMEN & PELVIS",
+      "billed_amount": 4060,
+      "cghs_code": "RI020",
+      "cghs_rate": 800,
+      "multiplier": 5.08,
+      "delta": 3260,
+      "citation": "CGHS OM 03.10.2025, Tier I, NABH, Code RI020 (USG Whole Abdomen + Pelvis): ₹800",
       "flag_type": "RATE_OVERCHARGE"
     },
     {
       "item_name": "PTT (ACTIVATED THROMBOPLASTIN TIME)",
-      "billed_amount": 1500.0,
+      "billed_amount": 1500,
       "cghs_code": "LB025",
-      "cghs_rate": 290.0,
+      "cghs_rate": 290,
       "multiplier": 5.17,
-      "delta": 1210.0,
+      "delta": 1210,
       "citation": "CGHS OM 03.10.2025, Tier I, NABH, Code LB025 (APTT): ₹290",
       "flag_type": "RATE_OVERCHARGE"
     },
     {
       "item_name": "URINE ROUTINE & MICROSCOPY",
-      "billed_amount": 890.0,
+      "billed_amount": 890,
       "cghs_code": "LB001",
-      "cghs_rate": 100.0,
+      "cghs_rate": 100,
       "multiplier": 8.90,
-      "delta": 790.0,
+      "delta": 790,
       "citation": "CGHS OM 03.10.2025, Tier I, NABH, Code LB001 (Urine Routine): ₹100",
-      "flag_type": "RATE_OVERCHARGE"
-    },
-    {
-      "item_name": "MRI NEURO LIMITED ISCHEMIA STUDY",
-      "billed_amount": 16980.0,
-      "cghs_code": "RI089",
-      "cghs_rate": 2750.0,
-      "multiplier": 6.17,
-      "delta": 14230.0,
-      "citation": "CGHS OM 03.10.2025, Tier I, NABH, Code RI089 (MRI Brain without contrast): ₹2,750 — item contains 'MRI' and 'neuro/ischemia' without 'contrast'; maps to RI089",
-      "flag_type": "RATE_OVERCHARGE"
-    },
-    {
-      "item_name": "USG ABDOMEN & PELVIS",
-      "billed_amount": 4060.0,
-      "cghs_code": "RI020",
-      "cghs_rate": 800.0,
-      "multiplier": 5.08,
-      "delta": 3260.0,
-      "citation": "CGHS OM 03.10.2025, Tier I, NABH, Code RI020 (USG Whole Abdomen + Pelvis): ₹800",
-      "flag_type": "RATE_OVERCHARGE"
-    },
-    {
-      "item_name": "BED CHARGES - CRITICAL CARE AREA",
-      "billed_amount": 7900.0,
-      "cghs_code": "CC001",
-      "cghs_rate": 5400.0,
-      "multiplier": 1.46,
-      "delta": 2500.0,
-      "citation": "CGHS OM 03.10.2025, Tier I, NABH, Code CC001 (ICU/CCU/HDU all-inclusive per day): ₹5,400 — multiplier 1.46× is within defensible 1.0–2.0× range; NOT flagged as RATE_OVERCHARGE",
       "flag_type": "RATE_OVERCHARGE"
     }
   ],
   "unverifiable": [
     {
-      "item_name": "COMPLETE BLOOD COUNT (CBC)",
-      "reason": "Billed amount ₹1,310 is below CGHS rate ₹1,320 (multiplier 0.99×); per flagging rules items where billed_amount ≤ cghs_rate must never be flagged — removed from flags"
-    },
-    {
-      "item_name": "BED CHARGES - CRITICAL CARE AREA",
-      "reason": "Billed ₹7,900 vs CGHS CC001 ₹5,400; multiplier 1.46× is within the 1.0–2.0× defensible NABH/Super-Speciality premium range; not flagged per policy"
-    },
-    {
-      "item_name": "BED CHARGES - WARD (999311)",
-      "reason": "No specific CGHS benchmark code for general ward bed charges in the knowledge base; could not verify"
-    },
-    {
-      "item_name": "BED CHARGES - WARD (999311)",
-      "reason": "No specific CGHS benchmark code for general ward bed charges in the knowledge base; could not verify"
-    },
-    {
-      "item_name": "HOLTER MONITORING",
-      "reason": "Billed ₹4,830 vs CGHS CI003 ₹2,500; multiplier 1.93× — below 2× threshold (1.93×); not flagged per CI003 diagnostic rule"
-    },
-    {
       "item_name": "INJECTION IV EMERGENCY",
-      "reason": "No CGHS benchmark code for generic IV emergency injection charge in the knowledge base; could not verify"
+      "reason": "No CGHS benchmark code exists for emergency IV injection administration charges"
     },
     {
       "item_name": "INITIAL ASSESSMENT CHARGES",
-      "reason": "No CGHS benchmark code for initial assessment/triage charges in the knowledge base; could not verify"
+      "reason": "No direct CGHS benchmark code for initial assessment charges; not listed in Annexure-III structural violations"
     },
     {
       "item_name": "OBSERVATION (UP TO 2 HOURS)",
-      "reason": "No CGHS benchmark code for observation charges in the knowledge base; could not verify"
+      "reason": "No CGHS benchmark code for short-stay observation charges"
+    },
+    {
+      "item_name": "BED CHARGES - CRITICAL CARE AREA",
+      "reason": "CC001 all-inclusive rate — bed charge not rate-flagged; bundled item violations captured separately"
+    },
+    {
+      "item_name": "BED CHARGES - WARD (999311)",
+      "reason": "No CGHS benchmark for private/semi-private ward room rate at this specific category; ward bed rate comparison requires ward class specification not determinable from line item alone"
+    },
+    {
+      "item_name": "BED CHARGES - WARD (999311)",
+      "reason": "No CGHS benchmark for private/semi-private ward room rate at this specific category; ward bed rate comparison requires ward class specification not determinable from line item alone"
     },
     {
       "item_name": "CONSULTATION - IP |Dr. Usha Humbi",
-      "reason": "Inpatient consultation billed ₹1,870 vs CN002 ₹350; multiplier 5.34× — however CGHS CN002 rate of ₹350 is a government facility rate and private super-speciality hospitals commonly bill differential consultation fees that are not regulated under the same schedule; benchmark gap noted but no definitive CGHS private-hospital consultation cap in knowledge base for named specialist billing. Could not verify against a definitive ceiling."
+      "reason": "1870/350 = 5.34× — exceeds 2× threshold; however, specialty cannot be confirmed from bill alone; if Super-Speciality rate applies (₹700 × 1.15 = ₹805), multiplier = 2.32× — still exceeds 2×. However, CGHS CN002/CN003 rates apply to CGHS-empanelled billing rates and hospital may apply its own IPD consultation tariff under TPA cashless; benchmark rate vs private NABH IPD consultation structure requires further verification. Could not verify specialty billing structure."
     },
     {
       "item_name": "CROSS CONSULTATION - IP |Dr. Smita Caren Mathias",
-      "reason": "No CGHS benchmark specifically for private hospital cross/specialist consultations beyond CN002 ₹350 base; could not verify against a definitive ceiling"
+      "reason": "1410/350 = 4.03× — exceeds threshold; however cross-consultation specialty billing structure under TPA cashless not directly benchmarked in knowledge base. Could not verify."
     },
     {
       "item_name": "CROSS CONSULTATION - IP |Dr. Sathya Narayana D",
-      "reason": "No CGHS benchmark specifically for private hospital cross/specialist consultations beyond CN002 ₹350 base; could not verify against a definitive ceiling"
+      "reason": "1710/350 = 4.89× — exceeds threshold; cross-consultation specialty billing structure under TPA cashless not directly benchmarked in knowledge base. Could not verify."
     },
     {
       "item_name": "CONSULTATION - IP |Dr. Usha Humbi",
-      "reason": "No CGHS benchmark specifically for private hospital named specialist inpatient consultation; could not verify against a definitive ceiling"
+      "reason": "1710/350 = 4.89× — exceeds threshold; specialty billing structure under TPA cashless not directly benchmarked. Could not verify."
     },
     {
       "item_name": "CROSS CONSULTATION - IP |Dr. Kranti Shreesh Khadilkar",
-      "reason": "No CGHS benchmark specifically for private hospital cross/specialist consultations; could not verify"
+      "reason": "1710/350 = 4.89× — exceeds threshold; cross-consultation specialty billing structure under TPA cashless not directly benchmarked. Could not verify."
     },
     {
       "item_name": "CROSS CONSULTATION - IP |N Dhanaraj",
-      "reason": "No CGHS benchmark specifically for private hospital cross/specialist consultations; could not verify"
+      "reason": "1710/350 = 4.89× — exceeds threshold; cross-consultation specialty billing structure under TPA cashless not directly benchmarked. Could not verify."
     },
     {
       "item_name": "CROSS CONSULTATION - IP |Dr. Smita Caren Mathias",
-      "reason": "No CGHS benchmark specifically for private hospital cross/specialist consultations; could not verify"
+      "reason": "1410/350 = 4.03× — cross-consultation specialty billing structure under TPA cashless not directly benchmarked. Could not verify."
     },
     {
       "item_name": "CONSULTATION - IP |Dr. Usha Humbi",
-      "reason": "No CGHS benchmark specifically for private hospital named specialist inpatient consultation; could not verify"
+      "reason": "1710/350 = 4.89× — specialty billing structure under TPA cashless not directly benchmarked. Could not verify."
     },
     {
       "item_name": "CROSS CONSULTATION - IP |Dr. Suraj Narasimhan A",
-      "reason": "No CGHS benchmark specifically for private hospital cross/specialist consultations; could not verify"
+      "reason": "1610/350 = 4.60× — cross-consultation specialty billing structure under TPA cashless not directly benchmarked. Could not verify."
     },
     {
       "item_name": "CONSULTATION - IP |Dr. V. Viju Wilben, Dr. Saurav Mahanta, Dr. Reshma G K, Dr Harish N, Dr. Shrithika Patil, Dr. Sharath Kumar J K",
-      "reason": "Multi-physician team consultation; no CGHS benchmark for bundled team consultation billing; could not verify"
+      "reason": "Multi-consultant group consultation entry; 2470/350 = 7.06× — however, this appears to be a bundled multi-doctor round charge; no CGHS benchmark exists for multi-consultant group billing. Could not verify."
     },
     {
       "item_name": "CROSS CONSULTATION - IP |Dr. Ganesh Srinivasa Prasad P",
-      "reason": "No CGHS benchmark specifically for private hospital cross/specialist consultations; could not verify"
+      "reason": "1710/350 = 4.89× — cross-consultation specialty billing structure under TPA cashless not directly benchmarked. Could not verify."
     },
     {
       "item_name": "CROSS CONSULTATION - IP |Dr. Smita Caren Mathias",
-      "reason": "No CGHS benchmark specifically for private hospital cross/specialist consultations; could not verify"
+      "reason": "1410/350 = 4.03× — cross-consultation specialty billing structure under TPA cashless not directly benchmarked. Could not verify."
+    },
+    {
+      "item_name": "HOLTER MONITORING",
+      "reason": "4830/2500 = 1.93× — below 2× threshold; not flagged"
+    },
+    {
+      "item_name": "COMPLETE BLOOD COUNT (CBC)",
+      "reason": "1310/1320 = 0.99× — billed below CGHS rate (LB097 ₹1,320); no overcharge"
     },
     {
       "item_name": "VBG with Lactate",
-      "reason": "No CGHS benchmark code for Venous Blood Gas with Lactate panel in the knowledge base; could not verify"
+      "reason": "No CGHS benchmark code for Venous Blood Gas with Lactate panel. Could not verify."
     },
     {
       "item_name": "LIVER FUNCTION TEST(LFT)",
-      "reason": "No CGHS benchmark code for LFT panel in the knowledge base; could not verify"
+      "reason": "No specific CGHS benchmark code for LFT panel in knowledge base. Could not verify."
     },
     {
       "item_name": "RENAL PACKAGE - 2 (RFT RANDOM)",
-      "reason": "No CGHS benchmark code for bundled renal function test package in the knowledge base; could not verify"
+      "reason": "No specific CGHS benchmark code for Renal Package-2 panel in knowledge base. Could not verify."
     },
     {
       "item_name": "PT - INR (PROTHROMBIN TIME)",
-      "reason": "No CGHS benchmark code for PT-INR in the knowledge base; could not verify"
+      "reason": "No CGHS benchmark code for PT-INR in knowledge base. Could not verify."
     },
     {
       "item_name": "HOMOCYSTEINE",
-      "reason": "No CGHS benchmark code for Homocysteine assay in the knowledge base; could not verify"
+      "reason": "No CGHS benchmark code for Homocysteine in knowledge base. Could not verify."
     },
     {
       "item_name": "TSH (THYROID STIMULATING HORMONE)",
-      "reason": "No CGHS benchmark code for TSH in the knowledge base; could not verify"
+      "reason": "No CGHS benchmark code for TSH in knowledge base. Could not verify."
     },
     {
       "item_name": "HBA1C",
-      "reason": "No CGHS benchmark code for HbA1c in the knowledge base; could not verify"
+      "reason": "No CGHS benchmark code for HbA1c in knowledge base. Could not verify."
     },
     {
       "item_name": "VBG with Lactate",
-      "reason": "No CGHS benchmark code for Venous Blood Gas with Lactate panel in the knowledge base; could not verify"
+      "reason": "No CGHS benchmark code for Venous Blood Gas with Lactate panel. Could not verify."
     },
     {
       "item_name": "BLOOD SUGAR STRIP TEST",
-      "reason": "No CGHS benchmark code for bedside blood sugar strip test in the knowledge base; could not verify"
+      "reason": "No CGHS benchmark code for bedside blood sugar strip test. Could not verify."
     },
     {
       "item_name": "RENAL PACKAGE - 2 (RFT RANDOM)",
-      "reason": "No CGHS benchmark code for bundled renal function test package in the knowledge base; could not verify"
+      "reason": "No specific CGHS benchmark code for Renal Package-2 panel in knowledge base. Could not verify."
     },
     {
       "item_name": "VITAMIN B-12",
-      "reason": "No CGHS benchmark code for Vitamin B12 assay in the knowledge base; could not verify"
+      "reason": "No CGHS benchmark code for Vitamin B12 assay in knowledge base. Could not verify."
     },
     {
       "item_name": "BLOOD SUGAR STRIP TEST",
-      "reason": "No CGHS benchmark code for bedside blood sugar strip test in the knowledge base; could not verify"
+      "reason": "No CGHS benchmark code for bedside blood sugar strip test. Could not verify."
     },
     {
       "item_name": "PHYSIO PACKAGE FOR WARD PATIENTS",
-      "reason": "No CGHS benchmark code for physiotherapy ward package in the knowledge base; could not verify"
+      "reason": "No CGHS benchmark code for physiotherapy ward package. Could not verify."
     },
     {
       "item_name": "IV CANNULA INSERTION (CAVA FIX INSERTION)",
-      "reason": "No CGHS benchmark code for IV cannula/cava fix insertion procedure in the knowledge base; could not verify"
-    },
-    {
-      "item_name": "Respiratory Support Charges",
-      "reason": "No CGHS benchmark code for respiratory support charges in the knowledge base; could not verify"
-    },
-    {
-      "item_name": "ASPIRIN-TABLET-150MG-ECOSPRIN- |04011824 / 2027-12-31 (30049062)",
-      "reason": "No NPPA ceiling data for Aspirin 150mg in the knowledge base; could not verify"
-    },
-    {
-      "item_name": "BISOPROLOL FUMARATE-TABLET-5MG-BISOCAR- |27372402 / 2027-09-30 (30049079)",
-      "reason": "No NPPA ceiling data for Bisoprolol 5mg in the knowledge base; could not verify"
-    },
-    {
-      "item_name": "MEMANTINE HCL-TABLET-5MG-ADMENTA- |SIG2492A / 2028-04-30 (30049082)",
-      "reason": "No NPPA ceiling data for Memantine HCl 5mg in the knowledge base; could not verify"
-    },
-    {
-      "item_name": "RIVASTIGMINE-CAPSULE-1.5MG-RIVAMER- |SIG2473A / 2027-11-30 (30049099)",
-      "reason": "No NPPA ceiling data for Rivastigmine 1.5mg in the knowledge base; could not verify"
-    },
-    {
-      "item_name": "SODIUM CHLORIDE(NS)-INFUSION (COLLAPSIBLE BAG)-0.9% 100ML-NORMAL SALINE FREEFLEX BAG- |82WB604101 / 2028-01-31 (30049099)",
-      "reason": "No NPPA ceiling data for NS 100ml collapsible bag in the knowledge base; could not verify"
-    },
-    {
-      "item_name": "SODIUM CHLORIDE(NS)-INFUSION (COLLAPSIBLE BAG)-0.9% 500ML-NORMAL SALINE FREEFLEX BAG- |82WB704613 / 2029-01-31 (30049099)",
-      "reason": "No NPPA ceiling data for NS 500ml collapsible bag in the knowledge base; could not verify"
-    },
-    {
-      "item_name": "MODAFINIL-TABLET-100MG-MODALERT- |GTH0233A / 2027-12-31 (30049099)",
-      "reason": "No NPPA ceiling data for Modafinil 100mg in the knowledge base; could not verify"
-    },
-    {
-      "item_name": "SODIUM CHLORIDE(NS)-INFUSION (COLLAPSIBLE BAG)-0.9% 100ML-NORMAL SALINE FREEFLEX BAG- |82WB604101 / 2028-01-31 (30049099)",
-      "reason": "No NPPA ceiling data for NS 100ml collapsible bag in the knowledge base; could not verify"
-    },
-    {
-      "item_name": "MECOBALAMIN+FOLIC ACID+VIT B6-TABLET-1500MCG+5MG+20MG-HOMIN- |MT25-726 / 2028-10-31 (30045090)",
-      "reason": "No NPPA ceiling data for Mecobalamin+Folic Acid+Vit B6 combination in the knowledge base; could not verify"
-    },
-    {
-      "item_name": "MULTIVITAMINS-INJECTION-3ML-OPTINEURON- |A25451VP / 2027-04-30 (30045039)",
-      "reason": "No NPPA ceiling data for Multivitamins injection 3ml in the knowledge base; could not verify"
-    },
-    {
-      "item_name": "MULTIVITAMINS-INJECTION-3ML-OPTINEURON- |A25500VP / 2027-05-31 (30045039)",
-      "reason": "No NPPA ceiling data for Multivitamins injection 3ml in the knowledge base; could not verify"
-    },
-    {
-      "item_name": "SODIUM CHLORIDE(NS)-INFUSION (COLLAPSIBLE BAG)-0.9% 500ML-NORMAL SALINE FREEFLEX BAG- |82WB704613 / 2029-01-31 (30049099)",
-      "reason": "No NPPA ceiling data for NS 500ml collapsible bag in the knowledge base; could not verify"
-    },
-    {
-      "item_name": "RIVASTIGMINE-CAPSULE-1.5MG-RIVAMER- |SIG2473A / 2027-11-30 (30049099)",
-      "reason": "No NPPA ceiling data for Rivastigmine 1.5mg in the knowledge base; could not verify"
-    },
-    {
-      "item_name": "SODIUM CHLORIDE(NS)-INFUSION (COLLAPSIBLE BAG)-0.9% 100ML-NORMAL SALINE FREEFLEX BAG- |82WB604101 / 2028-01-31 (30049099)",
-      "reason": "No NPPA ceiling data for NS 100ml collapsible bag in the knowledge base; could not verify"
-    },
-    {
-      "item_name": "SODIUM CHLORIDE(NS)-INFUSION (COLLAPSIBLE BAG)-0.9% 500ML-NORMAL SALINE FREEFLEX BAG- |82WB704613 / 2029-01-31 (30049099)",
-      "reason": "No NPPA ceiling data for NS 500ml collapsible bag in the knowledge base; could not verify"
-    },
-    {
-      "item_name": "ATORVASTATIN-TABLET-40MG-ATOREC- |E16AZ25005 / 2027-11-30 (30049074)",
-      "reason": "No NPPA ceiling data for Atorvastatin 40mg in the knowledge base; could not verify"
-    },
-    {
-      "item_name": "CLOPIDOGREL-TABLET-75MG-DEPLATT- |CY32M018 / 2027-09-30 (30049099)",
-      "reason": "No NPPA ceiling data for Clopidogrel 75mg in the knowledge base; could not verify"
-    },
-    {
-      "item_name": "PANTOPRAZOLE-INJECTION-40MG-ZOVANTA- |AKP25AOA / 2027-11-30 (30049039)",
-      "reason": "No NPPA ceiling data for Pantoprazole injection 40mg in the knowledge base; could not verify"
-    },
-    {
-      "item_name": "ATORVASTATIN-TABLET-40MG-ATOREC- |E16AZ25005 / 2027-11-30 (30049074)",
-      "reason": "No NPPA ceiling data for Atorvastatin 40mg in the knowledge base; could not verify"
-    },
-    {
-      "item_name": "PANTOPRAZOLE-INJECTION-40MG-ZOVANTA- |AKP25AOA / 2027-11-30 (30049039)",
-      "reason": "No NPPA ceiling data for Pantoprazole injection 40mg in the knowledge base; could not verify"
-    },
-    {
-      "item_name": "SODIUM CHLORIDE-INJECTION-10ML-NORMAL SALINE- |6WS10I5106 / 2029-10-31 (30049099)",
-      "reason": "No NPPA ceiling data for NS 10ml injection in the knowledge base; could not verify"
-    },
-    {
-      "item_name": "SODIUM CHLORIDE-INJECTION-10ML-NORMAL SALINE- |6WS10I5106 / 2029-10-31 (30049099)",
-      "reason": "No NPPA ceiling data for NS 10ml injection in the knowledge base; could not verify"
-    },
-    {
-      "item_name": "CARBIDOPA+LEVODOPA-TABLET-25MG+100MG-SYNDOPA PLUS- |GKG1996A / 2029-10-31 (30049099)",
-      "reason": "No NPPA ceiling data for Carbidopa+Levodopa 25mg+100mg in the knowledge base; could not verify"
-    },
-    {
-      "item_name": "AMLODIPINE-TABLET-2.5MG-AMLOPRES- |5SN2126 / 2027-03-31 (30049072)",
-      "reason": "No NPPA ceiling data for Amlodipine 2.5mg in the knowledge base; could not verify"
-    },
-    {
-      "item_name": "AMLODIPINE-TABLET-5MG-AMLOKIND- |G55Y052 / 2028-08-31 (30049072)",
-      "reason": "No NPPA ceiling data for Amlodipine 5mg in the knowledge base; could not verify"
-    },
-    {
-      "item_name": "AMLODIPINE-TABLET-2.5MG-AMLOPRES- |5SN2126 / 2027-03-31 (30049072)",
-      "reason": "No NPPA ceiling data for Amlodipine 2.5mg in the knowledge base; could not verify"
-    },
-    {
-      "item_name": "CARBIDOPA+LEVODOPA-TABLET-25MG+100MG-SYNDOPA PLUS- |GKG1996A / 2029-10-31 (30049099)",
-      "reason": "No NPPA ceiling data for Carbidopa+Levodopa 25mg+100mg in the knowledge base; could not verify"
-    },
-    {
-      "item_name": "INSULIN SYRINGE-.-40IU(1 ML)-.- |611013AG / 2031-02-28 (90183100)",
-      "reason": "No NPPA ceiling data for insulin syringe 1ml in the knowledge base; could not verify"
-    },
-    {
-      "item_name": "HUMAN INSULIN-INJECTION-40IU/ML(10ML)-INSUGEN R (ERIS LIFE) |V25IRF5018 / 2028-11-30 (30043110)",
-      "reason": "No NPPA ceiling data for Human Insulin 40IU/ml 10ml vial in the knowledge base; could not verify"
-    },
-    {
-      "item_name": "PANTOPRAZOLE-INJECTION-40MG-ZOVANTA- |AKP25AOA / 2027-11-30 (30049039)",
-      "reason": "No NPPA ceiling data for Pantoprazole injection 40mg in the knowledge base; could not verify"
-    },
-    {
-      "item_name": "ISOPHANE INSULIN-INJECTION-40IU/ML(10ML)-INSUGEN N (ERIS LIFE) |V25INF5002 / 2028-11-30 (30043110)",
-      "reason": "No NPPA ceiling data for Isophane Insulin 40IU/ml 10ml vial in the knowledge base; could not verify"
-    },
-    {
-      "item_name": "BED UNDER PADS-.-90CM X 60CM-UND002 BAPUJI |010426 / 2029-03-31 (96190040)",
-      "reason": "Consumable/disposable supply; no CGHS or NPPA benchmark in the knowledge base; could not verify"
-    },
-    {
-      "item_name": "DRESSING SWAB GAUZE-STERILE (4S)-7.5CM X 7.5CM-SGSP009 BAPUJI |220326 / 2029-02-28 (30059090)",
-      "reason": "Consumable/disposable supply; no CGHS or NPPA benchmark in the knowledge base; could not verify"
-    },
-    {
-      "item_name": "HAND CARE GLOVES-STERILE-.-PROTECTO SUPER ROMSONS- |G26B110012 / 2031-01-31 (90183990)",
-      "reason": "Consumable/disposable supply; no CGHS or NPPA benchmark in the knowledge base; could not verify"
-    },
-    {
-      "item_name": "TRANSPARENT ADHESIVE DRESSING-4006 W/O PAD WITH SPLIT-7CM X 9CM-IV 3000- |202512 / 2028-03-01 (30051090)",
-      "reason": "Consumable/disposable supply; no CGHS or NPPA benchmark in the knowledge base; could not verify"
-    },
-    {
-      "item_name": "SYRINGE-PLAIN W/O NEEDLE-5ML-SAFEWAY LIFELONG- |032605BK / 2030-02-28 (90183100)",
-      "reason": "Consumable/disposable supply; no CGHS or NPPA benchmark in the knowledge base; could not verify"
-    },
-    {
-      "item_name": "IV SET-VENTED LUER LOCK-.-LATEX FREE AMARYLLIS- |AH029C26 / 2029-02-28 (90183990)",
-      "reason": "Consumable/disposable supply; no CGHS or NPPA benchmark in the knowledge base; could not verify"
-    },
-    {
-      "item_name": "WET WIPES-.-32CM X 32CM-LYON BDB001 BAPUJI |150326 / 2028-03-31 (56012110)",
-      "reason": "Consumable/disposable supply; no CGHS or NPPA benchmark in the knowledge base; could not verify"
-    },
-    {
-      "item_name": "OUNCE GLASS-.-200ML-MEDOVATION- |2025214 / 2031-09-30 (39269099)",
-      "reason": "Consumable/disposable supply; no CGHS or NPPA benchmark in the knowledge base; could not verify"
-    },
-    {
-      "item_name": "URINAL POT-MALE-.-.- |060226 / 2029-01-31 (90189099)",
-      "reason": "Consumable/disposable supply; no CGHS or NPPA benchmark in the knowledge base; could not verify"
-    },
-    {
-      "item_name": "SYRINGE-PLAIN
+      "reason": "No CG

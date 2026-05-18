@@ -69,7 +69,16 @@
     .nav-close:hover { color: var(--ink); }
 
     /* ── Page ── */
-    .page { max-width: 1120px; margin: 0 auto; padding: 4rem 2rem 6rem; }
+    .page { max-width: 1120px; margin: 0 auto; padding: 2.5rem 2rem 6rem; }
+
+    /* ── Back link ── */
+    .back-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.875rem; color: var(--ink-dim);
+      text-decoration: none; margin-bottom: 2.25rem;
+      transition: color 0.15s;
+    }
+    .back-link:hover { color: var(--ink); }
 
     /* ── Hero ── */
     .hero { max-width: 600px; margin-bottom: 3rem; }
@@ -106,13 +115,11 @@
     }
     .advisor-card:hover { border-color: var(--accent); transform: translateY(-2px); }
 
-    /* ── Avatar — initials ── */
+    /* ── Avatar — SVG illustration ── */
     .advisor-avatar {
       width: 56px; height: 56px; border-radius: 50%;
       background: color-mix(in oklab, var(--accent) 18%, var(--bg-2));
       color: var(--accent);
-      font-family: var(--display); font-size: 20px; font-weight: 600;
-      letter-spacing: -0.02em;
       display: flex; align-items: center; justify-content: center;
       flex-shrink: 0;
     }
@@ -160,7 +167,7 @@
     }
 
     @media (max-width: 560px) {
-      .page { padding: 2.5rem 1.25rem 4rem; }
+      .page { padding: 2rem 1.25rem 4rem; }
     }
   </style>
 </head>
@@ -178,6 +185,8 @@
 
 <div class="page">
 
+  <a href="landing.html" class="back-link">← Back to home</a>
+
   <div class="hero">
     <p class="hero-label">Legal support</p>
     <h1 class="hero-heading">Get expert advice<br>on your dispute</h1>
@@ -186,8 +195,16 @@
 
   <div class="advisor-grid">
 
+    <!-- 1. Priya Sharma — long side hair -->
     <div class="advisor-card">
-      <div class="advisor-avatar">PS</div>
+      <div class="advisor-avatar">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+          <rect x="7" y="8" width="3.5" height="15" rx="1.75"/>
+          <rect x="21.5" y="8" width="3.5" height="15" rx="1.75"/>
+          <circle cx="16" cy="12" r="7"/>
+          <path d="M2 32C2 23.163 8.268 16 16 16C23.732 16 30 23.163 30 32H2Z"/>
+        </svg>
+      </div>
       <div>
         <div class="advisor-name">Advocate Priya Sharma</div>
         <div class="advisor-role">Consumer law · Delhi</div>
@@ -204,8 +221,15 @@
       </div>
     </div>
 
+    <!-- 2. Rajesh Iyer — short neat top -->
     <div class="advisor-card">
-      <div class="advisor-avatar">RI</div>
+      <div class="advisor-avatar">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+          <path d="M9 12C9 7.029 12.134 4 16 4C19.866 4 23 7.029 23 12Z"/>
+          <circle cx="16" cy="12" r="7"/>
+          <path d="M2 32C2 23.163 8.268 16 16 16C23.732 16 30 23.163 30 32H2Z"/>
+        </svg>
+      </div>
       <div>
         <div class="advisor-name">Advocate Rajesh Iyer</div>
         <div class="advisor-role">Healthcare disputes · Chennai</div>
@@ -222,8 +246,15 @@
       </div>
     </div>
 
+    <!-- 3. Meena Kulkarni — bun -->
     <div class="advisor-card">
-      <div class="advisor-avatar">MK</div>
+      <div class="advisor-avatar">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+          <circle cx="16" cy="3" r="4"/>
+          <circle cx="16" cy="12" r="7"/>
+          <path d="M2 32C2 23.163 8.268 16 16 16C23.732 16 30 23.163 30 32H2Z"/>
+        </svg>
+      </div>
       <div>
         <div class="advisor-name">Advocate Meena Kulkarni</div>
         <div class="advisor-role">Insurance claims · Pune</div>
@@ -240,14 +271,71 @@
       </div>
     </div>
 
+    <!-- 4. Arjun Das — crew cut -->
     <div class="advisor-card">
-      <div class="advisor-avatar">AD</div>
+      <div class="advisor-avatar">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+          <path d="M9 12C9 8 12.134 5 16 5C19.866 5 23 8 23 12C20.5 10.5 11.5 10.5 9 12Z"/>
+          <circle cx="16" cy="12" r="7"/>
+          <path d="M2 32C2 23.163 8.268 16 16 16C23.732 16 30 23.163 30 32H2Z"/>
+        </svg>
+      </div>
       <div>
         <div class="advisor-name">Advocate Arjun Das</div>
         <div class="advisor-role">Medical billing disputes · Bengaluru</div>
         <div class="advisor-chips">
           <span class="chip">Bill disputes</span>
           <span class="chip">Ombudsman filings</span>
+        </div>
+      </div>
+      <div class="advisor-footer">
+        <div class="advisor-price"><span class="fee">₹3,000</span> / consult</div>
+        <div class="advisor-action">
+          <button class="btn-request" onclick="sendRequest(this)">Send Request</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Sunita Nair — bob -->
+    <div class="advisor-card">
+      <div class="advisor-avatar">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+          <path d="M7 13C7 6 11.029 3 16 3C20.971 3 25 6 25 13L24 20H8L7 13Z"/>
+          <circle cx="16" cy="12" r="7"/>
+          <path d="M2 32C2 23.163 8.268 16 16 16C23.732 16 30 23.163 30 32H2Z"/>
+        </svg>
+      </div>
+      <div>
+        <div class="advisor-name">Advocate Sunita Nair</div>
+        <div class="advisor-role">Medical negligence · Kochi</div>
+        <div class="advisor-chips">
+          <span class="chip">Medical negligence</span>
+          <span class="chip">Insurance disputes</span>
+        </div>
+      </div>
+      <div class="advisor-footer">
+        <div class="advisor-price"><span class="fee">₹2,500</span> / consult</div>
+        <div class="advisor-action">
+          <button class="btn-request" onclick="sendRequest(this)">Send Request</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. Vikram Mehta — side sweep -->
+    <div class="advisor-card">
+      <div class="advisor-avatar">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+          <path d="M8 13C8 6 12 4 16 4C22 4 24 8 24 12L22 14C19 10 11 10 8 13Z"/>
+          <circle cx="16" cy="12" r="7"/>
+          <path d="M2 32C2 23.163 8.268 16 16 16C23.732 16 30 23.163 30 32H2Z"/>
+        </svg>
+      </div>
+      <div>
+        <div class="advisor-name">Advocate Vikram Mehta</div>
+        <div class="advisor-role">Consumer protection · Mumbai</div>
+        <div class="advisor-chips">
+          <span class="chip">Consumer protection</span>
+          <span class="chip">Healthcare billing</span>
         </div>
       </div>
       <div class="advisor-footer">

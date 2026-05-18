@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 20'><path d='M9 0L0 3.5V9.5C0 14.45 3.84 19.07 9 20C14.16 19.07 18 14.45 18 9.5V3.5L9 0Z' fill='%23DC2626'/><path d='M5.5 10L7.8 12.3L12.5 7.5' stroke='white' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/></svg>">
   <script>!function(){var s=localStorage.getItem('billshield-theme'),d=window.matchMedia('(prefers-color-scheme:dark)').matches;if(!(s?s==='dark':d))document.documentElement.classList.add('light')}()</script>
   <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
@@ -70,7 +71,7 @@
       line-height: 1.55;
       -webkit-font-smoothing: antialiased;
       min-height: 100vh;
-      transition: background .25s, color .25s;
+      transition: background 0.25s ease, color 0.2s ease;
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -265,6 +266,17 @@
     @keyframes stepIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes spin   { to { transform: rotate(360deg); } }
 
+    /* ── Status line — single fade animation ────────────────── */
+    .status-line {
+      font-size: 0.875rem;
+      color: var(--muted);
+      text-align: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      min-height: 1.4em;
+    }
+    .status-line.visible { opacity: 1; }
+
     /* ── Sanity screen ──────────────────────────────────────── */
     .sanity-split {
       display: grid;
@@ -396,6 +408,95 @@
       margin-top: 0.75rem;
     }
     @media (max-width: 640px) { .results-cols { grid-template-columns: 1fr; } }
+
+    .results-collapsibles {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin-top: 1.5rem;
+      align-items: start;
+    }
+    @media (max-width: 640px) { .results-collapsibles { grid-template-columns: 1fr; } }
+
+    /* ── Results table layout ───────────────────────────────── */
+    .results-page { max-width: 1100px; margin: 0 auto; padding: 2rem; }
+    .res-topbar {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      border: 1px solid var(--border); border-radius: 12px;
+      overflow: hidden; background: var(--surface); margin-bottom: 1rem;
+    }
+    .res-topbar-cell { padding: 18px 20px; border-right: 1px solid var(--border); }
+    .res-topbar-cell:last-child { border-right: none; }
+    .res-topbar-label {
+      font-size: 10px; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 6px;
+    }
+    .res-topbar-value {
+      font-family: var(--display); font-size: 28px; font-weight: 700;
+      letter-spacing: -0.03em; line-height: 1;
+    }
+    .res-topbar-value--red { color: var(--red); }
+    .res-actions { display: flex; gap: 10px; margin-bottom: 1rem; align-items: center; }
+    .res-actions-disc { font-size: 10px; color: var(--muted); margin-left: auto; align-self: center; text-align: right; line-height: 1.4; }
+    .flags-table { width: 100%; border-collapse: collapse; }
+    .flags-table thead { position: sticky; top: var(--nav-h); background: var(--bg); z-index: 10; }
+    .flags-table th {
+      font-size: 10px; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--muted);
+      padding: 10px 16px; text-align: left; border-bottom: 1px solid var(--border);
+    }
+    .flags-table tbody tr { border-bottom: 1px solid var(--border); transition: background 0.1s; }
+    .flags-table tbody tr:hover { background: var(--surface); }
+    .flags-table td { padding: 12px 16px; vertical-align: middle; font-size: 13px; }
+    .ft-item-name { font-weight: 600; }
+    .ft-item-cite { font-size: 11px; color: var(--muted); margin-top: 2px; }
+    .ft-billed { font-weight: 700; color: var(--red); font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .ft-bench  { color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .ft-over   { color: var(--red); font-weight: 500; font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .ft-divider { cursor: pointer; user-select: none; }
+    .ft-divider td {
+      font-size: 10px; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; padding: 8px 16px;
+      background: var(--surface); border-bottom: 1px solid var(--border);
+    }
+    .ft-divider:hover td { background: var(--surface-alt); }
+    .ft-scroll { max-height: 60vh; overflow-y: auto; }
+    .ft-scroll .flags-table thead { top: 0; }
+    .res-two-col {
+      display: grid; grid-template-columns: 55fr 45fr;
+      gap: 2rem; align-items: start; margin-top: 0.5rem;
+    }
+    @media (max-width: 768px) {
+      .res-two-col { grid-template-columns: 1fr; }
+      .res-two-col > div + div { border-left: none !important; padding-left: 0 !important; border-top: 1px solid var(--border); padding-top: 2rem; }
+      .ft-scroll { max-height: none; }
+    }
+    .res-split {
+      display: grid; grid-template-columns: 60fr 40fr;
+      border: 1px solid var(--border); border-radius: 12px;
+      overflow: hidden; min-height: calc(100vh - var(--nav-h));
+    }
+    .res-split-left {
+      border-right: 1px solid var(--border); overflow-y: auto;
+      max-height: calc(100vh - var(--nav-h)); padding: 1.75rem 2rem;
+    }
+    .res-split-left .flags-table thead { top: 0; }
+    .res-split-right {
+      padding: 24px; overflow-y: auto;
+      max-height: calc(100vh - var(--nav-h));
+      background: color-mix(in oklab, var(--bg) 60%, var(--bg-2));
+    }
+    @media (max-width: 768px) {
+      .res-topbar { grid-template-columns: 1fr 1fr; }
+      .res-topbar-cell:nth-child(2) { border-right: none; }
+      .res-split { grid-template-columns: 1fr; min-height: auto; }
+      .res-split-left { border-right: none; border-bottom: 1px solid var(--border); max-height: none; }
+      .res-split-right { max-height: none; }
+    }
+    @media (max-width: 640px) {
+      .results-page { padding: 1.25rem; }
+      .flags-table th:nth-child(4), .flags-table td:nth-child(4) { display: none; }
+    }
 
     /* ── Letter screen — proof-card gradient ────────────────── */
     .letter-note {
@@ -578,18 +679,35 @@ function Nav({ dark, onToggle }) {
 
 // ── Screen 1: Upload ──────────────────────────────────────────────────
 
-const UPLOAD_STATUS = ['Reading document…', 'Extracting line items…', 'Checking confidence…', 'Almost done…'];
+const humanizeError = err => {
+  const e = String(err);
+  if (/fetch|NetworkError/i.test(e)) return 'Cannot reach the server. Make sure the app is running.';
+  if (/too large|complex/i.test(e)) return 'This bill couldn\'t be read. Try a clearer photo or a PDF.';
+  if (/401|api.key/i.test(e)) return 'API key error. Restart the server with a valid key.';
+  return e;
+};
+
+const EXTRACT_STEPS = [
+  'Reading document structure...',
+  'Identifying hospital and accreditation tier...',
+  'Extracting line items...',
+  'Checking extraction confidence...',
+  'Redacting personal information...',
+  'Structuring bill data...',
+];
 
 function UploadScreen({ onDone }) {
-  const [file,     setFile]     = useState(null);
-  const [over,     setOver]     = useState(false);
-  const [error,    setError]    = useState(null);
-  const [phase,    setPhase]    = useState('idle');
-  const [msgIdx,   setMsgIdx]   = useState(0);
-  const [apiData,  setApiData]  = useState(null);
-  const [apiError, setApiError] = useState(null);
-  const doneRef  = useRef(false);
-  const inputRef = useRef(null);
+  const [file,          setFile]          = useState(null);
+  const [over,          setOver]          = useState(false);
+  const [error,         setError]         = useState(null);
+  const [phase,         setPhase]         = useState('idle');
+  const [statusText,    setStatusText]    = useState('');
+  const [statusVisible, setStatusVisible] = useState(false);
+  const [apiData,       setApiData]       = useState(null);
+  const [apiError,      setApiError]      = useState(null);
+  const doneRef    = useRef(false);
+  const inputRef   = useRef(null);
+  const apiDataRef = useRef(null);
 
   const VALID_TYPES = ['application/pdf', 'image/jpeg', 'image/png'];
   const MAX = 10 * 1024 * 1024;
@@ -618,21 +736,33 @@ function UploadScreen({ onDone }) {
     return () => ctrl.abort();
   }, [phase]);
 
-  // Cycle status message every 2s while waiting
-  useEffect(() => {
-    if (phase !== 'processing' || apiData) return;
-    if (msgIdx >= UPLOAD_STATUS.length - 1) return;
-    const t = setTimeout(() => setMsgIdx(i => i + 1), 2000);
-    return () => clearTimeout(t);
-  }, [phase, msgIdx, apiData]);
+  useEffect(() => { if (apiData) apiDataRef.current = apiData; }, [apiData]);
 
-  // Navigate shortly after API responds
   useEffect(() => {
-    if (!apiData || doneRef.current) return;
-    doneRef.current = true;
-    const t = setTimeout(() => onDone(file, apiData), 700);
-    return () => clearTimeout(t);
-  }, [apiData]);
+    if (phase !== 'processing') return;
+    let stopped = false;
+    let idx = 0;
+    const step = () => {
+      if (stopped) return;
+      const ready = apiDataRef.current !== null;
+      const done  = ready && idx >= EXTRACT_STEPS.length;
+      setStatusText(done ? 'Done.' : EXTRACT_STEPS[idx % EXTRACT_STEPS.length]);
+      setStatusVisible(true);
+      setTimeout(() => {
+        if (stopped) return;
+        if (done) {
+          setTimeout(() => {
+            if (!stopped && !doneRef.current) { doneRef.current = true; onDone(file, apiDataRef.current); }
+          }, 400);
+          return;
+        }
+        setStatusVisible(false);
+        setTimeout(() => { if (!stopped) { idx++; step(); } }, 300);
+      }, ready ? 150 : 1500);
+    };
+    step();
+    return () => { stopped = true; };
+  }, [phase]);
 
   const processing = phase === 'processing';
 
@@ -642,8 +772,8 @@ function UploadScreen({ onDone }) {
         <div className="upload-inner">
           <div className="proc-error-box" role="alert">
             <div className="proc-error-title">Something went wrong</div>
-            <div className="proc-error-msg">{apiError}</div>
-            <button className="btn btn--outline" onClick={() => { setPhase('idle'); setApiError(null); setMsgIdx(0); setApiData(null); doneRef.current = false; }}>Try again</button>
+            <div className="proc-error-msg">{humanizeError(apiError)}</div>
+            <button className="btn btn--outline" onClick={() => { setPhase('idle'); setApiError(null); setStatusText(''); setStatusVisible(false); setApiData(null); doneRef.current = false; }}>Try again</button>
           </div>
         </div>
       </div>
@@ -653,9 +783,14 @@ function UploadScreen({ onDone }) {
   return (
     <div className="upload-wrap">
       <div className="upload-inner">
-        <h1 className="display" style={{ marginBottom: '1rem' }}>Know what<br />you owe.</h1>
-        <p style={{ color: 'var(--muted)', fontSize: '1rem', lineHeight: 1.65, maxWidth: 420, textAlign: 'center' }}>
-          Upload your hospital bill. We check every line against verified government rates.
+        <p style={{ fontSize: '10px', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: '12px' }}>
+          FOR INDIAN FAMILIES
+        </p>
+        <h1 style={{ fontFamily: 'var(--display)', fontSize: 'clamp(2rem, 5vw, 3.2rem)', fontWeight: 700, letterSpacing: '-0.03em', lineHeight: 1.05, textAlign: 'center' }}>
+          Your hospital bill<br /><em>deserves a second opinion.</em>
+        </h1>
+        <p style={{ fontSize: '15px', color: 'var(--muted)', lineHeight: 1.65, marginTop: '12px', maxWidth: 420, textAlign: 'center' }}>
+          We check every line against verified CGHS, NPPA, and IRDAI rates. Free. No login. Under 2 minutes.
         </p>
 
         <div
@@ -698,19 +833,19 @@ function UploadScreen({ onDone }) {
           >
             {processing
               ? <><span className="proc-spinner" style={{ borderColor: 'rgba(255,255,255,0.3)', borderTopColor: '#fff' }} /> Auditing…</>
-              : 'Analyse Bill →'}
+              : 'Audit my bill →'}
           </button>
         </div>
 
         {processing && (
-          <p style={{ marginTop: '0.75rem', fontSize: '0.875rem', color: 'var(--accent)', animation: 'stepIn 0.3s ease both' }} aria-live="polite">
-            {apiData ? 'Done ✓' : UPLOAD_STATUS[msgIdx]}
-          </p>
+          <div style={{ marginTop: '1.25rem' }} aria-live="polite" aria-atomic="true">
+            <div className={`status-line${statusVisible ? ' visible' : ''}`}>{statusText}</div>
+          </div>
         )}
 
         {!processing && (
           <div className="trust-row" aria-label="Trust signals">
-            <div className="trust-item"><span className="trust-dot" aria-hidden="true" />Verified CGHS rates</div>
+            <div className="trust-item"><span className="trust-dot" aria-hidden="true" />Verified CGHS · NPPA · IRDAI rates</div>
             <div className="trust-item"><span className="trust-dot" aria-hidden="true" />No login required</div>
             <div className="trust-item"><span className="trust-dot" aria-hidden="true" />Your data never stored</div>
           </div>
@@ -832,23 +967,24 @@ function ProcessingScreen({ file, onDone, onBack }) {
 // ── Screen 2b: Sanity Check ────────────────────────────────────────────
 
 const ANALYSE_STEPS = [
-  { stage: 0, text: 'Loading CGHS rate schedule (Oct 2025)' },
-  { stage: 0, text: 'Comparing each line item' },
-  { stage: 0, text: 'Checking CGHS Annexure-III bundled items' },
-  { stage: 0, text: 'Applying accreditation adjustments' },
-  { stage: 0, text: 'Computing overcharge amounts' },
-  { stage: 1, text: 'Verifying citations' },
-  { stage: 1, text: 'Checking ₹2,500 threshold' },
-  { stage: 1, text: 'Finalising report' },
+  'Loading CGHS rate schedule (Oct 2025)...',
+  'Applying Tier I / Tier II / Tier III multipliers...',
+  'Comparing each line item against benchmarks...',
+  'Checking CGHS Annexure-III bundled items...',
+  'Flagging rate overcharges above 2× threshold...',
+  'Identifying structural violations...',
+  'Computing total flagged amount...',
+  'Checking ₹2,500 letter threshold...',
 ];
-const ANALYSE_STAGE_TITLES = ['Analysing against benchmarks', 'Preparing results'];
 
 function SanityScreen({ file, extracted, onDone, onBack }) {
-  const [analysing,  setAnalysing]  = useState(false);
-  const [shown,      setShown]      = useState(0);
-  const [apiResult,  setApiResult]  = useState(null);
-  const [error,      setError]      = useState(null);
-  const doneRef = useRef(false);
+  const [analysing,     setAnalysing]     = useState(false);
+  const [statusText,    setStatusText]    = useState('');
+  const [statusVisible, setStatusVisible] = useState(false);
+  const [apiResult,     setApiResult]     = useState(null);
+  const [error,         setError]         = useState(null);
+  const doneRef      = useRef(false);
+  const apiResultRef = useRef(null);
   const fileURL = useRef(URL.createObjectURL(file)).current;
   const isPDF   = file.type === 'application/pdf';
   const items   = extracted.line_items || [];
@@ -862,34 +998,38 @@ function SanityScreen({ file, extracted, onDone, onBack }) {
       body: JSON.stringify(extracted),
     })
       .then(r => r.ok ? r.json() : r.json().catch(() => ({})).then(j => Promise.reject(j.error || `Server ${r.status}`)))
-      .then(data => setApiResult(data))
+      .then(data => { setApiResult(data); apiResultRef.current = data; })
       .catch(e => {
-        setError(e.message && e.message.includes('fetch') ? 'Cannot reach server. Is app.py running?' : String(e));
+        setError(humanizeError(e.message || String(e)));
         setAnalysing(false);
       });
   };
 
-  // Step animation while analysing
   useEffect(() => {
     if (!analysing) return;
-    if (shown >= ANALYSE_STEPS.length) return;
-    const delay = apiResult ? 80 : (400 + Math.random() * 160);
-    const t = setTimeout(() => setShown(s => s + 1), delay);
-    return () => clearTimeout(t);
-  }, [analysing, shown, apiResult]);
-
-  // Navigate when API done and at least 3 steps shown
-  useEffect(() => {
-    if (apiResult && shown >= 3 && !doneRef.current) {
-      doneRef.current = true;
-      setTimeout(() => onDone(apiResult), 300);
-    }
-  }, [apiResult, shown]);
-
-  const currentStage = analysing && shown > 0
-    ? ANALYSE_STEPS[Math.min(shown - 1, ANALYSE_STEPS.length - 1)].stage
-    : 0;
-  const allDone = shown >= ANALYSE_STEPS.length;
+    let stopped = false;
+    let idx = 0;
+    const step = () => {
+      if (stopped) return;
+      const ready = apiResultRef.current !== null;
+      const done  = ready && idx >= ANALYSE_STEPS.length;
+      setStatusText(done ? 'Done.' : ANALYSE_STEPS[idx % ANALYSE_STEPS.length]);
+      setStatusVisible(true);
+      setTimeout(() => {
+        if (stopped) return;
+        if (done) {
+          setTimeout(() => {
+            if (!stopped && !doneRef.current) { doneRef.current = true; onDone(apiResultRef.current); }
+          }, 400);
+          return;
+        }
+        setStatusVisible(false);
+        setTimeout(() => { if (!stopped) { idx++; step(); } }, 300);
+      }, ready ? 150 : 1500);
+    };
+    step();
+    return () => { stopped = true; };
+  }, [analysing]);
 
   return (
     <div className="page page--lg">
@@ -934,51 +1074,27 @@ function SanityScreen({ file, extracted, onDone, onBack }) {
       {!analysing ? (
         <div style={{ marginTop: '1.5rem', display: 'flex', gap: '1.25rem', alignItems: 'center' }}>
           <button className="btn btn--dark" onClick={confirm}>
-            This looks right — Analyse →
+            Looks right — run audit →
           </button>
           <button className="btn btn--ghost" onClick={onBack}>Something's wrong — start over</button>
         </div>
       ) : (
-        <div style={{ marginTop: '1.75rem' }} aria-live="polite">
-          {ANALYSE_STAGE_TITLES.map((title, si) => {
-            if (si > currentStage) return null;
-            const stageSteps   = ANALYSE_STEPS.filter(s => s.stage === si);
-            const stageStart   = ANALYSE_STEPS.findIndex(s => s.stage === si);
-            const shownInStage = Math.max(0, Math.min(stageSteps.length, shown - stageStart));
-            const isActive     = si === currentStage;
-            return (
-              <div className="proc-stage" key={si}>
-                <div className={`proc-stage-head ${isActive ? 'proc-stage-head--active' : ''}`}>
-                  {si < currentStage ? '✓ ' : ''}{title}
-                </div>
-                <div className="proc-steps">
-                  {stageSteps.slice(0, shownInStage).map((step, idx) => (
-                    <div className="proc-step" key={idx}>
-                      <span className="proc-check" aria-hidden="true">✓</span>
-                      <span>{step.text}</span>
-                    </div>
-                  ))}
-                  {isActive && shownInStage < stageSteps.length && (
-                    <div className="proc-step proc-step--pending" key="current">
-                      <span className="proc-spinner" aria-hidden="true" />
-                      <span>{stageSteps[shownInStage].text}</span>
-                    </div>
-                  )}
-                </div>
-              </div>
-            );
-          })}
-          {allDone && !apiResult && (
-            <div className="proc-waiting">
-              <span className="proc-spinner" aria-hidden="true" />
-              <span>Still processing…</span>
-            </div>
-          )}
+        <div style={{ marginTop: '1.75rem', textAlign: 'center' }} aria-live="polite" aria-atomic="true">
+          <div className={`status-line${statusVisible ? ' visible' : ''}`}>{statusText}</div>
         </div>
       )}
     </div>
   );
 }
+
+const LETTER_STEPS = [
+  'Reading flagged items...',
+  'Drafting rate overcharge section...',
+  'Drafting structural violations section...',
+  'Drafting escalation warning...',
+  'Adding CGHS citations...',
+  'Finalising letter...',
+];
 
 // ── Screen 3: Results (with inline split letter panel) ────────────────
 
@@ -990,7 +1106,10 @@ function ResultsScreen({ extracted, analysis }) {
   const [letterPhase, setLetterPhase] = useState('none'); // 'none'|'loading'|'typing'|'ready'
   const [letter,      setLetter]      = useState('');
   const [typeText,    setTypeText]    = useState('');
-  const [copied,      setCopied]      = useState(false);
+  const [copied,               setCopied]               = useState(false);
+  const [letterStatusText,     setLetterStatusText]     = useState('');
+  const [letterStatusVisible,  setLetterStatusVisible]  = useState(false);
+  const letterRef = useRef('');
 
   const flags        = analysis.flags        || [];
   const unverifiable = analysis.unverifiable || [];
@@ -1004,7 +1123,7 @@ function ResultsScreen({ extracted, analysis }) {
   const cleanItems = allItems.filter(i => !flaggedSet.has(i.item_name) && !unverSet.has(i.item_name));
 
   const getLetter = async () => {
-    setLoading(true); setError(null); setLetterPhase('loading');
+    setLoading(true); setError(null); setLetterPhase('loading'); setLetterStatusText(''); setLetterStatusVisible(false);
     try {
       const res = await fetch(`${API}/api/letter`, {
         method: 'POST',
@@ -1014,7 +1133,6 @@ function ResultsScreen({ extracted, analysis }) {
       if (!res.ok) throw new Error(`Server returned ${res.status}`);
       const text = await res.text();
       setLetter(text);
-      setLetterPhase('typing');
     } catch (e) {
       setLetterPhase('none');
       setError(e.message.includes('fetch') ? 'Cannot reach server. Is app.py running?' : e.message);
@@ -1090,9 +1208,11 @@ ${structFlags.length > 0 ? `<h2>Structural Violations (${structFlags.length})</h
   };
 
   const downloadLetter = () => {
+    const hospitalSlug = (extracted?.hospital?.name || 'hospital').toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-').slice(0, 30);
+    const dateSlug = new Date().toISOString().slice(0, 10);
     const a = Object.assign(document.createElement('a'), {
       href: URL.createObjectURL(new Blob([letter], { type: 'text/plain;charset=utf-8' })),
-      download: 'billshield-dispute-letter.txt',
+      download: `billshield-dispute-${hospitalSlug}-${dateSlug}.txt`,
     });
     a.click();
   };
@@ -1123,166 +1243,166 @@ ${structFlags.length > 0 ? `<h2>Structural Violations (${structFlags.length})</h
     return () => clearInterval(iv);
   }, [letterPhase]);
 
-  // Reusable results content (JSX variable, not a component — avoids remounting)
-  const resultsContent = (
+  useEffect(() => { if (letter) letterRef.current = letter; }, [letter]);
+
+  useEffect(() => {
+    if (letterPhase !== 'loading') return;
+    let stopped = false;
+    let idx = 0;
+    const step = () => {
+      if (stopped) return;
+      const ready = letterRef.current !== '';
+      const done  = ready && idx >= LETTER_STEPS.length;
+      setLetterStatusText(done ? 'Done.' : LETTER_STEPS[idx % LETTER_STEPS.length]);
+      setLetterStatusVisible(true);
+      setTimeout(() => {
+        if (stopped) return;
+        if (done) { setTimeout(() => { if (!stopped) setLetterPhase('typing'); }, 400); return; }
+        setLetterStatusVisible(false);
+        setTimeout(() => { if (!stopped) { idx++; step(); } }, 300);
+      }, ready ? 150 : 1500);
+    };
+    step();
+    return () => { stopped = true; };
+  }, [letterPhase]);
+
+  const summarySection = (
     <>
-      <div className="summary-card" role="region" aria-label="Analysis summary">
-        <div className="summary-stats">
-          <div>
-            <div className="stat-label">Total flagged</div>
-            <div className="stat-value stat-value--red" aria-label={`Total flagged ${fmt(analysis.total_flagged_amount || 0)}`}>{fmt(analysis.total_flagged_amount || 0)}</div>
-          </div>
-          <div>
-            <div className="stat-label">Issues found</div>
-            <div className="stat-value">{flags.length}</div>
-          </div>
-          <div>
-            <div className="stat-label">Rate overcharges</div>
-            <div className="stat-value">{rateFlags.length}</div>
-          </div>
-          <div>
-            <div className="stat-label">Structural violations</div>
-            <div className="stat-value">{structFlags.length}</div>
-          </div>
+      <div className="res-topbar" role="region" aria-label="Analysis summary">
+        <div className="res-topbar-cell">
+          <div className="res-topbar-label">Total flagged</div>
+          <div className="res-topbar-value res-topbar-value--red" aria-label={`Total flagged ${fmt(analysis.total_flagged_amount || 0)}`}>{fmt(analysis.total_flagged_amount || 0)}</div>
         </div>
-        <div className="summary-actions">
-          {analysis.letter_warranted
-            ? <button className="btn btn--dark" style={{ flex: 1 }} disabled={loading || letterPhase !== 'none'} onClick={getLetter}>
-                {loading ? 'Drafting…' : letterPhase !== 'none' ? 'Letter generated ✓' : 'Generate Dispute Letter'}
-              </button>
-            : <button className="btn btn--outline" style={{ flex: 1 }} disabled aria-disabled="true">Dispute letter not warranted</button>
-          }
-          <button className="btn btn--outline" onClick={saveRecords}>Save for records</button>
-          <button className="btn btn--outline" onClick={saveResultsPDF}>Save Results as PDF</button>
+        <div className="res-topbar-cell">
+          <div className="res-topbar-label">Issues found</div>
+          <div className="res-topbar-value">{flags.length}</div>
+        </div>
+        <div className="res-topbar-cell">
+          <div className="res-topbar-label">Rate overcharges</div>
+          <div className="res-topbar-value">{rateFlags.length}</div>
+        </div>
+        <div className="res-topbar-cell">
+          <div className="res-topbar-label">Structural violations</div>
+          <div className="res-topbar-value">{structFlags.length}</div>
         </div>
       </div>
-
-      <p className="summary-note">
-        Figures based on verified CGHS benchmarks only. Results are consistent across runs for verified items.
-      </p>
-
+      <div className="res-actions">
+        {analysis.letter_warranted
+          ? <button className="btn btn--dark" style={{ flex: 1 }} disabled={loading || letterPhase !== 'none'} onClick={getLetter}>
+              {loading ? 'Drafting…' : letterPhase !== 'none' ? 'Letter generated ✓' : 'Generate Dispute Letter'}
+            </button>
+          : <button className="btn btn--outline" style={{ flex: 1 }} disabled aria-disabled="true">Dispute letter not warranted</button>
+        }
+        <button className="btn btn--outline" onClick={saveResultsPDF}>Save as PDF</button>
+        <span className="res-actions-disc">CGHS OM 03.10.2025<br/>NPPA 30.01.2026 · IRDAI 29.05.2024</span>
+      </div>
       {!analysis.letter_warranted && (
         <div className="notice" role="status">{analysis.letter_threshold_note || 'Total flagged amount is below the ₹2,500 threshold. No dispute letter is warranted at this time.'}</div>
       )}
       {error && <div className="error" role="alert">{error}</div>}
-
-      {(rateFlags.length > 0 || structFlags.length > 0) && (
-        <div className="results-cols">
-          <div>
-            {rateFlags.length > 0 && (
-              <>
-                <div className="section-label-results section-label-results--red" aria-label={`${rateFlags.length} rate overcharges`}>Rate overcharges ({rateFlags.length})</div>
-                {rateFlags.map((f, i) => (
-                  <div className="flag-card" key={i} role="article" aria-label={`Rate overcharge: ${f.item_name}`}>
-                    <div className="flag-top">
-                      <div style={{ flex: 1 }}>
-                        <div className="flag-name">{f.item_name}</div>
-                        <div className="flag-citation">{f.citation}</div>
-                      </div>
-                      <div className="flag-right">
-                        <div className="flag-amount">{fmt(f.billed_amount)}</div>
-                        {f.multiplier && <div><span className="badge badge--red">{f.multiplier}×</span></div>}
-                      </div>
-                    </div>
-                    <div className="flag-meta">
-                      <span className="flag-benchmark">Benchmark: {fmt(f.cghs_rate)}</span>
-                      <span className="flag-delta">Overcharge: +{fmt(f.delta)}</span>
-                    </div>
-                  </div>
-                ))}
-              </>
-            )}
-          </div>
-          <div>
-            {structFlags.length > 0 && (
-              <>
-                <div className="section-label-results section-label-results--red">Structural violations ({structFlags.length})</div>
-                {structFlags.map((f, i) => (
-                  <div className="flag-card" key={i} role="article" aria-label={`Structural violation: ${f.item_name}`}>
-                    <div className="flag-top">
-                      <div style={{ flex: 1 }}>
-                        <div className="flag-name">{f.item_name}</div>
-                        <div className="flag-citation">{f.citation}</div>
-                      </div>
-                      <div className="flag-right">
-                        <div className="flag-amount">{fmt(f.billed_amount)}</div>
-                        <div><span className="badge badge--red">not billable</span></div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </>
-            )}
-          </div>
-        </div>
-      )}
-
-      {unverifiable.length > 0 && (
-        <div style={{ marginTop: '1.5rem' }}>
-          <div className="collapse-trigger" onClick={() => setUnverOpen(o => !o)} role="button" tabIndex={0} aria-expanded={unverOpen} onKeyDown={e => e.key === 'Enter' && setUnverOpen(o => !o)}>
-            <span className="label" style={{ color: 'var(--amber)' }}>Could not verify — no benchmark found ({unverifiable.length})</span>
-            <Chevron open={unverOpen} />
-          </div>
-          {unverOpen && (
-            <div style={{ marginTop: '0.5rem' }}>
-              {unverifiable.map((u, i) => (
-                <div className="flag-card flag-card--amber" key={i}>
-                  <div className="flag-name">{u.item_name}</div>
-                  <div className="flag-citation" style={{ marginTop: '0.2rem' }}>{u.reason}</div>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-      )}
-
-      {cleanItems.length > 0 && (
-        <div style={{ marginTop: '1.5rem' }}>
-          <div className="collapse-trigger" onClick={() => setCleanOpen(o => !o)} role="button" tabIndex={0} aria-expanded={cleanOpen} onKeyDown={e => e.key === 'Enter' && setCleanOpen(o => !o)}>
-            <span className="label" style={{ color: 'var(--green)' }}>Within benchmark ({cleanItems.length})</span>
-            <Chevron open={cleanOpen} />
-          </div>
-          {cleanOpen && (
-            <div style={{ marginTop: '0.5rem' }}>
-              {cleanItems.map((item, i) => (
-                <div className="flag-card flag-card--green" key={i}>
-                  <div className="flag-top">
-                    <div className="flag-name">{item.item_name}</div>
-                    <div className="flag-amount flag-amount--green">{fmt(item.total)}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-      )}
     </>
   );
 
-  // Letter right panel content
+  const flagsTable = (flags.length > 0 || unverifiable.length > 0 || cleanItems.length > 0) && (
+    <table className="flags-table" role="table" aria-label="Flagged items">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Type</th>
+          <th>Billed</th>
+          <th>Benchmark</th>
+          <th>Overcharge</th>
+          <th>Multiple</th>
+        </tr>
+      </thead>
+      <tbody>
+        {rateFlags.map((f, i) => (
+          <tr key={`rate-${i}`}>
+            <td>
+              <div className="ft-item-name">{f.item_name}</div>
+              <div className="ft-item-cite">{f.citation}</div>
+            </td>
+            <td><span className="badge badge--red">Rate</span></td>
+            <td className="ft-billed">{fmt(f.billed_amount)}</td>
+            <td className="ft-bench">{fmt(f.cghs_rate)}</td>
+            <td className="ft-over">+{fmt(f.delta)}</td>
+            <td>{f.multiplier && <span className="badge badge--red">{f.multiplier}×</span>}</td>
+          </tr>
+        ))}
+        {structFlags.map((f, i) => (
+          <tr key={`struct-${i}`}>
+            <td>
+              <div className="ft-item-name">{f.item_name}</div>
+              <div className="ft-item-cite">{f.citation}</div>
+            </td>
+            <td><span className="badge badge--amber">Violation</span></td>
+            <td className="ft-billed">{fmt(f.billed_amount)}</td>
+            <td className="ft-bench">—</td>
+            <td className="ft-over">+{fmt(f.billed_amount)}</td>
+            <td><span className="badge badge--red">not billable</span></td>
+          </tr>
+        ))}
+        {unverifiable.length > 0 && (
+          <>
+            <tr className="ft-divider" onClick={() => setUnverOpen(o => !o)} aria-expanded={unverOpen}>
+              <td colSpan={6} style={{ color: 'var(--amber)' }}>{unverOpen ? '▾' : '▸'} Could not verify ({unverifiable.length})</td>
+            </tr>
+            {unverOpen && unverifiable.map((u, i) => (
+              <tr key={`unver-${i}`}>
+                <td>
+                  <div className="ft-item-name">{u.item_name}</div>
+                  <div className="ft-item-cite">{u.reason}</div>
+                </td>
+                <td><span className="badge badge--amber">Unverified</span></td>
+                <td className="ft-bench">{u.billed_amount ? fmt(u.billed_amount) : '—'}</td>
+                <td className="ft-bench">—</td>
+                <td className="ft-bench">—</td>
+                <td className="ft-bench">—</td>
+              </tr>
+            ))}
+          </>
+        )}
+        {cleanItems.length > 0 && (
+          <>
+            <tr className="ft-divider" onClick={() => setCleanOpen(o => !o)} aria-expanded={cleanOpen}>
+              <td colSpan={6} style={{ color: 'var(--green)' }}>{cleanOpen ? '▾' : '▸'} Within government benchmark ({cleanItems.length})</td>
+            </tr>
+            {cleanOpen && cleanItems.map((item, i) => (
+              <tr key={`clean-${i}`}>
+                <td><div className="ft-item-name">{item.item_name}</div></td>
+                <td><span className="badge" style={{ background: 'var(--green-bg)', color: 'var(--green)', borderColor: 'color-mix(in oklab, var(--green) 40%, transparent)' }}>OK</span></td>
+                <td className="ft-bench">{fmt(item.total)}</td>
+                <td className="ft-bench">—</td>
+                <td className="ft-bench">—</td>
+                <td className="ft-bench">—</td>
+              </tr>
+            ))}
+          </>
+        )}
+      </tbody>
+    </table>
+  );
+
+  const resultsContent = (<>{summarySection}{flagsTable}</>);
+
   const letterPanel = (
     <>
       <p className="label" style={{ color: 'var(--muted)', marginBottom: '1.25rem', letterSpacing: '0.12em' }}>Dispute Letter</p>
       {letterPhase === 'loading' && (
-        <div style={{ paddingTop: '3rem', textAlign: 'center' }}>
-          <p style={{ fontFamily: 'var(--display)', fontSize: '1.05rem', fontWeight: 600, display: 'flex', alignItems: 'center', justifyContent: 'center', flexWrap: 'wrap', gap: '4px', marginBottom: '0.75rem' }}>
+        <div style={{ paddingTop: '1rem', textAlign: 'center' }} aria-live="polite" aria-atomic="true">
+          <p style={{ fontFamily: 'var(--display)', fontSize: '1.05rem', fontWeight: 600, letterSpacing: '-0.01em', marginBottom: '1.25rem' }}>
             Drafting your dispute letter
-            <span className="pulse-dots" aria-hidden="true">
-              <span className="pulse-dot">·</span>
-              <span className="pulse-dot">·</span>
-              <span className="pulse-dot">·</span>
-            </span>
           </p>
-          <p style={{ color: 'var(--muted)', fontSize: '0.875rem' }}>This usually takes 15–30 seconds.</p>
+          <div className={`status-line${letterStatusVisible ? ' visible' : ''}`}>{letterStatusText}</div>
         </div>
       )}
       {(letterPhase === 'typing' || letterPhase === 'ready') && (
         <>
           <p style={{ fontSize: '0.8rem', color: 'var(--green)', fontWeight: 500, marginBottom: '0.6rem' }}>Ready to send</p>
           <div className="letter-note" role="note">
-            Review before sending. Fill in [Admission Date] and [Discharge Date] manually if they appear.
+            Review before sending. Fill in admission and discharge dates if shown.
           </div>
-          <div className="letter-box letter-box--split" tabIndex={0} aria-label="Dispute letter content">
+          <div className="letter-box" style={{ maxHeight: '50vh' }} tabIndex={0} aria-label="Dispute letter content">
             {letterPhase === 'typing' ? typeText : letter}
             {letterPhase === 'typing' && <span className="tw-cursor" aria-hidden="true" />}
           </div>
@@ -1309,14 +1429,17 @@ ${structFlags.length > 0 ? `<h2>Structural Violations (${structFlags.length})</h
 
   if (letterPhase !== 'none') {
     return (
-      <div className="results-split">
-        <div className="results-left">{resultsContent}</div>
-        <div className="results-right">{letterPanel}</div>
+      <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '2rem' }}>
+        {summarySection}
+        <div className="res-two-col">
+          <div className="ft-scroll">{flagsTable}</div>
+          <div style={{ borderLeft: '1px solid var(--border)', paddingLeft: '2rem' }}>{letterPanel}</div>
+        </div>
       </div>
     );
   }
 
-  return <div className="page">{resultsContent}</div>;
+  return <div className="results-page">{resultsContent}</div>;
 }
 
 // ── App ────────────────────────────────────────────────────────────────
