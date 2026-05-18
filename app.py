@@ -10,6 +10,11 @@ from pipeline import extract_bill, analyze_bill, generate_letter
 app = Flask(__name__)
 CORS(app)
 
+@app.after_request
+def skip_ngrok_warning(response):
+    response.headers["ngrok-skip-browser-warning"] = "true"
+    return response
+
 FRONTEND_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "frontend")
 
 if not os.environ.get("ANTHROPIC_API_KEY"):
