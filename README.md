@@ -74,11 +74,11 @@ All structural violations cite **CGHS OM 03.10.2025, Annexure-III §1/§2**.
 
 ```
 ┌─────────────────────────────────────────────────┐
-│                BillShield Pipeline               │
-│                                                  │
-│  Bill PDF / Photo                                │
-│        │                                         │
-│        ▼                                         │
+│                BillShield Pipeline              │
+│                                                 │
+│  Bill PDF / Photo                               │
+│        │                                        │
+│        ▼                                        │
 │  ┌───────────┐   ┌───────────┐   ┌────────────┐ │
 │  │  Stage 1  │   │  Stage 2  │   │  Stage 3   │ │
 │  │ Extractor │──▶│  Analyst  │──▶│   Letter   │ │
@@ -239,6 +239,6 @@ Eight questions answered before writing a single line of code:
 
 ## Built By
 
-**Gurucharan** — Design Student, 100x Cohort · May 2026
+**Gurucharan Ganesan** — · May 2026
 
 *Informational tool only. Not legal advice.*
