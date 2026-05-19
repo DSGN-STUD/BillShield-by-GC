@@ -374,6 +374,6 @@ Eight questions answered before writing a single line of code:
 
 ## Built By
 
-**Gurucharan** — Design Student, 100x Cohort · May 2026
+**Gurucharan** Ganesan · May 2026
 
 *Informational tool only. Not legal advice.*
