@@ -5,7 +5,6 @@ AI-powered hospital bill auditor for Indian families
 
 BillShield checks every line of your hospital bill against verified Indian government rates — CGHS, NPPA, and IRDAI — and generates a formal dispute letter you can send directly to the hospital or insurer. Free. No login. Under 2 minutes.
 
----
 
 ## The Problem
 
@@ -17,7 +16,6 @@ BillShield checks every line of your hospital bill against verified Indian gover
 | Eye surgery · Tier I | ₹55,000 | Foreign lens markup, no explanation given |
 | Post-cataract (clean bill) | ₹18,198 | **0 flags** — BillShield confirms the bill is correct |
 
----
 
 ## What BillShield Does
 
@@ -32,7 +30,6 @@ Upload bill → Extract line items → Analyse against benchmarks → Generate d
 5. **Results** — flagged items with verified citations and overcharge amounts
 6. **Letter** — formal 4-section dispute letter, ready to send in 14 days
 
----
 
 ## Real Results — Bill B (Brain Stroke Patient)
 
@@ -52,7 +49,6 @@ Total flagged: ₹54,730  ·  15 issues  ·  7 rate overcharges  ·  8 structura
 
 All structural violations cite **CGHS OM 03.10.2025, Annexure-III §1/§2**.
 
----
 
 ## Knowledge Base
 
@@ -66,7 +62,6 @@ All structural violations cite **CGHS OM 03.10.2025, Annexure-III §1/§2**.
 **Flagging rule:** Items flagged only if billed at more than **2× the applicable CGHS rate**.
 **Letter threshold:** Dispute letter generated only if total flagged > **₹2,500**.
 
----
 
 ## Architecture
 
@@ -181,7 +176,6 @@ Claude calls `billshield_audit` and returns:
 - Total flagged amount
 - Dispute letter if total > ₹2,500
 
----
 
 ## Claude Code Skill
 
@@ -260,9 +254,6 @@ curl -X POST https://your-api-url/v1/audit \
 | `/v1/letter` | POST | Analysis → dispute letter |
 | `/v1/audit` | POST | Full pipeline in one call |
 
-See [API_DOCS.md](./API_DOCS.md) for full documentation.
-
----
 
 ## Guardrails
 
@@ -274,7 +265,6 @@ See [API_DOCS.md](./API_DOCS.md) for full documentation.
 6. **Empty extraction guard** — analyst blocked if no line items extracted
 7. **₹2,500 threshold** — no letter unless total flagged exceeds threshold
 
----
 
 ## Evaluation — 4 Golden Dataset Bills
 
@@ -285,7 +275,6 @@ See [API_DOCS.md](./API_DOCS.md) for full documentation.
 | **C** | Adversarial (PII + injection) | ✅ Blocked |
 | **D** | Real photo · fever · ₹20,500 | ✅ 6 flags detected |
 
----
 
 ## Project Structure
 
@@ -319,7 +308,6 @@ BillShield-by-GC/
 └── API_DOCS.md
 ```
 
----
 
 ## Running Locally
 
@@ -332,7 +320,6 @@ python3 app.py
 # Open http://localhost:8080/landing.html
 ```
 
----
 
 ## Design Decisions
 
@@ -349,7 +336,6 @@ Eight questions answered before writing a single line of code:
 | Q7 | When to generate a letter? | >₹2,500 total |
 | Q8 | Why now? | Window closes ~2027 |
 
----
 
 ## v2 Roadmap
 
@@ -364,13 +350,11 @@ Eight questions answered before writing a single line of code:
 | Mobile app | Future |
 | Vernacular support (Hindi, Tamil) | Future |
 
----
 
 ## Cost
 
 **Total: ₹15,000 INR** — API subscriptions, Claude Pro, Google AI Studio, Lovable, tools.
 
----
 
 ## Built By
 
